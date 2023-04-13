@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Sheets API Sample</title>
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid black;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Google Sheets API Sample</h1>
+	<table id="data">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Score</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<!-- Load the Google Sheets API client library -->
+	<script src="https://apis.google.com/js/api.js"></script>
+	<script>
+		function getData() {
+			// Use the Google Sheets API to retrieve data from the sheet
+			gapi.client.sheets.spreadsheets.values.get({
+				spreadsheetId: '1zYiPrQXzoOq70Igosqdx0Yx_-bBXtkP2/edit#gid=1174710311',
+				range: 'Sheet1!A2:B',
+			}).then(function(response) {
+				var data = response.result.values;
+
+				// Populate the table with the data from the sheet
+				var tbody = document.querySelector('#data tbody');
+				tbody.innerHTML = '';
+				data.forEach(function(row) {
+					var tr = document.createElement('tr');
+					row.forEach(function(cell) {
+						var td = document.createElement('td');
+						td.appendChild(document.createTextNode(cell));
+						tr.appendChild(td);
+					});
+					tbody.appendChild(tr);
+				});
+			}, function(response) {
+				console.log('Error: ' + response.result.error.message);
+			});
+		}
+
+		// Initialize the Google Sheets API client
+		function initClient() {
+			gapi.client.init({
+				apiKey: '364660883340-msc3ajtaalst653kurq43743skq65eiu.apps.googleusercontent.com',
+				discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+			}).then(function() {
+				// Call the getData function to retrieve data from the sheet
+				getData();
+			}, function(response) {
+				console.log('Error: ' + response.result.error.message);
+			});
+		}
+
+		// Load the Google Sheets API client library
+		gapi.load('client', initClient);
+	</script>
+<iframe width="100%" height="700" src="https://docs.google.com/spreadsheets/d/1zYiPrQXzoOq70Igosqdx0Yx_-bBXtkP2/edit#gid=1174710311/pubhtml?widget=true&amp;headers=false"></iframe>
+</body>
+</html>
