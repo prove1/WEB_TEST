@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>에어컨 가격</title>
+  <script>
+    function addIndoorModel() {
+      var form = document.getElementById("quote-form");
+
+      // Create a new select element
+      var select = document.createElement("select");
+      select.setAttribute("name", "indoor-model");
+      select.setAttribute("required", true);
+
+      // Create and add options to the select element
+      var models = ["M-Q0720C2S", "M-Q0320C2S", "M-Q0230C2S", "M-Q0200C2S"];
+      for (var i = 0; i < models.length; i++) {
+        var option = document.createElement("option");
+        option.setAttribute("value", models[i]);
+        option.textContent = models[i];
+        select.appendChild(option);
+      }
+
+      // Create a new input element
+      var input = document.createElement("input");
+      input.setAttribute("type", "number");
+      input.setAttribute("name", "quantity");
+      input.setAttribute("min", "1");
+      input.setAttribute("max", "100");
+      input.setAttribute("required", true);
+
+      // Create a new label element
+      var label = document.createElement("label");
+      label.setAttribute("for", "quantity");
+      label.textContent = "실내기 모델: ";
+
+      // Add the label, select, and input elements to the form
+      form.appendChild(label);
+      form.appendChild(select);
+      form.appendChild(input);
+      form.appendChild(document.createElement("br"));
+    }
+
+    function calculatePrice() {
+      var outdoorModel = document.getElementById("outdoor-model").value;
+      var indoorModels = document.getElementsByName("indoor-model");
+      var quantities = document.getElementsByName("quantity");
+      var totalPrice = 0;
+
+      for (var i = 0; i < indoorModels.length; i++) {
+        var indoorModel = indoorModels[i].value;
+        var quantity = quantities[i].value;
+
+        var pricePerUnit = 0;
+        switch (indoorModel) {
+          case "M-Q0720C2S":
+            pricePerUnit = 1000;
+            break;
+          case "M-Q0320C2S":
+            pricePerUnit = 800;
+            break;
+          case "M-Q0230C2S":
+            pricePerUnit = 700;
+            break;
+          case "M-Q0200C2S":
+            pricePerUnit = 600;
+            break;
+        }
+
+        var price = pricePerUnit * quantity;
+        totalPrice += price;
+      }
+
+      // Output the total price
+      var output = document.getElementById("total-price");
+      output.textContent = "총 가격: " + totalPrice + "원";
+    }
+  </script>
+</head>
+<body>
+  <h1>에어컨 견적서</h1>
+  <form id="quote-form">
+
+<button type="button" onclick="addIndoorModel()">실내기 추가</button>
+<br><br>
+<button type="button" onclick="calculatePrice()">견적 계산</button>
+<br>
+    <label for="outdoor-model">실외기 모델:</label>
+    <select id="outdoor-model" name="outdoor-model" required>
+      <option value="MUQ1452S25V">MUQ1452S25V</option>
+    </select>
+    <br>
+    <label for="indoor-model">실내기 모델:</label>
+<select name="indoor-model" required>
+<option value="M-Q0720C2S">M-Q0720C2S</option>
+<option value="M-Q0320C2S">M-Q0320C2S</option>
+<option value="M-Q0230C2S">M-Q0230C2S</option>
+<option value="M-Q0200C2S">M-Q0200C2S</option>
+</select>
+<label for="quantity">실내기 수량:</label>
+<input type="number" name="quantity" min="1" max="100" required>
+<br>
+<div id="indoor-models">
+<!-- Additional indoor models and quantities will be added here -->
+</div>
+
+  </form>
+  <div id="total-price"></div>
+</body>
+</html>
