@@ -1,110 +1,142 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>견적서</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        input[type="number"] {
-            width: 80px;
-        }
-        button {
-            margin-top: 16px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>견적서</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button {
+      margin-top: 16px;
+    }
+  </style>
 </head>
 <body>
-<h1>견적서</h1>
-케이엘공조<br>
-과장 최혁준<br>
-010-7302-0147<p>
-    <table id="estimateTable">
-        <thead>
-            <tr>
-                <th>모델명</th>
-                <th>수량</th>
-                <th>단가</th>
-                <th>합계</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <button onclick="addRow()">셀 추가</button>
-    <h4>전체 합계금액: <span id="totalAmount">0</span></h4>
-    <script>
-        const modelPrices = {
-            "모델1": 100000,
-            "모델2": 200000,
-            "모델3": 300000,
-        };
+  <h1>견적서</h1>
+  <p>케이엘공조</p>
+  <p>과장 최혁준</p>
+  <p>010-7302-0147</p>
+  <table id="estimateTable">
+    <thead>
+      <tr>
+        <th>모델명</th>
+        <th>수량</th>
+        <th>단가</th>
+        <th>합계</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <button onclick="addRow()">셀 추가</button>
+  <button onclick="addCustomRow()">사용자 정의 셀 추가</button>
+  <button onclick="location.reload()">새로고침</button>
+  <h4>전체 합계금액: <span id="totalAmount">0</span></h4>
+  <script>
+    const modelPrices = {
+      "MNQ0721C2U": 536000,
+      "MNQ0601C2U": 518000,
+    };
 
-        function addRow() {
-            const table = document.getElementById("estimateTable");
-            const row = table.insertRow(-1);
-            const modelCell = row.insertCell(0);
-            const quantityCell = row.insertCell(1);
-            const unitPriceCell = row.insertCell(2);
-            const totalPriceCell = row.insertCell(3);
+    function addRow() {
+      const table = document.getElementById("estimateTable");
+      const row = table.insertRow(-1);
+      const modelCell = row.insertCell(0);
+      const quantityCell = row.insertCell(1);
+      const unitPriceCell = row.insertCell(2);
+      const totalPriceCell = row.insertCell(3);
 
-            const select = document.createElement("select");
-            select.innerHTML = "<option value='' selected disabled>선택</option>";
-            for (const model in modelPrices) {
-                select.innerHTML += `<option value="${model}">${model}</option>`;
-            }
-            select.onchange = () => {
-                unitPriceCell.innerText = modelPrices[select.value];
-                calculateTotal(row);
-            };
-            modelCell.appendChild(select);
+      const select = document.createElement("select");
+      select.innerHTML = "<option value='' selected disabled>선택</option>";
+      for (const model in modelPrices) {
+        select.innerHTML += `<option value="${model}">${model}</option>`;
+      }
+      select.onchange = () => {
+        unitPriceCell.innerText = modelPrices[select.value];
+        calculateTotal(row);
+      };
+      modelCell.appendChild(select);
 
-            const input = document.createElement("input");
-            input.type = "number";
-            input.min = 0;
-            input.oninput = () => calculateTotal(row);
-            quantityCell.appendChild(input);
+      const input = document.createElement("input");
+      input.type = "number";
+      input.min = 0;
+      input.oninput = () => calculateTotal(row);
+      quantityCell.appendChild(input);
 
-            unitPriceCell.innerText = 0;
-            totalPriceCell.innerText = 0;
-        }
+      unitPriceCell.innerText = 0;
+      totalPriceCell.innerText = 0;
+    }
 
-        function calculateTotal(row) {
-            const select = row.cells[0].querySelector("select");
-            const quantityInput = row.cells[1].querySelector("input");
-            const unitPrice = row.cells[2];
-            const totalPrice = row.cells[3];
+    function addCustomRow() {
+      const table = document.getElementById("estimateTable");
+      const row = table.insertRow(-1);
+      const modelCell = row.insertCell(0);
+      const quantityCell = row.insertCell(1);
+      const unitPriceCell = row.insertCell(2);
+      const totalPriceCell = row.insertCell(3);
 
-            if (select.value && quantityInput.value) {
-                totalPrice.innerText = modelPrices[select.value] * quantityInput.value;
-            } else {
-                totalPrice.innerText = 0;
-            }
-            calculateTotalAmount();
-        }
+      const modelInput = document.createElement("input");
+  modelInput.type = "text";
+  modelCell.appendChild(modelInput);
 
-        function calculateTotalAmount() {
-            const table = document.getElementById("estimateTable");
-            const totalAmountSpan = document.getElementById("totalAmount");
-            let totalAmount = 0
-            for (let i = 1; i < table.rows.length; i++) {
-                const row = table.rows[i];
-                const totalPrice = parseInt(row.cells[3].innerText);
-                totalAmount += totalPrice;
-            }
-            totalAmountSpan.innerText = totalAmount;
-        }
-    </script>
+  const quantityInput = document.createElement("input");
+  quantityInput.type = "number";
+  quantityInput.min = 0;
+  quantityInput.oninput = () => calculateTotal(row);
+  quantityCell.appendChild(quantityInput);
+
+  const unitPriceInput = document.createElement("input");
+  unitPriceInput.type = "number";
+  unitPriceInput.min = 0;
+  unitPriceInput.oninput = () => calculateTotal(row);
+  unitPriceCell.appendChild(unitPriceInput);
+
+  totalPriceCell.innerText = 0;
+
+  calculateTotal(row);
+}
+
+function calculateTotal(row) {
+  const modelSelect = row.cells[0].querySelector("select");
+  const modelInput = row.cells[0].querySelector("input");
+  const quantityInput = row.cells[1].querySelector("input");
+  const unitPriceInput = row.cells[2].querySelector("input");
+  const totalPriceCell = row.cells[3];
+
+  if (modelSelect && modelSelect.value && quantityInput.value) {
+    totalPriceCell.innerText = modelPrices[modelSelect.value] * quantityInput.value;
+  } else if (modelInput && modelInput.value && quantityInput.value && unitPriceInput.value) {
+    totalPriceCell.innerText = quantityInput.value * unitPriceInput.value;
+  } else {
+    totalPriceCell.innerText = 0;
+  }
+
+  calculateTotalAmount();
+}
+
+function calculateTotalAmount() {
+  const table = document.getElementById("estimateTable");
+  const totalAmountSpan = document.getElementById("totalAmount");
+  let totalAmount = 0;
+  for (let i = 1; i < table.rows.length; i++) {
+    const row = table.rows[i];
+    const totalPrice = parseInt(row.cells[3].innerText);
+    totalAmount += totalPrice;
+  }
+  totalAmountSpan.innerText = totalAmount;
+}
+  </script>
 </body>
 </html>
+
