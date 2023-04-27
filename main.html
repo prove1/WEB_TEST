@@ -1,168 +1,176 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>견적서</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-    button {
-      margin-top: 16px;
-    }
-  </style>
+	<title>견적서</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 {
+			margin: 16px;
+			text-align: center;
+		}
+
+		form {
+			margin: 16px;
+		}
+
+		form label {
+			display: block;
+			margin-bottom: 8px;
+		}
+
+		form select, form input[type="number"], #unit-price {
+			display: block;
+			margin-bottom: 16px;
+			width: 100%;
+			font-size: 16px;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		form button {
+			display: block;
+			margin: 16px auto;
+			padding: 8px 16px;
+			font-size: 16px;
+			border: none;
+			border-radius: 4px;
+			background-color: #007bff;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			margin: 16px;
+		}
+
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+
+		th {
+			background-color: #f2f2f2;
+		}
+
+		td:last-child, th:last-child {
+			text-align: right;
+		}
+
+		#total-price {
+			display: block;
+			margin: 16px;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: right;
+		}
+	</style>
 </head>
 <body>
-  <h1>견적서</h1>
-  <table id="estimateTable">
-    <thead>
-      <tr>
-        <th>모델명</th>
-        <th>수량</th>
-        <th>단가</th>
-        <th>합계</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-  <button onclick="addRow()">셀 추가</button>
-  <button onclick="addCustomRow()">사용자 정의 셀 추가</button>
-  <button onclick="location.reload()">새로고침</button>
-  <h4>전체 합계금액: <span id="totalAmount">0</span></h4>
-  <script>
-    const modelPrices = {
-	"MNQ0721C2U": 536000,
-"MNQ0601C2U": 518000,
-"MNQ0521C2U": 467000,
-"MNQ0401C2U": 372000,
-"MNQ0321C2U": 364000,
-"MNQ0231C2U": 355000,
-"MNQ0201C2U": 346000,
-"MNQ0721C2S": 430000,
-"MNQ0601C2S": 416000,
-"MNQ0521C2S": 374000,
-"MNQ0401C2S": 298000,
-"MNQ0321C2S": 291000,
-"MNQ0231C2S": 284000,
-"MNQ0201C2S": 277000,
-"MNQ0720C2S": 422000,
-"MNQ0600C2S": 408000,
-"MNQ0520C2S": 368000,
-"MNQ0400C2S": 293000,
-"MNQ0320C2S": 286000,
-"MNQ0230C2S": 279000,
-"MNQ0200C2S": 272000,
-"MNQ0720P2S": 830000,
-"MNQ0810P2S": 871000,
-"MNQ0830P2S": 891000,
-"MNQ0230R2S": 225000,
-"MNQ0320R2S": 238000,
-"MNQ0400R2S": 252000,
-"MNQ0520R2S": 327000,
-"MUQ0722A23V": 805000,
-"MUQ0902A24V": 985000,
-"MUQ1102S25V": 1149000,
-"MUQ1452S25V": 1715000,
-    };
+	<h1>견적서</h1>
+	<form>
+		<label for="product">품목:</label>
+		<select id="product" name="product">
+			<option value="product1">제품 1</option>
+			<option value="product2">제품 2</option>
+			<option value="product3">제품 3</option>
+		</select>
 
-    function addRow() {
-      const table = document.getElementById("estimateTable");
-      const row = table.insertRow(-1);
-      const modelCell = row.insertCell(0);
-      const quantityCell = row.insertCell(1);
-      const unitPriceCell = row.insertCell(2);
-      const totalPriceCell = row.insertCell(3);
+		<label for="quantity">갯수:</label>
+		<input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
 
-      const select = document.createElement("select");
-      select.innerHTML = "<option value='' selected disabled>선택</option>";
-      for (const model in modelPrices) {
-        select.innerHTML += `<option value="${model}">${model}</option>`;
-      }
-      select.onchange = () => {
-        unitPriceCell.innerText = modelPrices[select.value];
-        calculateTotal(row);
-      };
-      modelCell.appendChild(select);
+		<label for="unit-price">단가:</label>
+		<span id="unit-price">10,000원</span>
 
-      const input = document.createElement("input");
-      input.type = "number";
-      input.min = 0;
-      input.oninput = () => calculateTotal(row);
-      quantityCell.appendChild(input);
+		<button type="button" onclick="addProduct()">제품 추가</button>
+	</form>
 
-      unitPriceCell.innerText = 0;
-      totalPriceCell.innerText = 0;
-    }
+	<table id="product-table">
+		<thead>
+			<tr>
+				<th>품목</th>
+				<th>갯수</th>
+				<th>합계</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 
-    function addCustomRow() {
-      const table = document.getElementById("estimateTable");
-      const row = table.insertRow(-1);
-      const modelCell = row.insertCell(0);
-      const quantityCell = row.insertCell(1);
-      const unitPriceCell = row.insertCell(2);
-      const totalPriceCell = row.insertCell(3);
+	<p id="total-price">최종금액: 0원</p>
 
-      const modelInput = document.createElement("input");
-  modelInput.type = "text";
-  modelCell.appendChild(modelInput);
+	<script>
+		let products = [];
+		let totalPrice = 0;
 
-  const quantityInput = document.createElement("input");
-  quantityInput.type = "number";
-  quantityInput.min = 0;
-  quantityInput.oninput = () => calculateTotal(row);
-  quantityCell.appendChild(quantityInput);
+		function addProduct() {
+			const product = document.getElementById("product");
+			const quantity= document.getElementById("quantity");
+		const selectedProduct = product.options[product.selectedIndex].text;
+		const selectedQuantity = parseInt(quantity.value);
+		const selectedUnitPrice = 10000;
 
-  const unitPriceInput = document.createElement("input");
-  unitPriceInput.type = "number";
-  unitPriceInput.min = 0;
-  unitPriceInput.oninput = () => calculateTotal(row);
-  unitPriceCell.appendChild(unitPriceInput);
+		const existingProductIndex = products.findIndex(p => p.name === selectedProduct);
+		if (existingProductIndex >= 0) {
+			products[existingProductIndex].quantity += selectedQuantity;
+		} else {
+			products.push({
+				name: selectedProduct,
+				quantity: selectedQuantity,
+				unitPrice: selectedUnitPrice
+			});
+		}
 
-  totalPriceCell.innerText = 0;
+		updateTable();
+		updateTotalPrice();
+	}
 
-  calculateTotal(row);
-}
+	function updateTable() {
+		const tableBody = document.querySelector("#product-table tbody");
 
-function calculateTotal(row) {
-  const modelSelect = row.cells[0].querySelector("select");
-  const modelInput = row.cells[0].querySelector("input");
-  const quantityInput = row.cells[1].querySelector("input");
-  const unitPriceInput = row.cells[2].querySelector("input");
-  const totalPriceCell = row.cells[3];
+		tableBody.innerHTML = "";
 
-  if (modelSelect && modelSelect.value && quantityInput.value) {
-    totalPriceCell.innerText = modelPrices[modelSelect.value] * quantityInput.value;
-  } else if (modelInput && modelInput.value && quantityInput.value && unitPriceInput.value) {
-    totalPriceCell.innerText = quantityInput.value * unitPriceInput.value;
-  } else {
-    totalPriceCell.innerText = 0;
-  }
+		products.forEach(p => {
+			const row = document.createElement("tr");
 
-  calculateTotalAmount();
-}
+			const nameCell = document.createElement("td");
+			nameCell.textContent = p.name;
+			row.appendChild(nameCell);
 
-function calculateTotalAmount() {
-  const table = document.getElementById("estimateTable");
-  const totalAmountSpan = document.getElementById("totalAmount");
-  let totalAmount = 0;
-  for (let i = 1; i < table.rows.length; i++) {
-    const row = table.rows[i];
-    const totalPrice = parseInt(row.cells[3].innerText);
-    totalAmount += totalPrice;
-  }
-  totalAmountSpan.innerText = totalAmount;
-}
-  </script>
+			const quantityCell = document.createElement("td");
+			quantityCell.textContent = p.quantity;
+			row.appendChild(quantityCell);
+
+			const totalPriceCell = document.createElement("td");
+			totalPriceCell.textContent = (p.quantity * p.unitPrice).toLocaleString() + "원";
+			row.appendChild(totalPriceCell);
+
+			tableBody.appendChild(row);
+		});
+	}
+
+	function updateTotalPrice() {
+		totalPrice = products.reduce((total, p) => total + (p.quantity * p.unitPrice), 0);
+		document.getElementById("total-price").textContent = "최종금액: " + totalPrice.toLocaleString() + "원";
+	}
+
+	function updatePrice() {
+		const quantity = document.getElementById("quantity");
+		const unitPrice = document.getElementById("unit-price");
+		unitPrice.textContent = (10000).toLocaleString() + "원";
+	}
+
+	addProduct();
+</script>
 </body>
 </html>
