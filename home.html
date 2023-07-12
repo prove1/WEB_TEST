@@ -1,6 +1,3 @@
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +14,7 @@
     }
     .input-cell input {
         width: 50%;
-        max-width: 30px;
+        max-width: 50px;
     }
     @media screen and (max-width: 600px) {
         div {
@@ -57,14 +54,14 @@
 	</td>
         <td> 조합비 </td>
         <td>num8</td>
-        <td class="input-cell"><input type="number" id="num56" value="0" oninput="updateNumbers(this.value)">%</td>
+        <td class="input-cell"><input type="number" id="DCp" value="0" oninput="updateNumbers(this.value)">%</td>
     </tr>
     <tr>
         <td>실외기</td>
         <td class="input-cell"> num9</td>
         <td> num10</td>
         <td> num11</td>
-        <td id="num57">0</td>
+        <td id="DCp2">0</td>
     </tr>
     </tr>
     <tr>
@@ -72,7 +69,7 @@
         <td class="input-cell"> num17</td>
         <td> num18</td>
         <td> num19</td>
-        <td id="num58">0</td>
+        <td id="DCp2">0</td>
     </tr>
     <tr>
         <td>리모컨</td>
@@ -97,8 +94,8 @@
     </tr>
     <tr>
         <td class="input-cell">기타비용</td>
-        <td>33 </td>
-        <td>33 </td>
+        <td>실행가</td>
+        <td>sum33 </td>
         <td>마진율</td>
         <td>마진 </td>
     </tr>
@@ -113,11 +110,10 @@
 </div>
 <script>
     function updateNumbers(value) {
-        document.getElementById("num57").innerText = value;
-        document.getElementById("num58").innerText = value;
+        var newValue = parseInt(value) / 100;
+        document.getElementById("DCp2").innerText = newValue;
+        document.getElementById("DCp2").innerText = newValue;
     }
 </script>
 </body>
 </html>
-
-
