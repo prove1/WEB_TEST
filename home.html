@@ -1,0 +1,116 @@
+<html>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    .input-cell {
+        background-color: #E6B8B7;
+    }
+    @media screen and (max-width: 600px) {
+        table, td {
+            width: 100%;
+        }
+    }
+</style>
+<body>
+<div style="overflow-x:auto;">
+<table>
+    <tr>
+        <td>주거형 견적서</td>
+    </tr>
+    <tr>
+        <td>
+	</td>
+        <td>스탠드1</td>
+        <td>ex 18평 스탠드 181</td>
+        <td>벽걸이2</td>
+        <td>ex 벽걸이 10평 102</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <select name="num5">
+                <option value="주거멀티일반">주거멀티일반</option>
+                <option value="주거멀티신형">주거멀티신형</option>
+                <option value="주거멀티uv">주거멀티uv</option>
+                <option value="올인원일반">올인원일반</option>
+                <option value="올인원신형">올인원신형</option>
+                <option value="올인원uv">올인원uv</option>
+            </select>
+	</td>
+        <td> 조합비 </td>
+        <td>num8</td>
+        <td>DC</td>
+        <td class="input-cell"><input type="number" id="num56" value="0" oninput="updateNumbers(this.value)">%</td>
+    </tr>
+    <tr>
+        <td>실외기</td>
+        <td class="input-cell"> num9</td>
+        <td> num10</td>
+        <td> num11</td>
+        <td>num12</td>
+        <td id="num57">0</td>
+    </tr>
+    </tr>
+    <tr>
+        <td>실내기</td>
+        <td class="input-cell"> num17</td>
+        <td> num18</td>
+        <td> num19</td>
+        <td> num20</td>
+        <td id="num58">0</td>
+    </tr>
+    <tr>
+        <td>리모컨</td>
+        <td class="input-cell">0</td>
+        <td> num45</td>
+        <td> num46</td>
+        <td>num47</td>
+        <td> num48</td>
+    </tr>
+    <tr>
+        <td>분지관</td>
+        <td> num49</td>
+        <td> num50</td>
+        <td> num51</td>
+        <td> num52</td>
+        <td>입력 </td>
+    </tr>
+    <tr>
+        <td>총 금액</td>
+        <td> num53</td>
+        <td> num54</td>
+        <td> num55</td>
+        <td>대 당</td>
+        <td>33 </td>
+    </tr>
+    <tr>
+        <td class="input-cell">기타비용</td>
+        <td> num4156</td>
+        <td> num4157</td>
+        <td>마진율</td>
+        <td>판매금액</td>
+        <td>마진 </td>
+    </tr>
+    <tr>
+        <td class="input-cell"> num5a1641</td>
+        <td>=</td>
+        <td class="input-cell">10%</td>
+        <td> num5471</td>
+        <td> num5a81</td>
+        <td> </td>
+    </tr>
+</table>
+</div>
+<script>
+    function updateNumbers(value) {
+        document.getElementById("num57").innerText = value;
+        document.getElementById("num58").innerText = value;
+    }
+</script>
+</body>
+</html>
+
+
