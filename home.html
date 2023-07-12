@@ -1,6 +1,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
     table, th, td {
         border: 1px solid black;
@@ -16,8 +20,12 @@
         max-width: 30px;
     }
     @media screen and (max-width: 600px) {
-        table, td {
+        div {
+            overflow-x: auto;
+        }
+        table {
             width: 100%;
+            display: block;
         }
     }
 </style>
