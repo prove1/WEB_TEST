@@ -4,10 +4,17 @@
     <title>Discount Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table, th, td {
-            border: 1px solid black;
+        table {
+            border-collapse: collapse;
             width: 100%;
+        }
+        th, td {
+            border: 1px solid #888888;
+            padding: 10px;
             text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
         }
         input[type="number"] {
             width: 50%;
@@ -16,14 +23,14 @@
 </head>
 <body>
     <label for="discount">할인율: </label>
-    <input type="number" id="discount" value="25" min="0" max="100" onchange="calculateDiscount()"/>% - 기본 33% 중고 60% 스탠드 30% 4way 30~40평 30%
+    <input type="number" id="discount" value="25" min="0" max="100" onchange="calculateDiscount()"/>%<br> 기본 33% 중고 60% 스탠드 30% 4way 30~40평 30%<BR><B>*부가세 별도</B>
     <br/>
     <table>
         <thead>
             <tr>
                 <th>싱글 장비 일람표</th>
-                <th>가격</th>
-                <th>할인 가격</th>
+                <th>DC가격</th>
+                <th>설치비포함 (+75)</th>
             </tr>
         </thead>
         <tbody id="equipmentList">
@@ -69,33 +76,33 @@
 {name: "TW1100Y2SR냉난방기 원형 4.0HP(31평, 단상)", price: 292.7, discountedPrice: 196.109},
 {name: "TW1100Y9SR냉난방기 원형 4.0HP(31평, 삼상)", price: 292.7, discountedPrice: 196.109},
 {name: "TW1450Y9SR냉난방기 원형 5.0HP(40평, 삼상)", price: 343.7, discountedPrice: 230.279},
-{name: "PQ0900T2SF  냉방기, 스탠드형 3.0HP(23평)", price: 194.6, discountedPrice: 130.382},
-{name: "PQ1100T2FR  냉방기, 스탠드형 4.0HP(31평)", price: 214.6, discountedPrice: 143.782},
-{name: "PQ1451T2SF  냉방기, 스탠드형 5.0HP(40평)", price: 282.5, discountedPrice: 189.275},
-{name: "PW0523R2SF  냉난방기, 스탠드형 1.8HP(13평)", price: 191.3, discountedPrice: 128.171},
-{name: "PW0603R2SF  냉난방기, 스탠드형 2.0HP(15평)", price: 197.3, discountedPrice: 132.191},
-{name: "PW0723R2SF  냉난방기, 스탠드형 2.5HP(18평)", price: 209.6, discountedPrice: 140.432},
-{name: "PW0833R2SF  냉난방기, 스탠드형 3.0HP(23평)", price: 219.6, discountedPrice: 147.132},
-{name: "PW1103T2FR  냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 269.5, discountedPrice: 180.565},
-{name: "PW1103T9FR  냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 269.5, discountedPrice: 180.565},
-{name: "PW1303T2FR  냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 287.5, discountedPrice: 192.625},
-{name: "PW1303T9FR  냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 287.5, discountedPrice: 192.625},
-{name: "PW1453T9FR  냉난방기, 스탠드형 5.0HP(40평, 삼상)", price: 305.5, discountedPrice: 204.685},
-{name: "PW2300F9SF  냉난방기, 스탠드형 8.0HP(63평, 삼상)", price: 650, discountedPrice: 435.5},
-{name: "PW2900F9SF  냉난방기, 스탠드형 10.0HP(80평, 삼상)", price: 733, discountedPrice: 491.11},
-{name: "PQ2300F9SF  냉방기, 스탠드형 8.0HP(56평, 삼상)", price: 442, discountedPrice: 296.14},
-{name: "PQ2900F9SF  냉방기, 스탠드형 10.0HP(83평, 삼상)", price: 520, discountedPrice: 348.4},
-{name: "PQ4500N9SF  냉방기, 스탠드형 16.0HP(128평, 삼상)", price: 861, discountedPrice: 576.87},
-{name: "PQ5800N9SF  냉방기, 스탠드형 20,0HP(160평, 삼상)", price: 985, discountedPrice: 659.95},
-{name: "PW0522R2S  냉난방기, 스탠드형 1.5HP(13평)", price: 216.3, discountedPrice: 144.921},
-{name: "PW0603R2C  냉난방기, 스탠드형 2.0HP(15평)", price: 223.3, discountedPrice: 149.611},
-{name: "PW0721R2SR  냉난방기, 스탠드형 2.5HP(18평)", price: 236.6, discountedPrice: 158.522},
-{name: "PW0833R2CR  냉난방기, 스탠드형 3.0HP(23평)", price: 249.6, discountedPrice: 167.232},
-{name: "PW1101T2SR  냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 332.5, discountedPrice: 222.775},
-{name: "PW1103T9CR  냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 332.5, discountedPrice: 222.775},
-{name: "PW1301T2SR  냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 352.5, discountedPrice: 236.175},
-{name: "PW1301T9SR  냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 352.5, discountedPrice: 236.175},
-{name: "PW1453T9CR  냉난방기 스탠드형 5.0HP(40평, 삼상)", price: 372.5, discountedPrice: 249.575},
+{name: "PQ0900T2SF 냉방기, 스탠드형 3.0HP(23평)", price: 194.6, discountedPrice: 130.382},
+{name: "PQ1100T2FR 냉방기, 스탠드형 4.0HP(31평)", price: 214.6, discountedPrice: 143.782},
+{name: "PQ1451T2SF 냉방기, 스탠드형 5.0HP(40평)", price: 282.5, discountedPrice: 189.275},
+{name: "PW0523R2SF 냉난방기, 스탠드형 1.8HP(13평)", price: 191.3, discountedPrice: 128.171},
+{name: "PW0603R2SF 냉난방기, 스탠드형 2.0HP(15평)", price: 197.3, discountedPrice: 132.191},
+{name: "PW0723R2SF 냉난방기, 스탠드형 2.5HP(18평)", price: 209.6, discountedPrice: 140.432},
+{name: "PW0833R2SF 냉난방기, 스탠드형 3.0HP(23평)", price: 219.6, discountedPrice: 147.132},
+{name: "PW1103T2FR 냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 269.5, discountedPrice: 180.565},
+{name: "PW1103T9FR 냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 269.5, discountedPrice: 180.565},
+{name: "PW1303T2FR 냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 287.5, discountedPrice: 192.625},
+{name: "PW1303T9FR 냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 287.5, discountedPrice: 192.625},
+{name: "PW1453T9FR 냉난방기, 스탠드형 5.0HP(40평, 삼상)", price: 305.5, discountedPrice: 204.685},
+{name: "PW2300F9SF 냉난방기, 스탠드형 8.0HP(63평, 삼상)", price: 650, discountedPrice: 435.5},
+{name: "PW2900F9SF 냉난방기, 스탠드형 10.0HP(80평, 삼상)", price: 733, discountedPrice: 491.11},
+{name: "PQ2300F9SF 냉방기, 스탠드형 8.0HP(56평, 삼상)", price: 442, discountedPrice: 296.14},
+{name: "PQ2900F9SF 냉방기, 스탠드형 10.0HP(83평, 삼상)", price: 520, discountedPrice: 348.4},
+{name: "PQ4500N9SF 냉방기, 스탠드형 16.0HP(128평, 삼상)", price: 861, discountedPrice: 576.87},
+{name: "PQ5800N9SF 냉방기, 스탠드형 20,0HP(160평, 삼상)", price: 985, discountedPrice: 659.95},
+{name: "PW0522R2S 냉난방기, 스탠드형 1.5HP(13평)", price: 216.3, discountedPrice: 144.921},
+{name: "PW0603R2C 냉난방기, 스탠드형 2.0HP(15평)", price: 223.3, discountedPrice: 149.611},
+{name: "PW0721R2SR 냉난방기, 스탠드형 2.5HP(18평)", price: 236.6, discountedPrice: 158.522},
+{name: "PW0833R2CR 냉난방기, 스탠드형 3.0HP(23평)", price: 249.6, discountedPrice: 167.232},
+{name: "PW1101T2SR 냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 332.5, discountedPrice: 222.775},
+{name: "PW1103T9CR 냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 332.5, discountedPrice: 222.775},
+{name: "PW1301T2SR 냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 352.5, discountedPrice: 236.175},
+{name: "PW1301T9SR 냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 352.5, discountedPrice: 236.175},
+{name: "PW1453T9CR 냉난방기 스탠드형 5.0HP(40평, 삼상)", price: 372.5, discountedPrice: 249.575},
 {name: "SW07BDJWAS냉난방기 벽걸이형 1.0HP(7평)", price: 118, discountedPrice: 79.06},
 {name: "SW09BDJWAS냉난방기 벽걸이형 1.2HP(9평)", price: 128, discountedPrice: 85.76},
 {name: "SW11BAKWAS냉난방기 벽걸이형 1.5HP(11평)", price: 147, discountedPrice: 98.49},
@@ -113,8 +120,9 @@
         window.onload = function() {
             var tableBody = document.getElementById("equipmentList");
             for (var i = 0; i < equipmentList.length; i++) {
+                var nameWithBreaks = equipmentList[i].name.replace(/ /g, "<br>");
                 var row = document.createElement("tr");
-                row.innerHTML = "<td>" + equipmentList[i].name + "</td><td class='price'>" + equipmentList[i].price + "</td><td class='discountedPrice'>" + equipmentList[i].discountedPrice + "</td>";
+                row.innerHTML = "<td>" + nameWithBreaks + "</td><td class='price'>" + Math.round(equipmentList[i].discountedPrice) + "</td><td class='discountedPlus75'>" + Math.round(equipmentList[i].discountedPrice + 75) + "</td>";
                 tableBody.appendChild(row);
             }
             calculateDiscount();
@@ -126,7 +134,8 @@
             for (var i = 0; i < tableRows.length; i++) {
                 var price = equipmentList[i].price;
                 var discountedPrice = price * (1 - discountRate);
-                tableRows[i].getElementsByClassName("discountedPrice")[0].innerText = discountedPrice.toFixed(2);
+                tableRows[i].getElementsByClassName("price")[0].innerText = Math.round(discountedPrice);
+                tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + 75);
             }
         }
     </script>
