@@ -19,6 +19,39 @@
         input[type="number"] {
             width: 50%;
         }
+        .hidden {
+            display: none;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+        .close {
+            color: #888;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -37,92 +70,104 @@
         </tbody>
     </table>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>장비 정보</h2>
+            <p>등급: <span id="rank"></span>등급</p>
+            <p>배관경: <span id="pie"></span>파이</p>
+            <p>전원선굵기: <span id="sq"></span>스퀘어</p>
+            <p>차단기: <span id="amp"></span></p> <!-- Added 'A' after Amp value -->
+        </div>
+    </div>
+
     <script>
         var equipmentList = [
-            {name: "TW0230U2S냉난방기 1-WAY 0.8HP(6평)", price: 136, rank: 3, pie: 6.35/9.52, sq: 2.5, amp: 20}, 
-{name: "TW0320U2S냉난방기 1-WAY 1.0HP(8평)", price: 148, rank: 4, pie: 6.35/9.52, sq: 2.5, amp: 20}, 
-{name: "TW0400U2S냉난방기 1-WAY 1.2HP(10평)", price: 175, rank: 4, pie: 6.35/9.52, sq: 2.5, amp: 20}, 
-{name: "TW0522S2S냉난방기 2-WAY 1.8HP(13평)", price: 205, rank: 3, pie: 6.35/12.7, sq: 4, amp: 20}, 
-{name: "TW0601S2SR냉난방기 2-WAY 2.0HP(15평)", price: 225, rank: 5, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TW0600B2U냉난방기 4-WAY 듀얼베인 2HP(15평)", price: 212, rank: 3, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "TW0720A2UR냉난방기 4-WAY 듀얼베인 2.5HP(18평)", price: 235, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TW0900A2UR냉난방기 4-WAY 듀얼베인 3.0HP(25평)", price: 261, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TW1000A2UR냉난방기 4-WAY 듀얼베인 3.5HP(28평, 단상)", price: 285, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "TW1000A9UR냉난방기 4-WAY 듀얼베인 3.5HP(28평, 삼상)", price: 285, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TW1100A2UR냉난방기 4-WAY 듀얼베인 4.0HP(31평, 단상)", price: 304, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "TW1100A9UR냉난방기 4-WAY 듀얼베인 4.0HP(31평, 삼상)", price: 304, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TW1300A2UR냉난방기 4-WAY 듀얼베인 4.5HP(36평, 단상)", price: 325, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "TW1300A9UR냉난방기 4-WAY 듀얼베인 4.5HP(36평, 삼상)", price: 325, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TW1450A9UR냉난방기 4-WAY 듀얼베인 5.0HP(40평, 삼상)", price: 348, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TW0900A2SF냉난방기 4-WAY 3.0HP(25평)", price: 232, rank: 4, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TW1100A2FR냉난방기 4-WAY 4.0HP(31평, 단상)", price: 268, rank: 4, pie: 9.52/15.88, sq: 4, amp: 40}, 
-{name: "TW1100A9FR냉난방기 4-WAY 4.0HP(31평, 삼상)", price: 268, rank: 4, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TW1450A9FR냉난방기 4-WAY 5.0HP(40평, 삼상)", price: 312, rank: 4, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "BW1100M9SR냉난방기 덕트형 4.0HP(31평)", price: 318.6, rank: -, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "BW1450M9SR냉난방기 덕트형 5.0HP(40평)", price: 366.3, rank: -, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TQ0232U2S냉방기 1-WAY 0.8HP(6평)", price: 106, rank: 4, pie: 6.35/9.52, sq: 2.5, amp: 15}, 
-{name: "TQ0322U2S냉방기 1-WAY 1.0HP(8평)", price: 118, rank: 5, pie: 6.35/9.52, sq: 2.5, amp: 15}, 
-{name: "TQ0401U2S냉방기 1-WAY 1.2HP(10평)", price: 134, rank: 4, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "TQ0521T2S냉방기 1-WAY 1.8HP(13평)", price: 158, rank: 4, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "TQ0601T2S냉방기 1-WAY 2.0HP(15평)", price: 168, rank: 5, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "TQ0721T2S냉방기 1-WAY 2.5HP(18평)", price: 170, rank: 5, pie: 9.52/15.88, sq: 2.5, amp: 30}, 
-{name: "TQ0600B2SF냉방기 4-WAY 2.0HP(15평)", price: 164, rank: 3, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "TQ0720B2SF냉방기 4-WAY 2.5HP(18평)", price: 170, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TQ0900A2SF냉방기 4-WAY 3HP(23평)", price: 200, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TQ1100A2FR냉방기 4-WAY 4.0HP(31평)", price: 220, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TQ1450A2FR냉방기 4-WAY 5.0HP(40평)", price: 270, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "TW0722Y2SR냉난방기 원형 2.5HP(18평)", price: 228.7, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TW0902Y2SR냉난방기 원형 3.0HP(25평)", price: 254.7, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "TW1100Y2SR냉난방기 원형 4.0HP(31평, 단상)", price: 292.7, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "TW1100Y9SR냉난방기 원형 4.0HP(31평, 삼상)", price: 292.7, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "TW1450Y9SR냉난방기 원형 5.0HP(40평, 삼상)", price: 343.7, rank: 4, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "PQ0900T2SF 냉방기, 스탠드형 3.0HP(23평)", price: 194.6, rank: 4, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "PQ1100T2FR 냉방기, 스탠드형 4.0HP(31평)", price: 214.6, rank: 4, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "PQ1451T2SF 냉방기, 스탠드형 5.0HP(40평)", price: 282.5, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "PW0523R2SF 냉난방기, 스탠드형 1.8HP(13평)", price: 191.3, rank: 3, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "PW0603R2SF 냉난방기, 스탠드형 2.0HP(15평)", price: 197.3, rank: 3, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "PW0723R2SF 냉난방기, 스탠드형 2.5HP(18평)", price: 209.6, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "PW0833R2SF 냉난방기, 스탠드형 3.0HP(23평)", price: 219.6, rank: 4, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "PW1103T2FR 냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 269.5, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "PW1103T9FR 냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 269.5, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "PW1303T2FR 냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 287.5, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "PW1303T9FR 냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 287.5, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "PW1453T9FR 냉난방기, 스탠드형 5.0HP(40평, 삼상)", price: 305.5, rank: 4, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "PW2300F9SF 냉난방기, 스탠드형 8.0HP(63평, 삼상)", price: 650, rank: - , pie: 9.52/22.2, sq: 6, amp: 40}, 
-{name: "PW2900F9SF 냉난방기, 스탠드형 10.0HP(80평, 삼상)", price: 733, rank: - , pie: 9.52/22.2, sq: 6, amp: 40}, 
-{name: "PQ2300F9SF 냉방기, 스탠드형 8.0HP(56평, 삼상)", price: 442, rank: - , pie: 9.52/22.2, sq: 6, amp: 40}, 
-{name: "PQ2900F9SF 냉방기, 스탠드형 10.0HP(83평, 삼상)", price: 520, rank: - , pie: 9.52/22.2, sq: 6, amp: 40}, 
-{name: "PQ4500N9SF 냉방기, 스탠드형 16.0HP(128평, 삼상)", price: 861, rank: - , pie: 15.88/28.58, sq: 6, amp: 15/40}, 
-{name: "PQ5800N9SF 냉방기, 스탠드형 20, 0HP(160평, 삼상)", price: 985, rank: - , pie: 15.88/28.58, sq: 6, amp: 15/40}, 
-{name: "PW0522R2S 냉난방기, 스탠드형 1.5HP(13평)", price: 216.3, rank: 3, pie: 6.35/12.7, sq: 2.5, amp: 20}, 
-{name: "PW0603R2C 냉난방기, 스탠드형 2.0HP(15평)", price: 223.3, rank: 3, pie: 6.35/12.7, sq: 4, amp: 20}, 
-{name: "PW0721R2SR 냉난방기, 스탠드형 2.5HP(18평)", price: 236.6, rank: 3, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "PW0833R2CR 냉난방기, 스탠드형 3.0HP(23평)", price: 249.6, rank: 4, pie: 9.52/15.88, sq: 4, amp: 30}, 
-{name: "PW1101T2SR 냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 332.5, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "PW1103T9CR 냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 332.5, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "PW1301T2SR 냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 352.5, rank: 3, pie: 9.52/15.88, sq: 6, amp: 40}, 
-{name: "PW1301T9SR 냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 352.5, rank: 3, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "PW1453T9CR 냉난방기 스탠드형 5.0HP(40평, 삼상)", price: 372.5, rank: 4, pie: 9.52/15.88, sq: 2.5, amp: 20}, 
-{name: "SW07BDJWAS냉난방기 벽걸이형 1.0HP(7평)", price: 118, rank: , pie: , sq: , amp: }, 
-{name: "SW09BDJWAS냉난방기 벽걸이형 1.2HP(9평)", price: 128, rank: , pie: , sq: , amp: }, 
-{name: "SW11BAKWAS냉난방기 벽걸이형 1.5HP(11평)", price: 147, rank: , pie: , sq: , amp: }, 
-{name: "SW13BAKWAS냉난방기 벽걸이형 1.8HP(13평)", price: 161, rank: , pie: , sq: , amp: }, 
-{name: "SW16BAKWAS냉난방기 벽걸이형 2.0HP(15평)", price: 184.6, rank: , pie: , sq: , amp: }, 
-{name: "SQ06BDAWBS냉방기 벽걸이형 0.7HP(6평)", price: 56.5, rank: , pie: , sq: , amp: }, 
-{name: "SQ07BDAWBS냉방기 벽걸이형 1.0HP(7평)", price: 61.5, rank: , pie: , sq: , amp: }, 
-{name: "SQ09BDJWAS냉방기 벽걸이형 1.2HP(9평)", price: 95.2, rank: , pie: , sq: , amp: }, 
-{name: "SQ11BCKWAS냉방기 벽걸이형 1.5HP(11평)", price: 115.2, rank: , pie: , sq: , amp: }, 
-{name: "SQ13BCKWAS냉방기 벽걸이형 1.8HP(13평)", price: 135.2, rank: , pie: , sq: , amp: }, 
-{name: "SQ16BCKWAS냉방기 벽걸이형 2.0HP(16평)", price: 155.2, rank: , pie: , sq: , amp: }, 
+{name: "TW0230U2S냉난방기 1-WAY 0.8HP(6평)", price: 136, rank: 3, pie: "6.35/9.52", sq: 2.5, amp: 20}, 
+{name: "TW0320U2S냉난방기 1-WAY 1.0HP(8평)", price: 148, rank: 4, pie: "6.35/9.52", sq: 2.5, amp: 20}, 
+{name: "TW0400U2S냉난방기 1-WAY 1.2HP(10평)", price: 175, rank: 4, pie: "6.35/9.52", sq: 2.5, amp: 20}, 
+{name: "TW0522S2S냉난방기 2-WAY 1.8HP(13평)", price: 205, rank: 3, pie: "6.35/12.7", sq: 4, amp: 20}, 
+{name: "TW0601S2SR냉난방기 2-WAY 2.0HP(15평)", price: 225, rank: 5, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TW0600B2U냉난방기 4-WAY 듀얼베인 2HP(15평)", price: 212, rank: 3, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "TW0720A2UR냉난방기 4-WAY 듀얼베인 2.5HP(18평)", price: 235, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TW0900A2UR냉난방기 4-WAY 듀얼베인 3.0HP(25평)", price: 261, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TW1000A2UR냉난방기 4-WAY 듀얼베인 3.5HP(28평, 단상)", price: 285, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "TW1000A9UR냉난방기 4-WAY 듀얼베인 3.5HP(28평, 삼상)", price: 285, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TW1100A2UR냉난방기 4-WAY 듀얼베인 4.0HP(31평, 단상)", price: 304, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "TW1100A9UR냉난방기 4-WAY 듀얼베인 4.0HP(31평, 삼상)", price: 304, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TW1300A2UR냉난방기 4-WAY 듀얼베인 4.5HP(36평, 단상)", price: 325, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "TW1300A9UR냉난방기 4-WAY 듀얼베인 4.5HP(36평, 삼상)", price: 325, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TW1450A9UR냉난방기 4-WAY 듀얼베인 5.0HP(40평, 삼상)", price: 348, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TW0900A2SF냉난방기 4-WAY 3.0HP(25평)", price: 232, rank: 4, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TW1100A2FR냉난방기 4-WAY 4.0HP(31평, 단상)", price: 268, rank: 4, pie: "9.52/15.88", sq: 4, amp: 40}, 
+{name: "TW1100A9FR냉난방기 4-WAY 4.0HP(31평, 삼상)", price: 268, rank: 4, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TW1450A9FR냉난방기 4-WAY 5.0HP(40평, 삼상)", price: 312, rank: 4, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "BW1100M9SR냉난방기 덕트형 4.0HP(31평)", price: 318.6, rank: 999, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "BW1450M9SR냉난방기 덕트형 5.0HP(40평)", price: 366.3, rank: 999, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TQ0232U2S냉방기 1-WAY 0.8HP(6평)", price: 106, rank: 4, pie: "6.35/9.52", sq: 2.5, amp: 15}, 
+{name: "TQ0322U2S냉방기 1-WAY 1.0HP(8평)", price: 118, rank: 5, pie: "6.35/9.52", sq: 2.5, amp: 15}, 
+{name: "TQ0401U2S냉방기 1-WAY 1.2HP(10평)", price: 134, rank: 4, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "TQ0521T2S냉방기 1-WAY 1.8HP(13평)", price: 158, rank: 4, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "TQ0601T2S냉방기 1-WAY 2.0HP(15평)", price: 168, rank: 5, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "TQ0721T2S냉방기 1-WAY 2.5HP(18평)", price: 170, rank: 5, pie: "9.52/15.88", sq: 2.5, amp: 30}, 
+{name: "TQ0600B2SF냉방기 4-WAY 2.0HP(15평)", price: 164, rank: 3, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "TQ0720B2SF냉방기 4-WAY 2.5HP(18평)", price: 170, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TQ0900A2SF냉방기 4-WAY 3HP(23평)", price: 200, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TQ1100A2FR냉방기 4-WAY 4.0HP(31평)", price: 220, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TQ1450A2FR냉방기 4-WAY 5.0HP(40평)", price: 270, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "TW0722Y2SR냉난방기 원형 2.5HP(18평)", price: 228.7, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TW0902Y2SR냉난방기 원형 3.0HP(25평)", price: 254.7, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "TW1100Y2SR냉난방기 원형 4.0HP(31평, 단상)", price: 292.7, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "TW1100Y9SR냉난방기 원형 4.0HP(31평, 삼상)", price: 292.7, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "TW1450Y9SR냉난방기 원형 5.0HP(40평, 삼상)", price: 343.7, rank: 4, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "PQ0900T2SF 냉방기, 스탠드형 3.0HP(23평)", price: 194.6, rank: 4, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "PQ1100T2FR 냉방기, 스탠드형 4.0HP(31평)", price: 214.6, rank: 4, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "PQ1451T2SF 냉방기, 스탠드형 5.0HP(40평)", price: 282.5, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "PW0523R2SF 냉난방기, 스탠드형 1.8HP(13평)", price: 191.3, rank: 3, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "PW0603R2SF 냉난방기, 스탠드형 2.0HP(15평)", price: 197.3, rank: 3, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "PW0723R2SF 냉난방기, 스탠드형 2.5HP(18평)", price: 209.6, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "PW0833R2SF 냉난방기, 스탠드형 3.0HP(23평)", price: 219.6, rank: 4, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "PW1103T2FR 냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 269.5, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "PW1103T9FR 냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 269.5, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "PW1303T2FR 냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 287.5, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "PW1303T9FR 냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 287.5, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "PW1453T9FR 냉난방기, 스탠드형 5.0HP(40평, 삼상)", price: 305.5, rank: 4, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "PW2300F9SF 냉난방기, 스탠드형 8.0HP(63평, 삼상)", price: 650, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
+{name: "PW2900F9SF 냉난방기, 스탠드형 10.0HP(80평, 삼상)", price: 733, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
+{name: "PQ2300F9SF 냉방기, 스탠드형 8.0HP(56평, 삼상)", price: 442, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
+{name: "PQ2900F9SF 냉방기, 스탠드형 10.0HP(83평, 삼상)", price: 520, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
+{name: "PQ4500N9SF 냉방기, 스탠드형 16.0HP(128평, 삼상)", price: 861, rank: 999 , pie: "15.88/28.58", sq: 6, amp: 15/40}, 
+{name: "PQ5800N9SF 냉방기, 스탠드형 20, 0HP(160평, 삼상)", price: 985, rank: 999 , pie: "15.88/28.58", sq: 6, amp: 15/40}, 
+{name: "PW0522R2S 냉난방기, 스탠드형 1.5HP(13평)", price: 216.3, rank: 3, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
+{name: "PW0603R2C 냉난방기, 스탠드형 2.0HP(15평)", price: 223.3, rank: 3, pie: "6.35/12.7", sq: 4, amp: 20}, 
+{name: "PW0721R2SR 냉난방기, 스탠드형 2.5HP(18평)", price: 236.6, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "PW0833R2CR 냉난방기, 스탠드형 3.0HP(23평)", price: 249.6, rank: 4, pie: "9.52/15.88", sq: 4, amp: 30}, 
+{name: "PW1101T2SR 냉난방기, 스탠드형 4.0HP(31평, 단상)", price: 332.5, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "PW1103T9CR 냉난방기, 스탠드형 4.0HP(31평, 삼상)", price: 332.5, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "PW1301T2SR 냉난방기, 스탠드형 4.5HP(36평, 단상)", price: 352.5, rank: 3, pie: "9.52/15.88", sq: 6, amp: 40}, 
+{name: "PW1301T9SR 냉난방기, 스탠드형 4.5HP(36평, 삼상)", price: 352.5, rank: 3, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "PW1453T9CR 냉난방기 스탠드형 5.0HP(40평, 삼상)", price: 372.5, rank: 4, pie: "9.52/15.88", sq: 2.5, amp: 20}, 
+{name: "SW07BDJWAS냉난방기 벽걸이형 1.0HP(7평)", price: 118, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SW09BDJWAS냉난방기 벽걸이형 1.2HP(9평)", price: 128, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SW11BAKWAS냉난방기 벽걸이형 1.5HP(11평)", price: 147, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SW13BAKWAS냉난방기 벽걸이형 1.8HP(13평)", price: 161, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SW16BAKWAS냉난방기 벽걸이형 2.0HP(15평)", price: 184.6, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SQ06BDAWBS냉방기 벽걸이형 0.7HP(6평)", price: 56.5, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SQ07BDAWBS냉방기 벽걸이형 1.0HP(7평)", price: 61.5, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SQ09BDJWAS냉방기 벽걸이형 1.2HP(9평)", price: 95.2, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SQ11BCKWAS냉방기 벽걸이형 1.5HP(11평)", price: 115.2, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SQ13BCKWAS냉방기 벽걸이형 1.8HP(13평)", price: 135.2, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
+{name: "SQ16BCKWAS냉방기 벽걸이형 2.0HP(16평)", price: 155.2, rank: 999 , pie: " 999 ", sq: 999 , amp: 999 }, 
 
         ];
 
         window.onload = function() {
             var tableBody = document.getElementById("equipmentList");
             for (var i = 0; i < equipmentList.length; i++) {
-                var nameWithBreaks = equipmentList[i].name.replace(/ /g, "<br>");
+                var nameParts = equipmentList[i].name.split(' ');
+                var nameWithBreaks = nameParts.join('<br>');
                 var row = document.createElement("tr");
-                row.innerHTML = "<td>" + nameWithBreaks + "</td><td class='price'>" + Math.round(equipmentList[i].discountedPrice) + "</td><td class='discountedPlus75'>" + Math.round(equipmentList[i].discountedPrice + 75) + "</td>";
+                row.innerHTML = "<td class='equipmentName' onclick='showEquipmentInfo(" + i + ")'>" + nameWithBreaks + "</td><td class='price'>" + Math.round(equipmentList[i].price * (1 - 0.25)) + "</td><td class='discountedPlus75'>" + Math.round(equipmentList[i].price * (1 - 0.25) + 75) + "</td>";
                 tableBody.appendChild(row);
             }
             calculateDiscount();
@@ -137,6 +182,19 @@
                 tableRows[i].getElementsByClassName("price")[0].innerText = Math.round(discountedPrice);
                 tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + 75);
             }
+        }
+
+        function showEquipmentInfo(index) {
+            var equipment = equipmentList[index];
+            document.getElementById("rank").textContent = equipment.rank;
+            document.getElementById("pie").textContent = equipment.pie; // Directly use the 'pie' string from the equipment list
+            document.getElementById("sq").textContent = equipment.sq;
+            document.getElementById("amp").textContent = equipment.amp + "A"; // Append 'A' to amp value
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
         }
     </script>
 </body>
