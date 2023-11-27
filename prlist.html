@@ -56,14 +56,18 @@
 </head>
 <body>
     <label for="discount">할인율: </label>
-    <input type="number" id="discount" value="25" min="0" max="100" onchange="calculateDiscount()"/>%<br> 기본 25% 중고 55% 스탠드 20% 벽걸이15% <BR><B>*부가세 별도</B>
+    <input type="number" id="discount" value="25" min="0" max="100" onchange="calculateDiscount()"/>%
+    <br/> 기본 25% 중고 55% 스탠드 20% 벽걸이15% <BR><B>*부가세 별도</B>
+    <br/>
+    <label for="installFee">설치비: </label>
+    <input type="number" id="installFee" value="75" onchange="calculateDiscount()"/> <!-- New input field for installation fee -->
     <br/>
     <table>
         <thead>
             <tr>
                 <th>싱글 장비 일람표</th>
                 <th>DC가격</th>
-                <th>설치비포함 (+75)</th>
+                <th>설치비포함 (+<span id="installFeeDisplay">75</span>)</th> <!-- Updated to include dynamic install fee -->
             </tr>
         </thead>
         <tbody id="equipmentList">
@@ -173,17 +177,20 @@
             calculateDiscount();
         }
 
+
         function calculateDiscount() {
             var discountRate = document.getElementById("discount").value / 100;
+            var installFee = parseFloat(document.getElementById("installFee").value); // Get installation fee from input
+            document.getElementById("installFeeDisplay").innerText = installFee; // Update install fee display in the table header
+
             var tableRows = document.getElementById("equipmentList").children;
             for (var i = 0; i < tableRows.length; i++) {
                 var price = equipmentList[i].price;
                 var discountedPrice = price * (1 - discountRate);
                 tableRows[i].getElementsByClassName("price")[0].innerText = Math.round(discountedPrice);
-                tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + 75);
+                tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + installFee); // Add installation fee to discounted price
             }
         }
-
         function showEquipmentInfo(index) {
             var equipment = equipmentList[index];
             document.getElementById("rank").textContent = equipment.rank;
