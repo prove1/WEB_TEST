@@ -227,23 +227,20 @@
             document.getElementById("amp").textContent = equipment.amp + "A"; // Append 'A' to amp value
             document.getElementById("myModal").style.display = "block";
         }
-function fillinfo(index) {
-    var equipment = equipmentList[index];
-    var discountRate = document.getElementById("discount").value / 100; // Get the current discount rate
-    var discountedPrice = equipment.price * (1 - discountRate) * 10000; // Apply the discount to the price and convert to full value
+            function fillinfo(index) {
+        var equipment = equipmentList[index];
+        document.getElementById("equipmentName").textContent = equipment.name;
+        document.getElementById("equipmentPrice").textContent = formatPrice(Math.round(equipment.price * 10000));
+        var installFee = parseFloat(document.getElementById("installFee").value);
+        document.getElementById("installFeeFormatted").textContent = formatPrice(Math.round(installFee * 10000));
+        var totalPrice = Math.round(equipment.price * 10000) + Math.round(installFee * 10000);
+        document.getElementById("totalAmount").textContent = formatPrice(totalPrice);
+        document.getElementById("myModal2").style.display = "block";
+    }
 
-    document.getElementById("equipmentName").textContent = equipment.name;
-    document.getElementById("equipmentPrice").textContent = formatPrice(discountedPrice); // Display the discounted price
-    var installFee = parseFloat(document.getElementById("installFee").value);
-    document.getElementById("installFeeFormatted").textContent = formatPrice(installFee * 10000);
-    var totalPrice = discountedPrice + installFee * 10000; // Calculate total price including the installation fee
-    document.getElementById("totalAmount").textContent = formatPrice(totalPrice);
-    document.getElementById("myModal2").style.display = "block";
-}
-        function formatPrice(price) {
-            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
+    function formatPrice(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
             document.getElementById("myModal2").style.display = "none";
