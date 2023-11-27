@@ -84,6 +84,30 @@
             <p>차단기: <span id="amp"></span></p> <!-- Added 'A' after Amp value -->
         </div>
     </div>
+<div id="myModal2" class="modal" style="border: 1px solid black;">
+    <div class="modal-content" style="border: 1px text-align: center;">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>케이엘공조 견적서</h2>
+        <p>1644 - 8482</p>
+        <p>###장비내용###<br>
+            <span id="equipmentName"></span>
+        </p>
+        <p>###장비가격###<br>
+            <span id="equipmentPrice"></span>
+        </p>
+        <p>###설치비 ###<br>
+            <span id="installFeeFormatted"></span>
+        </p>
+        <p>###총금액###<br>
+            <span id="totalAmount"></span>
+        </p>
+        <p>*부가세 별도<br>
+        *추가 배관 m 당 30,000 , 전기 m 당 8,000 <br>차단기 100,000 , 앵글 150,000 별도<br>
+        </p>
+    </div>
+</div>
+
+
 
     <script>
         var equipmentList = [
@@ -140,8 +164,8 @@
 {name: "PW2900F9SF 냉난방기, 스탠드형 10.0HP(80평, 삼상)", price: 733, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
 {name: "PQ2300F9SF 냉방기, 스탠드형 8.0HP(56평, 삼상)", price: 442, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
 {name: "PQ2900F9SF 냉방기, 스탠드형 10.0HP(83평, 삼상)", price: 520, rank: 999 , pie: "9.52/22.2", sq: 6, amp: 40}, 
-{name: "PQ4500N9SF 냉방기, 스탠드형 16.0HP(128평, 삼상)", price: 861, rank: 999 , pie: "15.88/28.58", sq: 6, amp: "15/40"}, 
-{name: "PQ5800N9SF 냉방기, 스탠드형 20, 0HP(160평, 삼상)", price: 985, rank: 999 , pie: "15.88/28.58", sq: 6, amp: "15/40"}, 
+{name: "PQ4500N9SF 냉방기, 스탠드형 16.0HP(128평, 삼상)", price: 861, rank: 999 , pie: "15.88/28.58", sq: 6, amp: 15/40}, 
+{name: "PQ5800N9SF 냉방기, 스탠드형 20, 0HP(160평, 삼상)", price: 985, rank: 999 , pie: "15.88/28.58", sq: 6, amp: 15/40}, 
 {name: "PW0522R2S 냉난방기, 스탠드형 1.5HP(13평)", price: 216.3, rank: 3, pie: "6.35/12.7", sq: 2.5, amp: 20}, 
 {name: "PW0603R2C 냉난방기, 스탠드형 2.0HP(15평)", price: 223.3, rank: 3, pie: "6.35/12.7", sq: 4, amp: 20}, 
 {name: "PW0721R2SR 냉난방기, 스탠드형 2.5HP(18평)", price: 236.6, rank: 3, pie: "9.52/15.88", sq: 4, amp: 30}, 
@@ -171,7 +195,7 @@
                 var nameParts = equipmentList[i].name.split(' ');
                 var nameWithBreaks = nameParts.join('<br>');
                 var row = document.createElement("tr");
-                row.innerHTML = "<td class='equipmentName' onclick='showEquipmentInfo(" + i + ")'>" + nameWithBreaks + "</td><td class='price'>" + Math.round(equipmentList[i].price * (1 - 0.25)) + "</td><td class='discountedPlus75'>" + Math.round(equipmentList[i].price * (1 - 0.25) + 75) + "</td>";
+                row.innerHTML = "<td class='equipmentName' onclick='showEquipmentInfo(" + i + ")'>" + nameWithBreaks + "</td><td class='price'>" + Math.round(equipmentList[i].price * (1 - 0.25)) + "</td><td class='discountedPlus75' onclick='fillinfo(" + i + ")'>" + Math.round(equipmentList[i].price * (1 - 0.25) + 75) + "</td>";
                 tableBody.appendChild(row);
             }
             calculateDiscount();
@@ -191,6 +215,7 @@
                 tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + installFee); // Add installation fee to discounted price
             }
         }
+
         function showEquipmentInfo(index) {
             var equipment = equipmentList[index];
             document.getElementById("rank").textContent = equipment.rank;
@@ -199,9 +224,26 @@
             document.getElementById("amp").textContent = equipment.amp + "A"; // Append 'A' to amp value
             document.getElementById("myModal").style.display = "block";
         }
+function fillinfo(index) {
+    var equipment = equipmentList[index];
+    var discountRate = document.getElementById("discount").value / 100; // Get the current discount rate
+    var discountedPrice = equipment.price * (1 - discountRate) * 10000; // Apply the discount to the price and convert to full value
+
+    document.getElementById("equipmentName").textContent = equipment.name;
+    document.getElementById("equipmentPrice").textContent = formatPrice(discountedPrice); // Display the discounted price
+    var installFee = parseFloat(document.getElementById("installFee").value);
+    document.getElementById("installFeeFormatted").textContent = formatPrice(installFee * 10000);
+    var totalPrice = discountedPrice + installFee * 10000; // Calculate total price including the installation fee
+    document.getElementById("totalAmount").textContent = formatPrice(totalPrice);
+    document.getElementById("myModal2").style.display = "block";
+}
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
+            document.getElementById("myModal2").style.display = "none";
         }
     </script>
 </body>
