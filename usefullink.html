@@ -1,118 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* 모바일 뷰에 대한 CSS 설정 */
-    @media screen and (max-width: 600px) {
-      table {
-        width: 100%;
-      }
-      button {
-        width: 100%;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-    }
+케이엘공조 회사소개
+https://blog.naver.com/klaircon/222542912020
 
-    /* Message box에 대한 CSS 설정 */
-    #message-box {
-      display: none; /* Hidden by default. Visible on click */
-      position: fixed; /* Sit on top of the screen */
-      left: 50%; /* Center the message box */
-      top: 50%; /* Center the message box */
-      transform: translate(-50%, -50%); /* Center the message box */
-      background-color: #f9f9f9; /* Background color */
-      border: 1px solid #ddd; /* Border */
-      border-radius: 4px; /* Border radius */
-      padding: 20px; /* Padding */
-      z-index: 1; /* Add a z-index if needed */
-    }
+케이엘공조 제안서
+https://blog.naver.com/klaircon/222809749115
 
-    /* Show the message box when clicking on a button (class added with JavaScript) */
-    #message-box.show {
-      display: block; /* Show the message box */
-    }
+주거용 시스템에어컨 설치과정 등
+https://blog.naver.com/klaircon/222475048425
 
-    /* 버튼 스타일 */
-    #test_btn1 {
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      margin-right: -4px;
-    }
-    #btn_group button {
-      border: 1px solid skyblue;
-      background-color: rgba(0,0,0,0);
-      color: skyblue;
-      padding: 5px;
-    }
-  </style>
-</head>
-<body>
+주거용 시스템에어컨 교체설치과정 등
+https://blog.naver.com/klaircon/222520977180
 
-<table border="0" id="btn_group">
-  <tr>
-    <td>설명 1</td>
-  </tr>
-  <tr>
-    <td><button onclick="showMessageBox('설명 1')">클릭해서 복사</button></td>
-  </tr>
-  <tr>
-    <td>설명 2</td>
-  </tr>
-  <tr>
-    <td><button onclick="showMessageBox('설명 2')">클릭해서 복사</button></td>
-  </tr>
-  <tr>
-    <td>설명 3</td>
-  </tr>
-  <tr>
-    <td><button onclick="showMessageBox('설명 3')">클릭해서 복사</button></td>
-  </tr>
-  <tr>
-    <td>설명 4</td>
-  </tr>
-  <tr>
-    <td><button onclick="showMessageBox('설명 4')">클릭해서 복사</button></td>
-  </tr>
-</table>
+거주중 시스템에어컨 보양작업
+https://blog.naver.com/klaircon/222686974115
 
-<div id="message-box">
-  <span id="message-text"></span>
-  <button onclick="copyToClipboard()">복사</button>
-  <button onclick="hideMessageBox()">닫기</button>
-</div>
+상업용 시스템에어컨 설치과정 등
+https://blog.naver.com/klaircon/222647166796
 
-<script>
-  let messageBox = document.getElementById("message-box");
-  let messageText = document.getElementById("message-text");
+중고 시스템에어컨 매입,설치 과정 등
+https://blog.naver.com/klaircon/222699908279
 
-  function showMessageBox(text) {
-    messageText.textContent = text;
-    messageBox.classList.add("show");
-  }
+주거 환기 시스템
+https://blog.naver.com/klaircon/222693083828
 
-  function hideMessageBox() {
-    messageBox.classList.remove("show");
-  }
+GHP 저감장치 보조금지원사업
+https://blog.naver.com/klaircon/223222083581
 
-  async function copyToClipboard() {
-    let text = messageText.textContent;
-    try {
-      await navigator.clipboard.writeText(text);
-      hideMessageBox();
-      showToast();
-    } catch (err) {
-      console.error('Failed to copy!', err);
-    }
-  }
+시스템에어컨 건설업등록증 필수
+https://blog.naver.com/klaircon/222599982533
 
-  function showToast() {
-    var toast = document.getElementById("toast");
-    toast.className = "show";
-    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-  }
-</script>
+시스템에어컨 양도세 감면
+https://blog.naver.com/klaircon/222614379687
 
-</body>
-</html>
+<제품 관련 정보 글>
+
+DOAS 냉난방기 정보
+https://blog.naver.com/klaircon/223217999221
+
+매립덕트 정보
+https://blog.naver.com/klaircon/223291341649
+
+항온항습기 설치
+https://blog.naver.com/klaircon/223254458913
