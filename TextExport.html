@@ -26,6 +26,24 @@
     }
 </style>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // 입력 필드 선택
+    var input = document.getElementById('inputText');
+
+    // 입력 필드 클릭 이벤트 리스너 추가
+    input.addEventListener('click', function() {
+        // 클립보드에서 텍스트 가져와서 입력 필드에 붙여넣기
+        navigator.clipboard.readText()
+            .then(text => {
+                // 클립보드 내용을 입력 필드에 설정
+                input.value = text;
+            })
+            .catch(err => {
+                // 사용자에게 권한 요청이 거부되거나 다른 에러 발생 시 처리
+                console.error('클립보드 내용을 가져올 수 없습니다.', err);
+            });
+    });
+});
 function extractText() {
     var inputText = document.getElementById("inputText").value;
     var startText = "계약서 보내드립니다";
