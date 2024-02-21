@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>싱글 스펙 정보</title>
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color: #f5f5f5;}
+</style>
+</head>
+<body>
+
+<table>
+  <!-- 테이블 행들은 자바스크립트를 통해 동적으로 추가됩니다 -->
+</table>
+
+<!-- 모달 창 -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+var airconSpecs = [
+{ title : "스탠드1등급" , power : "1.5HP(13평) , 1등급" , code : "PW052PT2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "0.84/1.1" , usedmax : "1.05/1.22" , insize : "590 x 1840 x 460" , outsize : "950 x 1380 x 330"} ,
+{ title : "스탠드1등급" , power : "2HP(15평) , 1등급" , code : "PW060PT2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "0.84/1.25" , usedmax : "1.3/1.5" , insize : "590 x 1840 x 460" , outsize : "950 x 1380 x 330"} ,
+{ title : "스탠드1등급" , power : "2.5HP(18평) , 1등급" , code : "PW072PT2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "1.2/1.3" , usedmax : "1.48/1.85" , insize : "590 x 1840 x 460" , outsize : "950 x 1380 x 330"} ,
+{ title : "스탠드1등급" , power : "3HP(23평) , 1등급" , code : "PW083PT2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "1.2/1.3" , usedmax : "1.85/1.95" , insize : "590 x 1840 x 460" , outsize : "950 x 1380 x 330"} ,
+{ title : "프리미엄 스탠드" , power : "1.5HP(13평) , 4등급" , code : "PW0522R2S" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.5/1.65" , usedmax : "2.65/3.05" , insize : "590 x 1840 x 300" , outsize : "870 x 650 x 330"} ,
+{ title : "프리미엄 스탠드" , power : "2.5HP(18평) , 5등급" , code : "PW0721R2SR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.3/2.4" , usedmax : "3.23/3.53" , insize : "590 x 1840 x 300" , outsize : "950 x 834 x 330"} ,
+{ title : "프리미엄 스탠드" , power : "4HP(31평) , 4등급" , code : "PW1101T2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "3/3.45" , usedmax : "4.6/5.7" , insize : "590 x 1840 x 440" , outsize : "950 x 1380 x 330"} ,
+{ title : "프리미엄 스탠드" , power : "4.5HP(36평) , 4등급" , code : "PW1301T2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "4/4.2" , usedmax : "5.2/5.7" , insize : "590 x 1840 x 440" , outsize : "950 x 1380 x 330"} ,
+{ title : "프리미엄 스탠드" , power : "4.5HP(36평) , 4등급" , code : "PW1301T9SR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4/4.1" , usedmax : "5.4/6.3" , insize : "590 x 1840 x 440" , outsize : "950 x 1380 x 330"} ,
+{ title : "기획모델 스탠드" , power : "1.5HP(13평) , 4등급" , code : "PW0523R2SF" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.5/1.65" , usedmax : "2.65/3.05" , insize : "590 x 1840 x 300" , outsize : "870 x 650 x 330"} ,
+{ title : "기획모델 스탠드" , power : "2HP(15평) , 5등급" , code : "PW0603R2SF" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.8/2.2" , usedmax : "2.8/3.15" , insize : "590 x 1840 x 300" , outsize : "870 x 650 x 330"} ,
+{ title : "기획모델 스탠드" , power : "2.5HP(18평) , 5등급" , code : "PW0723R2SF" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.2/2.5" , usedmax : "3.23/3.53" , insize : "590 x 1840 x 300" , outsize : "950 x 834 x 330"} ,
+{ title : "기획모델 스탠드" , power : "3HP(23평) , 5등급" , code : "PW0833R2SF" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.85/2.85" , usedmax : "3.4/3.6" , insize : "590 x 1840 x 300" , outsize : "950 x 834 x 330"} ,
+{ title : "기획모델 스탠드" , power : "4HP(30평) , 5등급" , code : "PW1103T2FR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "3.25/3.7" , usedmax : "4.9/5.6" , insize : "590 x 1840 x 440" , outsize : "950 x 834 x 330"} ,
+{ title : "기획모델 스탠드" , power : "4HP(30평) , 5등급" , code : "PW1103T9FR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.25/3.7" , usedmax : "5.4/5.1" , insize : "590 x 1840 x 440" , outsize : "950 x 834 x 330"} ,
+{ title : "기획모델 스탠드" , power : "4.5HP(36평) , 5등급" , code : "PW1303T9FR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.4/4.7" , usedmax : "5.7/5.6" , insize : "590 x 1840 x 440" , outsize : "950 x 834 x 330"} ,
+{ title : "기획모델 스탠드" , power : "4.5HP(36평) , 4등급" , code : "PW1303T2FR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "4/4.2" , usedmax : "5.2/5.7" , insize : "590 x 1840 x 440" , outsize : "950 x 1380 x 330"} ,
+{ title : "기획모델 스탠드" , power : "5HP(40평) , 5등급" , code : "PW1453T9FR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "5.1/4.95" , usedmax : "5.51/6.02" , insize : "590 x 1840 x 440" , outsize : "950 x 1380 x 330"} ,
+{ title : "기획모델 스탠드" , power : "7.5HP(63평) , -등급" , code : "PW2300F9SF" , pie : "9.52/22.2" , electric : "6.0 ,  5C" , cable : "1.5 ,  4C" , cop : "40A , 4P" , usednormal : "8.2/8.3" , usedmax : "-/-" , insize : "1050 x 1880 x 495" , outsize : "1090 x 1625 x 380"} ,
+{ title : "기획모델 스탠드" , power : "10HP(80평) , -등급" , code : "PW2900F9SF" , pie : "9.52/22.2" , electric : "6.0 ,  5C" , cable : "1.5 ,  4C" , cop : "40A , 4P" , usednormal : "11.5/11" , usedmax : "-/-" , insize : "1050 x 1880 x 495" , outsize : "1090 x 1625 x 380"} ,
+{ title : "공기청정스탠드" , power : "2HP(15평) , 3등급" , code : "PW0603R2CH" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.8/2.2" , usedmax : "3/3.2" , insize : "590 x 1840 x 320" , outsize : "870 x 650 x 330"} ,
+{ title : "공기청정스탠드" , power : "3HP(23평) , 4등급" , code : "PW0833R2CRH" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.75/2.8" , usedmax : "3.4/3.6" , insize : "590 x 1840 x 320" , outsize : "950 x 834 x 330"} ,
+{ title : "공기청정스탠드" , power : "4HP(30평) , 3등급" , code : "PW1103T9CRH" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3/3.45" , usedmax : "5.2/5.3" , insize : "590 x 1840 x 460" , outsize : "950 x 1380 x 330"} ,
+{ title : "공기청정스탠드" , power : "5HP(40평) , 4등급" , code : "PW1453T9CRH" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.95/4.95" , usedmax : "5.9/6.3" , insize : "590 x 1840 x 460" , outsize : "950 x 1380 x 330"} ,
+{ title : "냉방 스탠드" , power : "3HP(25평) , 4등급" , code : "PQ0900T2SF" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.98/-" , usedmax : "3.58/-" , insize : "590 x 1840 x 440" , outsize : "870 x 650 x 330"} ,
+{ title : "냉방 스탠드" , power : "4HP(30평) , 4등급" , code : "PQ1100T2FR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "3.78/-" , usedmax : "4.54/-" , insize : "590 x 1840 x 440" , outsize : "950 x 834 x 330"} ,
+{ title : "냉방 스탠드" , power : "5HP(40평) , 3등급" , code : "PQ1450T2FR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "4.87/-" , usedmax : "5.84/-" , insize : "590 x 1840 x 440" , outsize : "950 x 1380 x 330"} ,
+{ title : "냉방 스탠드" , power : "7.5HP(63평) , -등급" , code : "PQ2300F9SF" , pie : "9.52/22.2" , electric : "6.0 ,  5C" , cable : "1.5 ,  4C" , cop : "40A , 4P" , usednormal : "8.2/-" , usedmax : "-/-" , insize : "1050 x 1880 x 495" , outsize : "1090 x 1625 x 380"} ,
+{ title : "냉방 스탠드" , power : "10HP(80평) , -등급" , code : "PQ2900F9SF" , pie : "9.52/22.2" , electric : "6.0 ,  5C" , cable : "1.5 ,  4C" , cop : "40A , 4P" , usednormal : "11.5/-" , usedmax : "-/-" , insize : "1050 x 1880 x 495" , outsize : "1090 x 1625 x 380"} ,
+{ title : "냉방 스탠드" , power : "15HP(127평) , -등급" , code : "PQ4500N9SF" , pie : "15.88/28.58" , electric : "6.0 ,  5C" , cable : "1.5 ,  2C" , cop : "40A , 4P" , usednormal : "15.5/-" , usedmax : "-/-" , insize : "1558 x 1920 x 700" , outsize : "1240 x 1680 x 760"} ,
+{ title : "냉방 스탠드" , power : "20HP(160평) , -등급" , code : "PQ5800N9SF" , pie : "15.88/28.58" , electric : "6.0 ,  5C" , cable : "1.5 ,  2C" , cop : "40A , 4P" , usednormal : "21/-" , usedmax : "-/-" , insize : "1558 x 1920 x 700" , outsize : "1240 x 1680 x 760"} ,
+{ title : "벽걸이" , power : "-HP(7평) , -등급" , code : "SW07EJ1WAS" , pie : "6.35/9.52" , electric : "-" , cable : "1.0 ,  4C" , cop : "콘센트" , usednormal : "0.74/0.9" , usedmax : "-/-" , insize : "837 x 302 x 189" , outsize : "770 x 545 x 288"} ,
+{ title : "벽걸이" , power : "-HP(9평) , -등급" , code : "SW09EJ1WAS" , pie : "6.35/9.52" , electric : "-" , cable : "1.0 ,  4C" , cop : "콘센트" , usednormal : "1.2/1.6" , usedmax : "-/-" , insize : "837 x 302 x 189" , outsize : "770 x 545 x 288"} ,
+{ title : "벽걸이" , power : "-HP(11평) , -등급" , code : "SW11EK1WAS" , pie : "6.35/12.7" , electric : "-" , cable : "1.0 ,  4C" , cop : "콘센트" , usednormal : "1.26/1.5" , usedmax : "-/-" , insize : "998 x 330 x 210" , outsize : "870 x 650 x 330"} ,
+{ title : "벽걸이" , power : "-HP(13평) , -등급" , code : "SW13EK1WAS" , pie : "6.35/12.7" , electric : "-" , cable : "1.0 ,  4C" , cop : "콘센트" , usednormal : "1.51/1.76" , usedmax : "-/-" , insize : "998 x 330 x 210" , outsize : "870 x 650 x 330"} ,
+{ title : "벽걸이" , power : "-HP(16평) , -등급" , code : "SW16BAKWAS" , pie : "9.52/15.88" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.05/2.25" , usedmax : "-/-" , insize : "998 x 330 x 210" , outsize : "870 x 800 x 320"} ,
+{ title : "냉전 벽걸이" , power : "5HP(6평) , -등급" , code : "SQ06BDAWBS" , pie : "6.35/9.52" , electric : "-" , cable : "-" , cop : "콘센트" , usednormal : "0.72/-" , usedmax : "-/-" , insize : "754 x 308 x 189" , outsize : "717 x 495 x 230"} ,
+{ title : "냉전 벽걸이" , power : "5HP(7평) , -등급" , code : "SQ07BDAWBS" , pie : "6.35/9.52" , electric : "-" , cable : "-" , cop : "콘센트" , usednormal : "0.86/-" , usedmax : "-/-" , insize : "754 x 308 x 189" , outsize : "717 x 495 x 230"} ,
+{ title : "냉전 벽걸이" , power : "3HP(9평) , -등급" , code : "SQ09BDJWAS" , pie : "6.35/9.52" , electric : "-" , cable : "-" , cop : "콘센트" , usednormal : "1.15/-" , usedmax : "-/-" , insize : "837 x 302 x 189" , outsize : "717 x 495 x 230"} ,
+{ title : "냉전 벽걸이" , power : "1HP(11평) , -등급" , code : "SQ11EK1WES" , pie : "6.35/12.7" , electric : "-" , cable : "-" , cop : "콘센트" , usednormal : "1.07/-" , usedmax : "-/-" , insize : "998 x 330 x 210" , outsize : "870 x 650 x 330"} ,
+{ title : "냉전 벽걸이" , power : "2HP(13평) , -등급" , code : "SQ13EK1WAS" , pie : "6.35/12.7" , electric : "-" , cable : "-" , cop : "콘센트" , usednormal : "1.6/-" , usedmax : "-/-" , insize : "998 x 330 x 210" , outsize : "870 x 650 x 330"} ,
+{ title : "냉전 벽걸이" , power : "4HP(16평) , -등급" , code : "SQ16BCKWAS" , pie : "9.52/15.88" , electric : "-" , cable : "-" , cop : "-" , usednormal : "2.01/-" , usedmax : "-/-" , insize : "998 x 330 x 210" , outsize : "870 x 800 x 320"} ,
+{ title : "상업용 천정형" , power : "4HP(18평) , -등급" , code : "VW0720M2S" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.15/2.3" , usedmax : "3.23/3.53" , insize : "1200 x 235 x 690" , outsize : "950 x 834 x 330"} ,
+{ title : "상업용 천정형" , power : "5HP(23평) , -등급" , code : "VW0830M2S" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.8/2.85" , usedmax : "3.4/3.6" , insize : "1200 x 235 x 690" , outsize : "950 x 834 x 330"} ,
+{ title : "상업용 천정형" , power : "4HP(36평) , -등급" , code : "VW1300M9S" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.88/4.28" , usedmax : "5.4/6.3" , insize : "1600 x 235 x 690" , outsize : "950 x 1380 x 330"} ,
+{ title : "상업용 천정형" , power : "5HP(40평) , -등급" , code : "VW1450M9S" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.6/5.05" , usedmax : "5.8/6.3" , insize : "1600 x 235 x 690" , outsize : "950 x 1380 x 330"} ,
+{ title : "1WAY 냉방" , power : "0.8HP(6평) , 4등급" , code : "TQ0232U2S" , pie : "6.35/9.52" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "15A , 2P" , usednormal : "0.68/-" , usedmax : "0.8/-" , insize : "860 x 132 x 450" , outsize : "717 x 483 x 230"} ,
+{ title : "1WAY 냉방" , power : "1HP(8평) , 5등급" , code : "TQ0322U2S" , pie : "6.35/9.52" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "15A , 2P" , usednormal : "1.23/-" , usedmax : "1.4/-" , insize : "860 x 132 x 450" , outsize : "717 x 483 x 230"} ,
+{ title : "1WAY 냉방" , power : "1.2HP(10평) , 4등급" , code : "TQ0401U2S" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.31/-" , usedmax : "1.6/-" , insize : "860 x 132 x 450" , outsize : "770 x 545 x 288"} ,
+{ title : "1WAY 냉방" , power : "1.5HP(13평) , 4등급" , code : "TQ0521T2S" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.64/-" , usedmax : "1.8/-" , insize : "1180 x 132 x 450" , outsize : "770 x 545 x 288"} ,
+{ title : "1WAY 냉방" , power : "2HP(15평) , 5등급" , code : "TQ0601T2S" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "2.18/-" , usedmax : "2.25/-" , insize : "1180 x 132 x 450" , outsize : "770 x 545 x 288"} ,
+{ title : "1WAY 냉방" , power : "2.5HP(18평) , 5등급" , code : "TQ0721T2S" , pie : "9.52/15.88" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "30A.2P" , usednormal : "2.65/-" , usedmax : "3.1/-" , insize : "1180 x 132 x 450" , outsize : "870 x 650x 330"} ,
+{ title : "1WAY" , power : "0.8HP(6평) , 5등급" , code : "TW0230U2S" , pie : "6.35/9.52" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "0.6/0.7" , usedmax : "1/1.5" , insize : "860 x 132 x 450" , outsize : "770 x 545 x 288"} ,
+{ title : "1WAY" , power : "1HP(8평) , 5등급" , code : "TW0320U2S" , pie : "6.35/9.52" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "0.9/1.1" , usedmax : "1.5/1.6" , insize : "860 x 132 x 450" , outsize : "770 x 545 x 288"} ,
+{ title : "1WAY" , power : "1.2HP(10평) , 5등급" , code : "TW0400U2S" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.43/1.78" , usedmax : "1.73/2.3" , insize : "860 x 132 x 450" , outsize : "770 x 545 x 288"} ,
+{ title : "2WAY" , power : "1.5HP(13평) , 5등급" , code : "TW0522S2S" , pie : "6.35/12.7" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.5/2.15" , usedmax : "2.65/3.1" , insize : "830 x 225 x 600" , outsize : "870 x 650 x 330"} ,
+{ title : "2WAY" , power : "2HP(17평) , 5등급" , code : "TW0601S2SR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.35/3.3" , usedmax : "2.76/3.54" , insize : "830 x 225 x 600" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "2HP(15평) , 3등급" , code : "TW0600B2U" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.7/2.05" , usedmax : "3/3.6" , insize : "840 x 204 x 840" , outsize : "870 x 650 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "2.5HP(18평) , 2등급" , code : "TW0720A2UR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.15/2.65" , usedmax : "3.9/4.61" , insize : "840 x 204 x 840" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "3HP(25평) , 3등급" , code : "TW0900A2UR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.5/2.8" , usedmax : "3.7/4.06" , insize : "840 x 288 x 840" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "3.5HP(28평) , 2등급" , code : "TW1000A2UR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "2.4/3.1" , usedmax : "4.5/4.6" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "3.5HP(28평) , 2등급" , code : "TW1000A9UR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "2.4/3" , usedmax : "4.5/4.3" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "4HP(30평) , 2등급" , code : "TW1100A2UR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "2.8/3.2" , usedmax : "4.95/4.95" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "4HP(30평) , 2등급" , code : "TW1100A9UR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "2.8/3.1" , usedmax : "4.6/4.7" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "4.5HP(36평) , 3등급" , code : "TW1300A2UR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "3.7/4.05" , usedmax : "4.95/4.95" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "4.5HP(36평) , 3등급" , code : "TW1300A9UR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.6/3.8" , usedmax : "5.5/5.6" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인" , power : "5HP(40평) , 3등급" , code : "TW1450A9UR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.26/4.5" , usedmax : "6.2/7.5" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인프리미엄(1등급)" , power : "3HP(25평) , 1등급" , code : "TW0902A2UR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "2/2.3" , usedmax : "5.14/3.63" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인프리미엄(1등급)" , power : "4HP(30평) , 1등급" , code : "TW1102A2UR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "2.55/2.95" , usedmax : "4.96/5.06" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인프리미엄(1등급)" , power : "4HP(30평) , 1등급" , code : "TW1102A9UR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "2.55/2.85" , usedmax : "5.63/6.23" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인프리미엄(1등급)" , power : "5HP(40평) , 1등급" , code : "TW1452A9UR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.75/3.85" , usedmax : "5.75/6.43" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY듀얼베인 킬러" , power : "3HP(25평) , 4등급" , code : "TW0900A2SF" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.55/2.85" , usedmax : "3.7/4.06" , insize : "840 x 288 x 840" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY듀얼베인 킬러" , power : "4HP(30평) , 4등급" , code : "TW1100A2FR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "3.3/3.6" , usedmax : "4.9/5.6" , insize : "840 x 288 x 840" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY듀얼베인 킬러" , power : "4HP(30평) , 4등급" , code : "TW1100A9FR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.15/3.6" , usedmax : "5.4/5.1" , insize : "840 x 288 x 840" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY듀얼베인 킬러" , power : "5HP(40평) , 4등급" , code : "TW1450A9FR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "5.45/4.7" , usedmax : "6.2/7.5" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "4WAY 냉방" , power : "2HP(15평) , 4등급" , code : "TQ0600B2SF" , pie : "6.35/12.7" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "1.83/-" , usedmax : "2.2/-" , insize : "840 x 204 x 840" , outsize : "870 x 650 x 330"} ,
+{ title : "4WAY 냉방" , power : "2.5HP(18평) , 4등급" , code : "TQ0720B2SF" , pie : "9.52/15.88" , electric : "2.5 ,  3C" , cable : "1.0 ,  4C" , cop : "20A , 2P" , usednormal : "2.16/-" , usedmax : "2.59/-" , insize : "840 x 204 x 840" , outsize : "870 x 650 x 330"} ,
+{ title : "4WAY 냉방" , power : "3HP(25평) , 4등급" , code : "TQ0900A2SF" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.77/-" , usedmax : "3.32/-" , insize : "840 x 288 x 840" , outsize : "870 x 650 x 330"} ,
+{ title : "4WAY 냉방" , power : "4HP(30평) , 3등급" , code : "TQ1100A2FR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "3.58/-" , usedmax : "4.3/-" , insize : "840 x 288 x 840" , outsize : "950 x 834 x 330"} ,
+{ title : "4WAY 냉방" , power : "5HP(40평) , 3등급" , code : "TQ1450A2FR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "4.76/-" , usedmax : "5.71/-" , insize : "840 x 288 x 840" , outsize : "950 x 1380 x 330"} ,
+{ title : "매립덕트" , power : "4HP(30평) , -등급" , code : "BW1100M9SR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.25/3.75" , usedmax : "5/5.3" , insize : "1250 x 270 x 700" , outsize : "950 x 1170 x 330"} ,
+{ title : "매립덕트" , power : "5HP(40평) , -등급" , code : "BW1450M9SR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.6/4.7" , usedmax : "5.8/6.3" , insize : "1250 x 360 x 700" , outsize : "950 x 1380 x 330"} ,
+{ title : "원형 화이트" , power : "2.5HP(18평) , 3등급" , code : "TW0720Y2SR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "1.65/2.1" , usedmax : "3.26/3.94" , insize : "1050 x 330 x 1050" , outsize : "950 x 834 x 330"} ,
+{ title : "원형 화이트" , power : "3HP(25평) , 4등급" , code : "TW0902Y2SR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.5/3.1" , usedmax : "3.7/4.06" , insize : "1050 x 330 x 1050" , outsize : "950 x 834 x 330"} ,
+{ title : "원형 화이트" , power : "4HP(30평) , 4등급" , code : "TW1100Y2SR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "3.25/3.45" , usedmax : "4.95/4.95" , insize : "1050 x 330 x 1050" , outsize : "950 x 1380 x 330"} ,
+{ title : "원형 화이트" , power : "4HP(30평) , 4등급" , code : "TW1100Y9SR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.2/3.4" , usedmax : "4.95/4.95" , insize : "1050 x 330 x 1050" , outsize : "950 x 1380 x 330"} ,
+{ title : "원형 화이트" , power : "5HP(40평) , 5등급" , code : "TW1450Y9SR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.8/4.9" , usedmax : "6.9/8" , insize : "1050 x 330 x 1050" , outsize : "950 x 1380 x 330"} ,
+{ title : "원형 블랙" , power : "2.5HP(18평) , 3등급" , code : "TW0720Y2BR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "1.65/2.1" , usedmax : "3.26/3.94" , insize : "1050 x 330 x 1050" , outsize : "950 x 834 x 330"} ,
+{ title : "원형 블랙" , power : "3HP(25평) , 4등급" , code : "TW0902Y2BR" , pie : "9.52/15.88" , electric : "4.0 ,  3C" , cable : "1.0 ,  4C" , cop : "30A , 2P" , usednormal : "2.5/3.1" , usedmax : "3.7/4.06" , insize : "1050 x 330 x 1050" , outsize : "950 x 834 x 330"} ,
+{ title : "원형 블랙" , power : "4HP(30평) , 4등급" , code : "TW1100Y2BR" , pie : "9.52/15.88" , electric : "6.0 ,  3C" , cable : "1.0 ,  4C" , cop : "40A , 2P" , usednormal : "3.25/3.45" , usedmax : "4.95/4.95" , insize : "1050 x 330 x 1050" , outsize : "950 x 1380 x 330"} ,
+{ title : "원형 블랙" , power : "4HP(30평) , 4등급" , code : "TW1100Y9BR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "3.2/3.4" , usedmax : "4.95/4.95" , insize : "1050 x 330 x 1050" , outsize : "950 x 1380 x 330"} ,
+{ title : "원형 블랙" , power : "5HP(40평) , 5등급" , code : "TW1450Y9BR" , pie : "9.52/15.88" , electric : "2.5 ,  5C" , cable : "1.0 ,  4C" , cop : "20A , 4P" , usednormal : "4.8/4.9" , usedmax : "6.9/8" , insize : "1050 x 330 x 1050" , outsize : "950 x 1380 x 330"} ,
+
+  // 다른 스펙 객체들도 이 배열에 추가...
+];
+
+// 테이블에 행 추가
+var table = document.querySelector("table");
+airconSpecs.forEach(function(model, index) {
+  var row = table.insertRow();
+  var cell = row.insertCell();
+  cell.innerHTML = model.title + "<br>" + model.power + "<br>" + model.code;
+  cell.setAttribute("onclick", "showModal(" + index + ")");
+});
+
+function showModal(index) {
+  var modal = document.getElementById("myModal");
+  var modalText = document.getElementById("modalText");
+  var spec = airconSpecs[index];
+  
+  modalText.innerHTML = `
+    <div>배관경: ${spec.pie}</div>
+    <div>전원선: ${spec.electric}</div>
+    <div>통신선: ${spec.cable}</div>
+    <div>누전차단기: ${spec.cop}</div>
+    <div>냉난방정격소비: ${spec.usednormal}</div>
+    <div>냉난방최대소비: ${spec.usedmax}</div>
+    <div>실내기사이즈(WHD): ${spec.insize}</div>
+    <div>실외기사이즈(WHD): ${spec.outsize}</div>
+  `;
+  modal.style.display = "block";
+}
+
+// 모달 창 닫기
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+// 모달 창 바깥 영역 클릭 시 닫기
+window.onclick = function(event) {
+  var modal = document.getElementById("myModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
