@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>싱글 스펙 정보</title>
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color: #f5f5f5;}
+</style>
+</head>
+<body>
+
+<table>
+  <!-- 테이블 행들은 자바스크립트를 통해 동적으로 추가됩니다 -->
+</table>
+
+<!-- 모달 창 -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+var airconSpecs = [
+{ title : "상업용 MULTI V S(미니멀티)" , power : "4" , code : "RPUW042S2S" , pie : "9.52RPUW042S2S" , pie : "9.52/15.88" , electric : "4" , cable : "1.0~1.5" , cop : "30A,2P" , used : "2.68/2.88" , outsize : "950 x 834 x 330" , weight : "65" , able : "11000"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "4" , code : "RPUW041S9S" , pie : "9.52RPUW041S9S" , pie : "9.52/15.88" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A,4P" , used : "2.5/2.7" , outsize : "950 x 834 x 330" , weight : "65" , able : "11000"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "5" , code : "RPUW052S2S" , pie : "9.52RPUW052S2S" , pie : "9.52/15.88" , electric : "4" , cable : "1.0~1.5" , cop : "30A,2P" , used : "3.5/3.58" , outsize : "950 x 834 x 330" , weight : "72" , able : "14500"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "5" , code : "RPUW051S9S" , pie : "9.52RPUW051S9S" , pie : "9.52/15.88" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A,4P" , used : "3.5/3.6" , outsize : "950 x 834 x 330" , weight : "72" , able : "14500"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "6" , code : "RPUW062S2S" , pie : "9.52RPUW062S2S" , pie : "9.52/19.05" , electric : "6" , cable : "1.0~1.5" , cop : "40A,2P" , used : "4.32/4.19" , outsize : "950 x 834 x 330" , weight : "72" , able : "16000"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "6" , code : "RPUW061S9S" , pie : "9.52RPUW061S9S" , pie : "9.52/19.05" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A,4P" , used : "4.32/4.19" , outsize : "950 x 834 x 330" , weight : "72" , able : "16000"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "8" , code : "RPUW081S9S" , pie : "9.52RPUW081S9S" , pie : "9.52/19.05" , electric : "4" , cable : "1.0~1.5" , cop : "30A,4P" , used : "7.47/6.4" , outsize : "1090 x 1625 x 380" , weight : "144" , able : "22400"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "10" , code : "RPUW101S9S" , pie : "9.52RPUW101S9S" , pie : "9.52/22.2" , electric : "6" , cable : "1.0~1.5" , cop : "40A,4P" , used : "10/8.4" , outsize : "1090 x 1625 x 380" , weight : "157" , able : "28000"}, 
+{ title : "상업용 MULTI V S(미니멀티)" , power : "12" , code : "RPUW121S9S" , pie : "12.7RPUW121S9S" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A,4P" , used : "9.81/9.75" , outsize : "1090 x 1625 x 380" , weight : "157" , able : "33600"}, 
+{ title : "MULTI V M모델(일반형)" , power : "10" , code : "RPUW10BX9M" , pie : "9.52RPUW10BX9M" , pie : "9.52/22.2" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2.8/10.3" , outsize : "930 x 1690 x 760" , weight : "171" , able : "29200"}, 
+{ title : "MULTI V M모델(일반형)" , power : "12" , code : "RPUW12BX9M" , pie : "12.7RPUW12BX9M" , pie : "12.7/28.58" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "3.6/15.7" , outsize : "930 x 1690 x 760" , weight : "202" , able : "34800"}, 
+{ title : "MULTI V M모델(일반형)" , power : "14" , code : "RPUW14BX9M" , pie : "12.7RPUW14BX9M" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "3.8/15.9" , outsize : "1240 x 1690 x 760" , weight : "220" , able : "39200"}, 
+{ title : "MULTI V M모델(일반형)" , power : "16" , code : "RPUW16BX9M" , pie : "12.7RPUW16BX9M" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "5.3/18.4" , outsize : "1240 x 1690 x 760" , weight : "260" , able : "46400"}, 
+{ title : "MULTI V M모델(일반형)" , power : "18" , code : "RPUW18BX9M" , pie : "15.88RPUW18BX9M" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "5.5/20" , outsize : "1240 x 1690 x 760" , weight : "260" , able : "52200"}, 
+{ title : "MULTI V M모델(일반형)" , power : "20" , code : "RPUW20BX9M" , pie : "15.88RPUW20BX9M" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "5.9/22.5" , outsize : "1240 x 1690 x 760" , weight : "275" , able : "57000"}, 
+{ title : "MULTI V P모델(고급형)" , power : "8" , code : "RPUW08BX9P" , pie : "9.52RPUW08BX9P" , pie : "9.52/19.05" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A" , used : "2.8/9.2" , outsize : "930 x 1690 x 760" , weight : "171" , able : "23300"}, 
+{ title : "MULTI V P모델(고급형)" , power : "10" , code : "RPUW10BX9P" , pie : "9.52RPUW10BX9P" , pie : "9.52/22.2" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2.8/10.3" , outsize : "930 x 1690 x 760" , weight : "171" , able : "29200"}, 
+{ title : "MULTI V P모델(고급형)" , power : "12" , code : "RPUW12BX9P" , pie : "12.7RPUW12BX9P" , pie : "12.7/28.58" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "3.6/15.7" , outsize : "930 x 1690 x 760" , weight : "202" , able : "34800"}, 
+{ title : "MULTI V P모델(고급형)" , power : "14" , code : "RPUW14BX9P" , pie : "12.7RPUW14BX9P" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "3.8/15.9" , outsize : "1240 x 1690 x 760" , weight : "220" , able : "39200"}, 
+{ title : "MULTI V P모델(고급형)" , power : "16" , code : "RPUW16BX9P" , pie : "12.7RPUW16BX9P" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "5.3/18.4" , outsize : "1240 x 1690 x 760" , weight : "260" , able : "46400"}, 
+{ title : "MULTI V P모델(고급형)" , power : "18" , code : "RPUW18BX9P" , pie : "15.88RPUW18BX9P" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "5.5/20" , outsize : "1240 x 1690 x 760" , weight : "260" , able : "52200"}, 
+{ title : "MULTI V P모델(고급형)" , power : "20" , code : "RPUW20BX9P" , pie : "15.88RPUW20BX9P" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "5.9/22.5" , outsize : "1240 x 1690 x 760" , weight : "275" , able : "57000"}, 
+{ title : "MULTI V P모델(고급형)" , power : "22" , code : "RPUW22BX9P" , pie : "15.88RPUW22BX9P" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "6.1/24.7" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "64000"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24" , code : "RPUW24BX9P" , pie : "15.88RPUW24BX9P" , pie : "15.88/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "6.6/26.9" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "67500"}, 
+{ title : "MULTI V P모델(고급형)" , power : "26" , code : "RPUW26BX9P" , pie : "19.05RPUW26BX9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "7.1/26.2" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "72800"}, 
+{ title : "MULTI V P모델(고급형)" , power : "28" , code : "RPUW281X9P" , pie : "19.05RPUW281X9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "-/-" , outsize : "1240 x 1745 x 760" , weight : "300" , able : "78400"}, 
+{ title : "MULTI V P모델(고급형)" , power : "30" , code : "RPUW301X9P" , pie : "19.05RPUW301X9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "-/-" , outsize : "1640 x 1690 x 760" , weight : "362" , able : "84000"}, 
+{ title : "MULTI V P모델(고급형)" , power : "32" , code : "RPUW321X9P" , pie : "19.05RPUW321X9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "-/-" , outsize : "1640 x 1690 x 760" , weight : "362" , able : "89600"}, 
+{ title : "MULTI V P모델(고급형)" , power : "34" , code : "RPUW34GX9P" , pie : "19.05RPUW34GX9P" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "-/-" , outsize : "1640 x 1745 x 760" , weight : "380" , able : "95200"}, 
+{ title : "MULTI V P모델(고급형)" , power : "14+12" , code : "RP-W261X9P" , pie : "19.05RP-W261X9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "7.4/31.6" , outsize : "14HP + 12HP" , weight : "202+220" , able : "74000"}, 
+{ title : "MULTI V P모델(고급형)" , power : "14+14" , code : "RP-W281X9P" , pie : "19.05RP-W281X9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "7.7/31.8" , outsize : "1240 x 1690 x 760 (x2)" , weight : "220x2" , able : "78400"}, 
+{ title : "MULTI V P모델(고급형)" , power : "16+14" , code : "RP-W301X9P" , pie : "19.05RP-W301X9P" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "9.1/32.8" , outsize : "1240 x 1690 x 760 (x2)" , weight : "220+260" , able : "85600"}, 
+{ title : "MULTI V P모델(고급형)" , power : "18+14" , code : "RP-W321X9P" , pie : "19.05RP-W321X9P" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "9.4/35.8" , outsize : "1240 x 1690 x 760 (x2)" , weight : "260+220" , able : "91400"}, 
+{ title : "MULTI V P모델(고급형)" , power : "20+14" , code : "RP-W341X9P" , pie : "19.05RP-W341X9P" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "9.7/38.3" , outsize : "1240 x 1690 x 760 (x2)" , weight : "275+220" , able : "96200"}, 
+{ title : "MULTI V P모델(고급형)" , power : "22+14" , code : "RP-W361X9P" , pie : "19.05RP-W361X9P" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "10/40.6" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290+220" , able : "103200"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24+14" , code : "RP-W381X9P" , pie : "19.05RP-W381X9P" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "10.4/42.7" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290+220" , able : "106700"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24+16" , code : "RP-W401X9P" , pie : "19.05RP-W401X9P" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "11.8/45.3" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290+260" , able : "113900"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24+18" , code : "RP-W421X9P" , pie : "19.05RP-W421X9P" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "12.1/46.8" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290+260" , able : "119700"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24+20" , code : "RP-W441X9P" , pie : "19.05RP-W441X9P" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "12.4/49.3" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290+275" , able : "124500"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24+22" , code : "RP-W461X9P" , pie : "19.05RP-W461X9P" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "12.7/51.6" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290x2" , able : "131500"}, 
+{ title : "MULTI V P모델(고급형)" , power : "24+24" , code : "RP-W481X9P" , pie : "19.05RP-W481X9P" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "13.1/53.7" , outsize : "1240 x 1690 x 760 (x2)" , weight : "290x2" , able : "135000"}, 
+{ title : "GHP" , power : "16" , code : "GPUW161C2S" , pie : "15.88GPUW161C2S" , pie : "15.88/28.58" , electric : "4.0x3" , cable : "1.0~1.5(x2)" , cop : "30A" , used : "1.7/1.19" , outsize : "1800 x 2180 x 960" , weight : "720" , able : "45000"}, 
+{ title : "GHP" , power : "20" , code : "GPUW201C2S" , pie : "15.88GPUW201C2S" , pie : "15.88/28.58" , electric : "4.0x3" , cable : "1.0~1.5(x2)" , cop : "30A" , used : "1.7/1.19" , outsize : "1800 x 2180 x 960" , weight : "720" , able : "56000"}, 
+{ title : "GHP" , power : "25" , code : "GPUW251C2S" , pie : "15.88GPUW251C2S" , pie : "15.88/31.8" , electric : "4.0x3" , cable : "1.0~1.5(x2)" , cop : "30A" , used : "1.7/1.19" , outsize : "1800 x 2180 x 960" , weight : "720" , able : "71000"}, 
+{ title : "GHP" , power : "28" , code : "GPUW280C2S" , pie : "19.05GPUW280C2S" , pie : "19.05/34.9" , electric : "4.0x3" , cable : "1.0~1.5(x2)" , cop : "30A" , used : "2.1/1.2" , outsize : "1800 x 2180 x 960" , weight : "910" , able : "82000"}, 
+{ title : "GHP" , power : "30" , code : "GPUW300C2S" , pie : "19.05GPUW300C2S" , pie : "19.05/34.9" , electric : "4.0x3" , cable : "1.0~1.5(x2)" , cop : "30A" , used : "2.1/1.2" , outsize : "1800 x 2180 x 960" , weight : "910" , able : "85000"}, 
+{ title : "GHP" , power : "32" , code : "GPUW320C2S" , pie : "19.05GPUW320C2S" , pie : "19.05/34.9" , electric : "4.0x3" , cable : "1.0~1.5(x2)" , cop : "30A" , used : "2.1/1.2" , outsize : "1800 x 2180 x 960" , weight : "910" , able : "90000"}, 
+{ title : "GHP" , power : "16+16" , code : "GP-W321C2S" , pie : "19.05GP-W321C2S" , pie : "19.05/34.9" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "3.4/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "720x2" , able : "90000"}, 
+{ title : "GHP" , power : "20+16" , code : "GP-W361C2S" , pie : "19.05GP-W361C2S" , pie : "19.05/34.9" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "3.4/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "720x2" , able : "101000"}, 
+{ title : "GHP" , power : "20+20" , code : "GP-W401C2S" , pie : "19.05GP-W401C2S" , pie : "19.05/41.3" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "3.4/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "720x2" , able : "112000"}, 
+{ title : "GHP" , power : "25+20" , code : "GP-W451C2S" , pie : "19.05GP-W451C2S" , pie : "19.05/41.3" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "3.4/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "720x2" , able : "127000"}, 
+{ title : "GHP" , power : "25+25" , code : "GP-W501C2S" , pie : "19.05GP-W501C2S" , pie : "19.05/41.3" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "3.4/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "720x2" , able : "142000"}, 
+{ title : "GHP" , power : "28+28" , code : "GP-W560C2S" , pie : "19.05GP-W560C2S" , pie : "19.05/41.3" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "4.2/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "910x2" , able : "164000"}, 
+{ title : "GHP" , power : "30+30" , code : "GP-W600C2S" , pie : "19.05GP-W600C2S" , pie : "19.05/41.3" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "4.2/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "910x2" , able : "170000"}, 
+{ title : "GHP" , power : "32+32" , code : "GP-W640C2S" , pie : "22.2GP-W640C2S" , pie : "22.2/44.5" , electric : "10x3" , cable : "(1.5x2)x2" , cop : "60A" , used : "4.2/2.4" , outsize : "1800 x 2180 x 960 (x2)" , weight : "910x2" , able : "180000"}, 
+
+
+  // 다른 스펙 객체들도 이 배열에 추가...
+];
+
+// 테이블에 행 추가
+var table = document.querySelector("table");
+airconSpecs.forEach(function(model, index) {
+  var row = table.insertRow();
+  var cell = row.insertCell();
+  cell.innerHTML = model.title + "<br>" + model.power + "HP<br>" + model.code;
+  cell.setAttribute("onclick", "showModal(" + index + ")");
+});
+
+function showModal(index) {
+  var modal = document.getElementById("myModal");
+  var modalText = document.getElementById("modalText");
+  var spec = airconSpecs[index];
+  
+  modalText.innerHTML = `
+    <div>배관경: ${spec.pie} Φ</div>
+    <div>전원선: ${spec.electric} SQ</div>
+    <div>통신선: ${spec.cable}</div>
+    <div>누전차단기: ${spec.cop}</div>
+    <div>소비전력: ${spec.used}</div>
+    <div>실외기사이즈(WHD): ${spec.outsize}</div>
+    <div>무게: ${spec.weight} kg</div>
+    <div>냉방능력: ${spec.able} w</div>
+  `;
+  modal.style.display = "block";
+}
+
+// 모달 창 닫기
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+// 모달 창 바깥 영역 클릭 시 닫기
+window.onclick = function(event) {
+  var modal = document.getElementById("myModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
