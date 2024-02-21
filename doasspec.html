@@ -2,32 +2,32 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 <style>
-    /* ÀüÃ¼ Å×ÀÌºí ½ºÅ¸ÀÏ */
+    /* ì „ì²´ í…Œì´ë¸” ìŠ¤íƒ€ì¼ */
     table {
         width: 100%;
         border-collapse: collapse;
         margin: 0 0 20px 0;
     }
-    /* Å×ÀÌºí Çì´õ¿Í ¼¿ ½ºÅ¸ÀÏ */
+    /* í…Œì´ë¸” í—¤ë”ì™€ ì…€ ìŠ¤íƒ€ì¼ */
     th, td {
         text-align: left;
         padding: 8px;
         border: 1px solid #ddd;
     }
-    /* Çì´õ ½ºÅ¸ÀÏ */
+    /* í—¤ë” ìŠ¤íƒ€ì¼ */
     th {
         background-color: #f2f2f2;
     }
-    /* Â¦¼ö ÁÙ »ö»ó */
+    /* ì§ìˆ˜ ì¤„ ìƒ‰ìƒ */
     tr:nth-child(even) {background-color: #f9f9f9;}
-    /* ¸ð¹ÙÀÏ È­¸é¿¡¼­ÀÇ Å×ÀÌºí ½ºÅ¸ÀÏ */
+    /* ëª¨ë°”ì¼ í™”ë©´ì—ì„œì˜ í…Œì´ë¸” ìŠ¤íƒ€ì¼ */
     @media screen and (max-width: 600px) {
         table, thead, tbody, th, td, tr {
             display: block;
         }
-        /* Çì´õ ¼û±â±â */
+        /* í—¤ë” ìˆ¨ê¸°ê¸° */
         thead tr {
             position: absolute;
             top: -9999px;
@@ -35,15 +35,15 @@
         }
         tr { border: 1px solid #ccc; }
         td {
-            /* °¢ ¼¿À» ºí·Ï ¿ä¼Ò·Î ¸¸µé±â */
+            /* ê° ì…€ì„ ë¸”ë¡ ìš”ì†Œë¡œ ë§Œë“¤ê¸° */
             border: none;
             position: relative;
             padding-left: 50%;
             text-align: right;
         }
-        /* ¶óº§ ½ºÅ¸ÀÏ */
+        /* ë¼ë²¨ ìŠ¤íƒ€ì¼ */
         td:before {
-            /* °¢ ¼¿ÀÇ ÀÌ¸§À» 'data-title' ¼Ó¼ºÀÇ °ªÀ¸·Î ¼³Á¤ */
+            /* ê° ì…€ì˜ ì´ë¦„ì„ 'data-title' ì†ì„±ì˜ ê°’ìœ¼ë¡œ ì„¤ì • */
             content: attr(data-title);
             position: absolute;
             left: 0;
@@ -60,20 +60,20 @@
 <table>
 <thead>
     <tr>
-        <th>±¸ºÐ</th>
-        <th>¼ÒÇü DOAS ARND153DCR5</th>
-        <th>¼ÒÇü DOAS ARND203DCR5</th>
+        <th>êµ¬ë¶„</th>
+        <th>ì†Œí˜• DOAS ARND153DCR5</th>
+        <th>ì†Œí˜• DOAS ARND203DCR5</th>
     </tr>
 </thead>
 <tbody>
     <tr>
-        <td data-title="±¸ºÐ">Àü¿ø</td>
-        <td data-title="¼ÒÇü DOAS ARND153DCR5">1, 220, 60</td>
-        <td data-title="¼ÒÇü DOAS ARND203DCR5">1, 220, 60</td>
+        <td data-title="êµ¬ë¶„">ì „ì›</td>
+        <td data-title="ì†Œí˜• DOAS ARND153DCR5">1, 220, 60</td>
+        <td data-title="ì†Œí˜• DOAS ARND203DCR5">1, 220, 60</td>
     </tr>
     <tr>
-        <td>´É·Â</td>
-        <td>³Ã¹æ ´É·Â(½Ç³»)</td>
+        <td>ëŠ¥ë ¥</td>
+        <td>ëƒ‰ë°© ëŠ¥ë ¥(ì‹¤ë‚´)</td>
         <td>W</td>
         <td>23 000</td>
         <td>30 000</td>
@@ -87,7 +87,7 @@
     </tr>
     <tr>
         <td></td>
-        <td>³Ã¹æ´É·Â(½Ç¿Ü)</td>
+        <td>ëƒ‰ë°©ëŠ¥ë ¥(ì‹¤ì™¸)</td>
         <td>W</td>
         <td>35 200</td>
         <td>41 900</td>
@@ -101,7 +101,7 @@
     </tr>
     <tr>
         <td></td>
-        <td>³­¹æ ´É·Â(½Ç³»)</td>
+        <td>ë‚œë°© ëŠ¥ë ¥(ì‹¤ë‚´)</td>
         <td>W</td>
         <td>21 000</td>
         <td>28 000</td>
@@ -115,7 +115,7 @@
     </tr>
     <tr>
         <td></td>
-        <td>³­¹æ´É·Â(½Ç¿Ü)</td>
+        <td>ë‚œë°©ëŠ¥ë ¥(ì‹¤ì™¸)</td>
         <td>W</td>
         <td>23 000</td>
         <td>29 300</td>
@@ -129,56 +129,56 @@
     </tr>
     <tr>
         <td></td>
-        <td>Àç¿­ ´É·Â</td>
+        <td>ìž¬ì—´ ëŠ¥ë ¥</td>
         <td>kcal/h</td>
         <td>6 048</td>
         <td>7 560</td>
     </tr>
     <tr>
-        <td>¼ÒºñÀü·Â</td>
-        <td>³Ã¹æ</td>
+        <td>ì†Œë¹„ì „ë ¥</td>
+        <td>ëƒ‰ë°©</td>
         <td>kW</td>
         <td>-</td>
         <td>-</td>
     </tr>
     <tr>
         <td></td>
-        <td>³­¹æ</td>
+        <td>ë‚œë°©</td>
         <td>kW</td>
         <td>-</td>
         <td>-</td>
     </tr>
     <tr>
-        <td>¿îÀüÀü·ù</td>
-        <td>³Ã¹æ</td>
+        <td>ìš´ì „ì „ë¥˜</td>
+        <td>ëƒ‰ë°©</td>
         <td>A</td>
         <td>5.8</td>
         <td>5.8</td>
     </tr>
     <tr>
         <td></td>
-        <td>³­¹æ</td>
+        <td>ë‚œë°©</td>
         <td>A</td>
         <td>5.8</td>
         <td>5.8</td>
     </tr>
     <tr>
-        <td>¼ÛÇ³±â</td>
-        <td>Çü½Ä</td>
+        <td>ì†¡í’ê¸°</td>
+        <td>í˜•ì‹</td>
         <td>-</td>
         <td>3D Plug</td>
         <td>3D Plug</td>
     </tr>
     <tr>
         <td></td>
-        <td>¼ö·®</td>
+        <td>ìˆ˜ëŸ‰</td>
         <td>EA</td>
         <td>1</td>
         <td>1</td>
     </tr>
     <tr>
         <td></td>
-        <td>Ç³·®(L/H)</td>
+        <td>í’ëŸ‰(L/H)</td>
         <td>CMH</td>
         <td>2 500</td>
         <td>3 400</td>
@@ -192,175 +192,175 @@
     </tr>
     <tr>
         <td></td>
-        <td>ÃÖ´ë ±â¿ÜÁ¤¾Ð</td>
+        <td>ìµœëŒ€ ê¸°ì™¸ì •ì••</td>
         <td>mmAq (Pa)</td>
         <td>51 (498)</td>
         <td>38 (373)</td>
     </tr>
     <tr>
         <td></td>
-        <td>¸ðÅÍ</td>
+        <td>ëª¨í„°</td>
         <td>-</td>
         <td>ECM / Direct</td>
         <td>ECM / Direct</td>
     </tr>
     <tr>
         <td></td>
-        <td>Ãâ·Â</td>
+        <td>ì¶œë ¥</td>
         <td>W</td>
         <td>750</td>
         <td>750</td>
     </tr>
     <tr>
-        <td>¿­±³È¯±â</td>
-        <td>Çü½Ä</td>
+        <td>ì—´êµí™˜ê¸°</td>
+        <td>í˜•ì‹</td>
         <td>-</td>
         <td>Fin &amp; Tube</td>
         <td>Fin &amp; Tube</td>
     </tr>
     <tr>
         <td></td>
-        <td>¼ö·®</td>
+        <td>ìˆ˜ëŸ‰</td>
         <td>EA</td>
         <td>2</td>
         <td>2</td>
     </tr>
     <tr>
         <td></td>
-        <td>¥Õ x ¿­ x ´Ü x FPI X ±æÀÌ (¸ÞÀÎ ÄÚÀÏ)</td>
+        <td>Î¦ x ì—´ x ë‹¨ x FPI X ê¸¸ì´ (ë©”ì¸ ì½”ì¼)</td>
         <td>-</td>
         <td>7.0 x 3 x 24 x 19 x 1 390</td>
         <td>7.0 x 3 x 24 x 19 x 1 390</td>
     </tr>
     <tr>
         <td></td>
-        <td>¥Õ x ¿­ x ´Ü x FPI X ±æÀÌ (Àç¿­ ÄÚÀÏ)</td>
+        <td>Î¦ x ì—´ x ë‹¨ x FPI X ê¸¸ì´ (ìž¬ì—´ ì½”ì¼)</td>
         <td>-</td>
         <td>7.0 x 1 x 24 x 19 x 1 390</td>
         <td>7.0 x 1 x 24 x 19 x 1 390</td>
     </tr>
     <tr>
         <td></td>
-        <td>ÇÉ Çü½Ä</td>
+        <td>í•€ í˜•ì‹</td>
         <td>-</td>
         <td>LG Louver</td>
         <td>LG Louver</td>
     </tr>
     <tr>
         <td></td>
-        <td>ºÎ½Ä ¹æÁö</td>
+        <td>ë¶€ì‹ ë°©ì§€</td>
         <td>-</td>
         <td>galvanizing, Non-Chromate</td>
         <td>galvanizing, Non-Chromate</td>
     </tr>
     <tr>
         <td></td>
-        <td>Àç·á(°ü/ÇÉ)</td>
+        <td>ìž¬ë£Œ(ê´€/í•€)</td>
         <td>-</td>
         <td>CU / AL</td>
         <td>CU / AL</td>
     </tr>
     <tr>
         <td></td>
-        <td>°ü Á÷°æ/µÎ²²</td>
-        <td>¥Õ,mm</td>
+        <td>ê´€ ì§ê²½/ë‘ê»˜</td>
+        <td>Î¦,mm</td>
         <td>7 / 0.25</td>
         <td>7 / 0.25</td>
     </tr>
     <tr>
-        <td>º»Ã¼ Ä¡¼ö</td>
-        <td>Á¦Ç° Áß·®</td>
+        <td>ë³¸ì²´ ì¹˜ìˆ˜</td>
+        <td>ì œí’ˆ ì¤‘ëŸ‰</td>
         <td>kg</td>
         <td>177</td>
         <td>177</td>
     </tr>
     <tr>
         <td></td>
-        <td>Æ÷Àå Áß·®</td>
+        <td>í¬ìž¥ ì¤‘ëŸ‰</td>
         <td>kg</td>
         <td>195</td>
         <td>195</td>
     </tr>
     <tr>
         <td></td>
-        <td>Á¦Ç° Ä¡¼ö(W x H x D)</td>
+        <td>ì œí’ˆ ì¹˜ìˆ˜(W x H x D)</td>
         <td>mm</td>
         <td>1 906 x 575 x 1 144</td>
         <td>1 906 x 575 x 1 144</td>
     </tr>
     <tr>
         <td></td>
-        <td>Æ÷Àå Ä¡¼ö(W x H x D)</td>
+        <td>í¬ìž¥ ì¹˜ìˆ˜(W x H x D)</td>
         <td>mm</td>
         <td>2 154 x 704 x 1 195</td>
         <td>2 154 x 704 x 1 195</td>
     </tr>
     <tr>
-        <td>ÇÊÅÍ</td>
-        <td>ÈÄµå</td>
+        <td>í•„í„°</td>
+        <td>í›„ë“œ</td>
         <td>-</td>
         <td>N/A</td>
         <td>N/A</td>
     </tr>
     <tr>
         <td></td>
-        <td>±Þ±â</td>
+        <td>ê¸‰ê¸°</td>
         <td>-</td>
         <td>2&quot; MERV 8 (25&quot; x 20&quot; , 2EA)</td>
         <td>2&quot; MERV 8 (25&quot; x 20&quot; , 2EA)</td>
     </tr>
     <tr>
-        <td>¹è°ü°æ</td>
-        <td>¾×°ü</td>
+        <td>ë°°ê´€ê²½</td>
+        <td>ì•¡ê´€</td>
         <td>mm(Inch)</td>
-        <td>¥Õ 12.7(1/2)</td>
-        <td>¥Õ 12.7(1/2)</td>
+        <td>Î¦ 12.7(1/2)</td>
+        <td>Î¦ 12.7(1/2)</td>
     </tr>
     <tr>
         <td></td>
-        <td>Àú¾Ð °¡½º°ü</td>
+        <td>ì €ì•• ê°€ìŠ¤ê´€</td>
         <td>mm(Inch)</td>
-        <td>¥Õ 28.58(1-1/8)</td>
-        <td>¥Õ 28.58(1-1/8)</td>
+        <td>Î¦ 28.58(1-1/8)</td>
+        <td>Î¦ 28.58(1-1/8)</td>
     </tr>
     <tr>
         <td></td>
-        <td>°í¾Ð °¡½º°ü</td>
+        <td>ê³ ì•• ê°€ìŠ¤ê´€</td>
         <td>mm(Inch)</td>
-        <td>¥Õ 19.05(3/4)</td>
-        <td>¥Õ 22.2(7/8)</td>
+        <td>Î¦ 19.05(3/4)</td>
+        <td>Î¦ 22.2(7/8)</td>
     </tr>
     <tr>
-        <td>¼ÒÀ½ (À½¾Ð·¹º§)</td>
+        <td>ì†ŒìŒ (ìŒì••ë ˆë²¨)</td>
         <td></td>
         <td>dB(A)</td>
         <td>54</td>
         <td>52</td>
     </tr>
     <tr>
-        <td>¿¬°á Àü¼±</td>
-        <td>Àü¿ø¼±(H07RN-F, Á¢ÁöÆ÷ÇÔ)</td>
-        <td>mm©÷ x cores</td>
+        <td>ì—°ê²° ì „ì„ </td>
+        <td>ì „ì›ì„ (H07RN-F, ì ‘ì§€í¬í•¨)</td>
+        <td>mmÂ² x cores</td>
         <td>2.5 x 3C</td>
         <td>2.5 x 3C</td>
     </tr>
     <tr>
         <td></td>
-        <td>Åë½Å¼±(VCTF-SB)</td>
-        <td>mm©÷ x cores</td>
+        <td>í†µì‹ ì„ (VCTF-SB)</td>
+        <td>mmÂ² x cores</td>
         <td>1.0~1.5 x 2C</td>
         <td>1.0~1.5 x 2C</td>
     </tr>
     <tr>
-        <td>³Ã¸Å</td>
-        <td>Á¦¾î ¹æ½Ä</td>
+        <td>ëƒ‰ë§¤</td>
+        <td>ì œì–´ ë°©ì‹</td>
         <td>-</td>
         <td>EEV</td>
         <td>EEV</td>
     </tr>
     <tr>
         <td></td>
-        <td>½Ç³»±â´ç</td>
+        <td>ì‹¤ë‚´ê¸°ë‹¹</td>
         <td>kg/EA</td>
         <td>2.83</td>
         <td>2.83</td>
