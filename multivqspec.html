@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>싱글 스펙 정보</title>
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color: #f5f5f5;}
+</style>
+</head>
+<body>
+
+<table>
+  <!-- 테이블 행들은 자바스크립트를 통해 동적으로 추가됩니다 -->
+</table>
+
+<!-- 모달 창 -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+var airconSpecs = [
+{ title : "상업용 MULTI V S(미니멀티)" , power : "4" , code : "RPUW042S2S4" , code : "RPUW042S2S" , pie : "9.52/15.88" , electric : "4" , cable : "1.0~1.5" , cop : "30A,2P" , used : "2.68" , outsize : "950 x 834 x 330" , weight : "65" , able : "11000"}, 
+{ title : "상업용 MULTI V S 냉방" , power : "4" , code : "RPUQ041S2S4" , code : "RPUQ041S2S" , pie : "9.52/15.88" , electric : "4" , cable : "1.0~1.5" , cop : "30A,2P" , used : "2.56" , outsize : "950 x 834 x 330" , weight : "67" , able : "11000"}, 
+{ title : "상업용 MULTI V S 냉방" , power : "5" , code : "RPUQ051S2S5" , code : "RPUQ051S2S" , pie : "9.52/15.88" , electric : "4" , cable : "1.0~1.5" , cop : "30A,2P" , used : "4.14" , outsize : "950 x 834 x 330" , weight : "67" , able : "14500"}, 
+{ title : "상업용 MULTI V S 냉방" , power : "6" , code : "RPUQ061S2S6" , code : "RPUQ061S2S" , pie : "9.52/19.05" , electric : "6" , cable : "1.0~1.5" , cop : "40A,2P" , used : "5.96" , outsize : "950 x 834 x 330" , weight : "67" , able : "17000"}, 
+{ title : "상업용 MULTI V S 냉방" , power : "8" , code : "RPUQ081S9S8" , code : "RPUQ081S9S" , pie : "9.52/19.05" , electric : "4" , cable : "1.0~1.5" , cop : "30A,4P" , used : "6.05" , outsize : "950 x 1380 x 330" , weight : "115" , able : "23000"}, 
+{ title : "상업용 MULTI V S 냉방" , power : "10" , code : "RPUQ101S9S10" , code : "RPUQ101S9S" , pie : "9.52/22.2" , electric : "6" , cable : "1.0~1.5" , cop : "40A,4P" , used : "7.34" , outsize : "1090 x 1625 x 380" , weight : "144" , able : "29000"}, 
+{ title : "MULTI V 냉방" , power : "8" , code : "RPUQ081X9S8" , code : "RPUQ081X9S" , pie : "9.52/19.05" , electric : "2.5" , cable : "0.75~1.5" , cop : "20A" , used : "5.2" , outsize : "930 x 1690 x 760" , weight : "168" , able : "23300"}, 
+{ title : "MULTI V 냉방" , power : "10" , code : "RPUQ101X9S10" , code : "RPUQ101X9S" , pie : "9.52/22.2" , electric : "4" , cable : "0.75~1.5" , cop : "30A" , used : "7" , outsize : "930 x 1690 x 760" , weight : "168" , able : "29200"}, 
+{ title : "MULTI V 냉방" , power : "12" , code : "RPUQ121X9S12" , code : "RPUQ121X9S" , pie : "12.7/28.58" , electric : "4" , cable : "0.75~1.5" , cop : "30A" , used : "8" , outsize : "930 x 1690 x 760" , weight : "194" , able : "34800"}, 
+{ title : "MULTI V 냉방" , power : "14" , code : "RPUQ141X9S14" , code : "RPUQ141X9S" , pie : "12.7/28.58" , electric : "6" , cable : "0.75~1.5" , cop : "30A" , used : "9.8" , outsize : "930 x 1690 x 760" , weight : "194" , able : "39200"}, 
+{ title : "MULTI V 냉방" , power : "16" , code : "RPUQ161X9S16" , code : "RPUQ161X9S" , pie : "12.7/28.58" , electric : "6" , cable : "0.75~1.5" , cop : "40A" , used : "11.3" , outsize : "1240 x 1680 x 760" , weight : "213" , able : "46400"}, 
+{ title : "MULTI V 냉방" , power : "18" , code : "RPUQ181X9S18" , code : "RPUQ181X9S" , pie : "15.88/28.58" , electric : "10" , cable : "0.75~1.5" , cop : "50A" , used : "11.9" , outsize : "1240 x 1680 x 760" , weight : "255" , able : "52200"}, 
+{ title : "MULTI V 냉방" , power : "20" , code : "RPUQ201X9S20" , code : "RPUQ201X9S" , pie : "15.88/28.58" , electric : "10" , cable : "0.75~1.5" , cop : "50A" , used : "13.3" , outsize : "1240 x 1680 x 760" , weight : "272" , able : "57000"}, 
+{ title : "MULTI V 냉방" , power : "22" , code : "RPUQ221X9S22" , code : "RPUQ221X9S" , pie : "15.88/28.58" , electric : "10" , cable : "0.75~1.5" , cop : "50A" , used : "16" , outsize : "1240 x 1680 x 760" , weight : "272" , able : "64000"}, 
+{ title : "MULTI V 냉방" , power : "24" , code : "RPUQ241X9S24" , code : "RPUQ241X9S" , pie : "15.88/34.9" , electric : "16" , cable : "0.75~1.5" , cop : "60A" , used : "18" , outsize : "1240 x 1680 x 760" , weight : "272" , able : "67500"}, 
+{ title : "MULTI V 냉방" , power : "26" , code : "RPUQ261X9S26" , code : "RPUQ261X9S" , pie : "19.05/34.9" , electric : "16" , cable : "0.75~1.5" , cop : "60A" , used : "21.1" , outsize : "1240 x 1680 x 760" , weight : "272" , able : "72800"}, 
+
+
+
+  // 다른 스펙 객체들도 이 배열에 추가...
+];
+
+// 테이블에 행 추가
+var table = document.querySelector("table");
+airconSpecs.forEach(function(model, index) {
+  var row = table.insertRow();
+  var cell = row.insertCell();
+  cell.innerHTML = model.title + "<br>" + model.power + "HP<br>" + model.code;
+  cell.setAttribute("onclick", "showModal(" + index + ")");
+});
+
+function showModal(index) {
+  var modal = document.getElementById("myModal");
+  var modalText = document.getElementById("modalText");
+  var spec = airconSpecs[index];
+  
+  modalText.innerHTML = `
+    <div>배관경: ${spec.pie} Φ</div>
+    <div>전원선: ${spec.electric} SQ</div>
+    <div>통신선: ${spec.cable}</div>
+    <div>누전차단기: ${spec.cop}</div>
+    <div>소비전력(냉방): ${spec.used} kw</div>
+    <div>실외기사이즈(WHD): ${spec.outsize}</div>
+    <div>무게: ${spec.weight} kg</div>
+    <div>냉방능력: ${spec.able} w</div>
+  `;
+  modal.style.display = "block";
+}
+
+// 모달 창 닫기
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+// 모달 창 바깥 영역 클릭 시 닫기
+window.onclick = function(event) {
+  var modal = document.getElementById("myModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
