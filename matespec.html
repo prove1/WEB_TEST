@@ -1,33 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 <style>
-    /* ÀüÃ¼ Å×ÀÌºí ½ºÅ¸ÀÏ */
+    /* ì „ì²´ í…Œì´ë¸” ìŠ¤íƒ€ì¼ */
     table {
         width: 100%;
         border-collapse: collapse;
         margin: 0 0 20px 0;
     }
-    /* Å×ÀÌºí Çì´õ¿Í ¼¿ ½ºÅ¸ÀÏ */
+    /* í…Œì´ë¸” í—¤ë”ì™€ ì…€ ìŠ¤íƒ€ì¼ */
     th, td {
         text-align: left;
         padding: 8px;
         border: 1px solid #ddd;
     }
-    /* Çì´õ ½ºÅ¸ÀÏ */
+    /* í—¤ë” ìŠ¤íƒ€ì¼ */
     th {
         background-color: #f2f2f2;
     }
-    /* Â¦¼ö ÁÙ »ö»ó */
+    /* ì§ìˆ˜ ì¤„ ìƒ‰ìƒ */
     tr:nth-child(even) {background-color: #f9f9f9;}
-    /* ¸ð¹ÙÀÏ È­¸é¿¡¼­ÀÇ Å×ÀÌºí ½ºÅ¸ÀÏ */
+    /* ëª¨ë°”ì¼ í™”ë©´ì—ì„œì˜ í…Œì´ë¸” ìŠ¤íƒ€ì¼ */
     @media screen and (max-width: 600px) {
         table, thead, tbody, th, td, tr {
             display: block;
         }
-        /* Çì´õ ¼û±â±â */
+        /* í—¤ë” ìˆ¨ê¸°ê¸° */
         thead tr {
             position: absolute;
             top: -9999px;
@@ -35,15 +34,15 @@
         }
         tr { border: 1px solid #ccc; }
         td {
-            /* °¢ ¼¿À» ºí·Ï ¿ä¼Ò·Î ¸¸µé±â */
+            /* ê° ì…€ì„ ë¸”ë¡ ìš”ì†Œë¡œ ë§Œë“¤ê¸° */
             border: none;
             position: relative;
             padding-left: 50%;
             text-align: right;
         }
-        /* ¶óº§ ½ºÅ¸ÀÏ */
+        /* ë¼ë²¨ ìŠ¤íƒ€ì¼ */
         td:before {
-            /* °¢ ¼¿ÀÇ ÀÌ¸§À» 'data-title' ¼Ó¼ºÀÇ °ªÀ¸·Î ¼³Á¤ */
+            /* ê° ì…€ì˜ ì´ë¦„ì„ 'data-title' ì†ì„±ì˜ ê°’ìœ¼ë¡œ ì„¤ì • */
             content: attr(data-title);
             position: absolute;
             left: 0;
@@ -58,19 +57,19 @@
 <body>
 <table>
     <tr>
-        <td>ºÐÁö°ü ¹× CONTROL SYSTEM</td>
+        <td>ë¶„ì§€ê´€ ë° CONTROL SYSTEM</td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td>±¸ºÐ</td>
-        <td>¸ðµ¨¸í</td>
-        <td>Æ¯ÀÌ»çÇ×</td>
+        <td>êµ¬ë¶„</td>
+        <td>ëª¨ë¸ëª…</td>
+        <td>íŠ¹ì´ì‚¬í•­</td>
     </tr>
     <tr>
-        <td>ºÐÁö°ü</td>
+        <td>ë¶„ì§€ê´€</td>
         <td>PBL-1601H2</td>
-        <td>½Ç³»±â ºÐÁö°ü</td>
+        <td>ì‹¤ë‚´ê¸° ë¶„ì§€ê´€</td>
     </tr>
     <tr>
         <td></td>
@@ -88,9 +87,9 @@
         <td></td>
     </tr>
     <tr>
-        <td>Á¶ÀÎÆ® ºÐÁö°ü</td>
+        <td>ì¡°ì¸íŠ¸ ë¶„ì§€ê´€</td>
         <td>PCN-11600H2</td>
-        <td>½Ç¿Ü±â Á¶ÀÎÆ®</td>
+        <td>ì‹¤ì™¸ê¸° ì¡°ì¸íŠ¸</td>
     </tr>
     <tr>
         <td></td>
@@ -103,215 +102,215 @@
         <td></td>
     </tr>
     <tr>
-        <td>À¯¼±¸®¸ðÄÁ</td>
+        <td>ìœ ì„ ë¦¬ëª¨ì»¨</td>
         <td>PREMTB001</td>
-        <td>Èò»ö(ÀÏ¹Ý)</td>
+        <td>í°ìƒ‰(ì¼ë°˜)</td>
     </tr>
     <tr>
         <td></td>
         <td>PREMTBB01</td>
-        <td>°ËÁ¤(ÀÏ¹Ý)</td>
+        <td>ê²€ì •(ì¼ë°˜)</td>
     </tr>
     <tr>
         <td></td>
         <td>PREMTB101</td>
-        <td>Èò»ö(ÀÎ°øÁö´É)</td>
+        <td>í°ìƒ‰(ì¸ê³µì§€ëŠ¥)</td>
     </tr>
     <tr>
         <td></td>
         <td>PREMTBB10</td>
-        <td>°ËÁ¤(ÀÎ°øÁö´É)</td>
+        <td>ê²€ì •(ì¸ê³µì§€ëŠ¥)</td>
     </tr>
     <tr>
-        <td>¹«¼±¸®¸ðÄÁ</td>
+        <td>ë¬´ì„ ë¦¬ëª¨ì»¨</td>
         <td>PWLSSB22C</td>
-        <td>³Ã¹æ¿ë</td>
+        <td>ëƒ‰ë°©ìš©</td>
     </tr>
     <tr>
         <td></td>
         <td>PWLSSB22H</td>
-        <td>³Ã³­¹æ¿ë</td>
+        <td>ëƒ‰ë‚œë°©ìš©</td>
     </tr>
     <tr>
         <td></td>
         <td>PWLSSA31H</td>
-        <td>&quot;µð·°½º ³Ã³­¹æ</td>
+        <td>&quot;ë””ëŸ­ìŠ¤ ëƒ‰ë‚œë°©</td>
     </tr>
     <tr>
-        <td>(ÀÎ°øÁö´É ´ëÃ¼, ½Å±Ô1way¿¡ »ç¿ë)&quot;</td>
+        <td>(ì¸ê³µì§€ëŠ¥ ëŒ€ì²´, ì‹ ê·œ1wayì— ì‚¬ìš©)&quot;</td>
     </tr>
     <tr>
         <td></td>
         <td>PWLSSA31C</td>
-        <td>&quot;µð·°½º ³Ã¹æ</td>
+        <td>&quot;ë””ëŸ­ìŠ¤ ëƒ‰ë°©</td>
     </tr>
     <tr>
-        <td>(ÀÎ°øÁö´É ´ëÃ¼, ½Å±Ô1way¿¡ »ç¿ë)&quot;</td>
+        <td>(ì¸ê³µì§€ëŠ¥ ëŒ€ì²´, ì‹ ê·œ1wayì— ì‚¬ìš©)&quot;</td>
     </tr>
     <tr>
-        <td>°íÃµÁ¤Å°Æ®</td>
+        <td>ê³ ì²œì •í‚¤íŠ¸</td>
         <td>PHC-4A1</td>
-        <td>°íÃµÁ¤Å°Æ®</td>
+        <td>ê³ ì²œì •í‚¤íŠ¸</td>
     </tr>
     <tr>
-        <td>À©µå¹ÙÀÌÀú</td>
+        <td>ìœˆë“œë°”ì´ì €</td>
         <td></td>
-        <td>4way(4°³ÀÔ)</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td>1way, 2way(2°³ÀÔ)</td>
+        <td>4way(4ê°œìž…)</td>
     </tr>
     <tr>
         <td></td>
         <td></td>
-        <td>1way µð·°½º(2°³ÀÔ)</td>
+        <td>1way, 2way(2ê°œìž…)</td>
     </tr>
     <tr>
-        <td>Áß¾ÓÁ¦¾î¼Ö·ç¼Ç</td>
+        <td></td>
+        <td></td>
+        <td>1way ë””ëŸ­ìŠ¤(2ê°œìž…)</td>
+    </tr>
+    <tr>
+        <td>ì¤‘ì•™ì œì–´ì†”ë£¨ì…˜</td>
         <td>PCS-Z150S0</td>
-        <td>16½Ç Áß¾ÓÁ¦¾î</td>
+        <td>16ì‹¤ ì¤‘ì•™ì œì–´</td>
     </tr>
     <tr>
         <td></td>
         <td>PACEZB000</td>
-        <td>32½Ç Áß¾ÓÁ¦¾î-ÅÍÄ¡</td>
+        <td>32ì‹¤ ì¤‘ì•™ì œì–´-í„°ì¹˜</td>
     </tr>
     <tr>
         <td>AC SMART 5</td>
         <td>PACS5A000</td>
-        <td>128½Ç Áß¾ÓÁ¦¾î(°øÃ»O)</td>
+        <td>128ì‹¤ ì¤‘ì•™ì œì–´(ê³µì²­O)</td>
     </tr>
     <tr>
         <td>ACP 5</td>
         <td>PACP5A000</td>
-        <td>256½Ç °¡´É</td>
+        <td>256ì‹¤ ê°€ëŠ¥</td>
     </tr>
     <tr>
         <td>AC MANAGER 5</td>
         <td>PACM5A000</td>
-        <td>ACP ÃÖ´ë 32´ë ¿¬µ¿</td>
+        <td>ACP ìµœëŒ€ 32ëŒ€ ì—°ë™</td>
     </tr>
     <tr>
-        <td>¹ÞÄ§´ë</td>
+        <td>ë°›ì¹¨ëŒ€</td>
         <td>430</td>
-        <td>23ÆòÀÌÇÏ</td>
+        <td>23í‰ì´í•˜</td>
     </tr>
     <tr>
         <td></td>
         <td>520</td>
-        <td>23ÆòÃÊ°ú</td>
+        <td>23í‰ì´ˆê³¼</td>
     </tr>
     <tr>
         <td></td>
         <td>730</td>
-        <td>¸ÖÆ¼8,10,12¸¶·Â/½ºÅÄµå58Æò,80Æò</td>
+        <td>ë©€í‹°8,10,12ë§ˆë ¥/ìŠ¤íƒ ë“œ58í‰,80í‰</td>
     </tr>
     <tr>
         <td></td>
         <td>UX2</td>
-        <td>¼ÒÇü(8~12HP) / ½ºÅÄµå125Æò</td>
+        <td>ì†Œí˜•(8~12HP) / ìŠ¤íƒ ë“œ125í‰</td>
     </tr>
     <tr>
         <td></td>
         <td>UX3</td>
-        <td>ÁßÇü(14~28HP) / ½ºÅÄµå 160Æò</td>
+        <td>ì¤‘í˜•(14~28HP) / ìŠ¤íƒ ë“œ 160í‰</td>
     </tr>
     <tr>
         <td></td>
         <td>UX4</td>
-        <td>´ëÇü(30~32HP)</td>
+        <td>ëŒ€í˜•(30~32HP)</td>
     </tr>
     <tr>
-        <td>Àü·ÂºÐ¹èÇ¥½Ã±â</td>
+        <td>ì „ë ¥ë¶„ë°°í‘œì‹œê¸°</td>
         <td>PPWRDB000</td>
-        <td>ÀÏ¹ÝÇü - 2PORT</td>
+        <td>ì¼ë°˜í˜• - 2PORT</td>
     </tr>
     <tr>
         <td></td>
         <td>PNU-D1S40</td>
-        <td>ÇÁ¸®¹Ì¾öÇü - 8PORT</td>
+        <td>í”„ë¦¬ë¯¸ì—„í˜• - 8PORT</td>
     </tr>
     <tr>
         <td>DRY CONTACT</td>
         <td>PDRYCB000</td>
-        <td>1Á¢Á¡</td>
+        <td>1ì ‘ì </td>
     </tr>
     <tr>
         <td></td>
         <td>PDRYCB400</td>
-        <td>2Á¢Á¡</td>
+        <td>2ì ‘ì </td>
     </tr>
     <tr>
         <td></td>
         <td>PDRYCB500</td>
-        <td>Åë½Å¿ë</td>
+        <td>í†µì‹ ìš©</td>
     </tr>
     <tr>
         <td>GATEWAY</td>
         <td>PV485N000</td>
-        <td>16½Ç/64½Ç °ø¿ë</td>
+        <td>16ì‹¤/64ì‹¤ ê³µìš©</td>
     </tr>
     <tr>
         <td></td>
         <td>PNF-P14A0M</td>
-        <td>MULTI V 16½Ç ÀÌÇÏ</td>
+        <td>MULTI V 16ì‹¤ ì´í•˜</td>
     </tr>
     <tr>
         <td></td>
         <td>PNF-P14A1M</td>
-        <td>MULTI V 64½Ç ÀÌÇÏ</td>
+        <td>MULTI V 64ì‹¤ ì´í•˜</td>
     </tr>
     <tr>
         <td></td>
         <td>PNF-P14A0A</td>
-        <td>¿ÃÀÎ¿ø,½Ì±ÛÀÎ¹öÅÍ,ÁÖ°Å¿ë¸ÖÆ¼</td>
+        <td>ì˜¬ì¸ì›,ì‹±ê¸€ì¸ë²„í„°,ì£¼ê±°ìš©ë©€í‹°</td>
     </tr>
     <tr>
         <td></td>
         <td>PNF-P14A0C</td>
-        <td>½Ì±Û Á¤¼Ó</td>
+        <td>ì‹±ê¸€ ì •ì†</td>
     </tr>
     <tr>
         <td></td>
         <td>PNF-P14A0R</td>
-        <td>ERV, ÃµÀå¸Å¸³´öÆ®</td>
+        <td>ERV, ì²œìž¥ë§¤ë¦½ë•íŠ¸</td>
     </tr>
     <tr>
-        <td>MV ÇÁ·Î±×·¥</td>
+        <td>MV í”„ë¡œê·¸ëž¨</td>
         <td>PCT-IL0</td>
-        <td>PC¿ë</td>
+        <td>PCìš©</td>
     </tr>
     <tr>
         <td></td>
         <td>PLGMVW100</td>
-        <td>WI-FI LG MV ½Ã¿îÀü¸ðµâ</td>
+        <td>WI-FI LG MV ì‹œìš´ì „ëª¨ë“ˆ</td>
     </tr>
     <tr>
-        <td>¿ÍÀÌÆÄÀÌ¸ðµâ</td>
+        <td>ì™€ì´íŒŒì´ëª¨ë“ˆ</td>
         <td>PWFMDD200</td>
-        <td>WI-FI ½º¸¶Æ®½ÌÅ¥</td>
+        <td>WI-FI ìŠ¤ë§ˆíŠ¸ì‹±í</td>
     </tr>
     <tr>
         <td></td>
         <td>PWFMDB200</td>
-        <td>WI-FI ½º¸¶Æ®½ÌÅ¥(16´ë)</td>
+        <td>WI-FI ìŠ¤ë§ˆíŠ¸ì‹±í(16ëŒ€)</td>
     </tr>
     <tr>
-        <td>¸ðµå¹ö½º Å°Æ®</td>
+        <td>ëª¨ë“œë²„ìŠ¤ í‚¤íŠ¸</td>
         <td>PMBUSB10A</td>
-        <td>MULTI V S ÁÖ°Å 2.5~6¸¶·Â</td>
+        <td>MULTI V S ì£¼ê±° 2.5~6ë§ˆë ¥</td>
     </tr>
     <tr>
         <td></td>
         <td>PMBUSB00A</td>
-        <td>ÀüÁ¦Ç° È£È¯ °¡´É</td>
+        <td>ì „ì œí’ˆ í˜¸í™˜ ê°€ëŠ¥</td>
     </tr>
     <tr>
         <td></td>
         <td>PMBUSC00A</td>
-        <td>½Ì±Û, ¿ÃÀÎ¿ø</td>
+        <td>ì‹±ê¸€, ì˜¬ì¸ì›</td>
     </tr>
     <tr>
         <td></td>
@@ -319,268 +318,268 @@
         <td></td>
     </tr>
     <tr>
-        <td>ÃµÁ¤Çü ÆÇ³Ú, ÀÎÃ¼°¨Áö, °ø±âÃ»Á¤</td>
+        <td>ì²œì •í˜• íŒë„¬, ì¸ì²´ê°ì§€, ê³µê¸°ì²­ì •</td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td>±¸ºÐ</td>
-        <td>¸ðµ¨¸í</td>
-        <td>Æ¯ÀÌ»çÇ×</td>
+        <td>êµ¬ë¶„</td>
+        <td>ëª¨ë¸ëª…</td>
+        <td>íŠ¹ì´ì‚¬í•­</td>
     </tr>
     <tr>
         <td>&quot;1200W ~ 2000W</td>
     </tr>
     <tr>
-        <td>1WAY(¼ÒÇü)&quot;</td>
+        <td>1WAY(ì†Œí˜•)&quot;</td>
         <td>PFP-WG2SW</td>
-        <td>¹«±¤</td>
+        <td>ë¬´ê´‘</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VG2SW</td>
-        <td>À¯±¤</td>
+        <td>ìœ ê´‘</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VG2CW</td>
-        <td>À¯±¤ °øÃ»</td>
+        <td>ìœ ê´‘ ê³µì²­</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-XG0UW</td>
-        <td>ÇÁ¸®¹Ì¾ö</td>
+        <td>í”„ë¦¬ë¯¸ì—„</td>
     </tr>
     <tr>
         <td>&quot;2000W ~ 4000W</td>
     </tr>
     <tr>
-        <td>1WAY(ÁßÇü)&quot;</td>
+        <td>1WAY(ì¤‘í˜•)&quot;</td>
         <td>PFP-WU2SW</td>
-        <td>¹«±¤</td>
+        <td>ë¬´ê´‘</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VU2SW</td>
-        <td>À¯±¤</td>
+        <td>ìœ ê´‘</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VU2CW</td>
-        <td>À¯±¤ °øÃ»</td>
+        <td>ìœ ê´‘ ê³µì²­</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VU0DW</td>
-        <td>¹«ºù</td>
+        <td>ë¬´ë¹™</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-XU0UW</td>
-        <td>ÇÁ¸®¹Ì¾ö</td>
+        <td>í”„ë¦¬ë¯¸ì—„</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-XU0UE</td>
-        <td>ÇÁ¸®¹Ì¾ö ¿ÀºêÁ¦</td>
+        <td>í”„ë¦¬ë¯¸ì—„ ì˜¤ë¸Œì œ</td>
     </tr>
     <tr>
         <td>&quot;5200W ~ 7200W</td>
     </tr>
     <tr>
-        <td>1WAY(´ëÇü)&quot;</td>
+        <td>1WAY(ëŒ€í˜•)&quot;</td>
         <td>PFP-WT2SW</td>
-        <td>¹«±¤</td>
+        <td>ë¬´ê´‘</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VT2SW</td>
-        <td>À¯±¤</td>
+        <td>ìœ ê´‘</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VT2CW</td>
-        <td>À¯±¤ °øÃ»</td>
+        <td>ìœ ê´‘ ê³µì²­</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-VT0DW</td>
-        <td>¹«ºù</td>
+        <td>ë¬´ë¹™</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-XT0UW</td>
-        <td>ÇÁ¸®¹Ì¾ö</td>
+        <td>í”„ë¦¬ë¯¸ì—„</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-XT0UE</td>
-        <td>ÇÁ¸®¹Ì¾ö ¿ÀºêÁ¦</td>
+        <td>í”„ë¦¬ë¯¸ì—„ ì˜¤ë¸Œì œ</td>
     </tr>
     <tr>
-        <td>¸Å¸³¿øÇü</td>
+        <td>ë§¤ë¦½ì›í˜•</td>
         <td>PFP-WY0SW</td>
-        <td>¸Å¸³¿øÇü ÆÇ³Ú</td>
+        <td>ë§¤ë¦½ì›í˜• íŒë„¬</td>
     </tr>
     <tr>
         <td>2WAY</td>
         <td>PFP-WS0SW</td>
-        <td>2WAY Àü¿ë</td>
+        <td>2WAY ì „ìš©</td>
     </tr>
     <tr>
         <td>4WAY</td>
         <td>PFP-WQ2SW</td>
-        <td>¹Ì´Ï 4WAY</td>
+        <td>ë¯¸ë‹ˆ 4WAY</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-WM3SW</td>
-        <td>±¸Çü ÀÏ¹Ý</td>
+        <td>êµ¬í˜• ì¼ë°˜</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-WM4CW</td>
-        <td>±¸Çü °ø±âÃ»Á¤ ÀÏ¹ÝÆÇ³Ú</td>
+        <td>êµ¬í˜• ê³µê¸°ì²­ì • ì¼ë°˜íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-WA4CW</td>
-        <td>µà¾óº£ÀÎ ·Î¿ì¾Øµå ÆÇ³Ú</td>
+        <td>ë“€ì–¼ë² ì¸ ë¡œìš°ì•¤ë“œ íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-WA4CB</td>
-        <td>µà¾óº£ÀÎ ·Î¿ì¾Øµå ºí·¢ÆÇ³Ú</td>
+        <td>ë“€ì–¼ë² ì¸ ë¡œìš°ì•¤ë“œ ë¸”ëž™íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-WA5CW</td>
-        <td>µà¾óº£ÀÎ ÇÏÀÌ¾Øµå ÆÇ³Ú</td>
+        <td>ë“€ì–¼ë² ì¸ í•˜ì´ì•¤ë“œ íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PFP-WA5CB</td>
-        <td>µà¾óº£ÀÎ ÇÏÀÌ¾Øµå ºí·¢ÆÇ³Ú</td>
+        <td>ë“€ì–¼ë² ì¸ í•˜ì´ì•¤ë“œ ë¸”ëž™íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PFE-WA1SW</td>
-        <td>µà¾óº£ÀÎ ½Â°­±×¸± ÆÇ³Ú</td>
+        <td>ë“€ì–¼ë² ì¸ ìŠ¹ê°•ê·¸ë¦´ íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PFE-WA0CW</td>
-        <td>µà¾óº£ÀÎ ½Â°­°øÃ» ÆÇ³Ú(ÁÙX)</td>
+        <td>ë“€ì–¼ë² ì¸ ìŠ¹ê°•ê³µì²­ íŒë„¬(ì¤„X)</td>
     </tr>
     <tr>
         <td></td>
         <td>PFE-WA0CWS</td>
-        <td>µà¾óº£ÀÎ ½Â°­°øÃ» ÆÇ³Ú</td>
+        <td>ë“€ì–¼ë² ì¸ ìŠ¹ê°•ê³µì²­ íŒë„¬</td>
     </tr>
     <tr>
         <td></td>
         <td>PVK-421</td>
-        <td>4WAY ½Â°­°øÃ» ½Â°­ÁÙ</td>
+        <td>4WAY ìŠ¹ê°•ê³µì²­ ìŠ¹ê°•ì¤„</td>
     </tr>
     <tr>
-        <td>°ø±âÃ»Á¤Å°Æ®</td>
+        <td>ê³µê¸°ì²­ì •í‚¤íŠ¸</td>
         <td>PAH-TGP0M</td>
-        <td>1WAY K2S¸ðµ¨</td>
+        <td>1WAY K2Sëª¨ë¸</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TUP0M</td>
-        <td>1WAY C2S¸ðµ¨</td>
+        <td>1WAY C2Sëª¨ë¸</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TYP0M</td>
-        <td>¿øÇü</td>
+        <td>ì›í˜•</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-PTP0M</td>
-        <td>½ºÅÄµå °øÃ»Å°Æ®</td>
+        <td>ìŠ¤íƒ ë“œ ê³µì²­í‚¤íŠ¸</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TGP1M</td>
-        <td>1WAY ÇÁ¸®¹Ì¾ö ¼ÒÇü</td>
+        <td>1WAY í”„ë¦¬ë¯¸ì—„ ì†Œí˜•</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TUP1M</td>
-        <td>1WAY ÇÁ¸®¹Ì¾ö ÁßÇü</td>
+        <td>1WAY í”„ë¦¬ë¯¸ì—„ ì¤‘í˜•</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TTP1M</td>
-        <td>1WAY ÇÁ¸®¹Ì¾ö ´ëÇü</td>
+        <td>1WAY í”„ë¦¬ë¯¸ì—„ ëŒ€í˜•</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TAP1MW</td>
-        <td>4WAY µà¾óº£ÀÎ È­ÀÌÆ®Å°Æ®</td>
+        <td>4WAY ë“€ì–¼ë² ì¸ í™”ì´íŠ¸í‚¤íŠ¸</td>
     </tr>
     <tr>
         <td></td>
         <td>PAH-TAP1MB</td>
-        <td>4WAY µà¾óº£ÀÎ ºí·¢Å°Æ®</td>
+        <td>4WAY ë“€ì–¼ë² ì¸ ë¸”ëž™í‚¤íŠ¸</td>
     </tr>
     <tr>
         <td></td>
         <td>PAF-TGO0</td>
-        <td>1WAY ÇÁ¸®¹Ì¾ö °øÃ» Å»Ãë ¼ÒÇü</td>
+        <td>1WAY í”„ë¦¬ë¯¸ì—„ ê³µì²­ íƒˆì·¨ ì†Œí˜•</td>
     </tr>
     <tr>
         <td></td>
         <td>PAF-TUO0</td>
-        <td>1WAY ÇÁ¸®¹Ì¾ö °øÃ» Å»Ãë Áß,´ëÇü</td>
+        <td>1WAY í”„ë¦¬ë¯¸ì—„ ê³µì²­ íƒˆì·¨ ì¤‘,ëŒ€í˜•</td>
     </tr>
     <tr>
-        <td>ÀÎÃ¼°¨Áö</td>
+        <td>ì¸ì²´ê°ì§€</td>
         <td>PHD-TM0</td>
         <td>4WAY</td>
     </tr>
     <tr>
         <td></td>
         <td>PHD-TA0</td>
-        <td>4WAY µà¾óº£ÀÎ</td>
+        <td>4WAY ë“€ì–¼ë² ì¸</td>
     </tr>
     <tr>
         <td></td>
         <td>PHD-TA0B</td>
-        <td>4WAY µà¾óº£ÀÎºí·¢</td>
+        <td>4WAY ë“€ì–¼ë² ì¸ë¸”ëž™</td>
     </tr>
     <tr>
-        <td>¸Å¸³´öÆ® ÇÊÅÍ</td>
+        <td>ë§¤ë¦½ë•íŠ¸ í•„í„°</td>
         <td>PBM13M1UA0</td>
-        <td>´öÆ® 5.2~7.2KW ÇÊÅÍ¹Ú½º</td>
+        <td>ë•íŠ¸ 5.2~7.2KW í•„í„°ë°•ìŠ¤</td>
     </tr>
     <tr>
         <td></td>
         <td>PBM13M2UA0</td>
-        <td>´öÆ® 8.3~13KW ÇÊÅÍ¹Ú½º</td>
+        <td>ë•íŠ¸ 8.3~13KW í•„í„°ë°•ìŠ¤</td>
     </tr>
     <tr>
         <td></td>
         <td>PBM13M3UA0</td>
-        <td>´öÆ® 14.5KW ÇÊÅÍ ¹Ú½º</td>
+        <td>ë•íŠ¸ 14.5KW í•„í„° ë°•ìŠ¤</td>
     </tr>
     <tr>
         <td></td>
         <td>FBM13M1UA0</td>
-        <td>´öÆ® 5.2~7.2KW °íÈ¿À²ÇÊÅÍ</td>
+        <td>ë•íŠ¸ 5.2~7.2KW ê³ íš¨ìœ¨í•„í„°</td>
     </tr>
     <tr>
         <td></td>
         <td>FBM13M2UA0</td>
-        <td>´öÆ® 8.3~13KW °íÈ¿À²ÇÊÅÍ</td>
+        <td>ë•íŠ¸ 8.3~13KW ê³ íš¨ìœ¨í•„í„°</td>
     </tr>
     <tr>
         <td></td>
         <td>FBM13M3UA0</td>
-        <td>´öÆ® 14.5KW °íÈ¿À²ÇÊÅÍ</td>
+        <td>ë•íŠ¸ 14.5KW ê³ íš¨ìœ¨í•„í„°</td>
     </tr>
 </table>
 </body>
