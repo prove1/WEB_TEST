@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>싱글 스펙 정보</title>
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color: #f5f5f5;}
+</style>
+</head>
+<body>
+
+<table>
+  <!-- 테이블 행들은 자바스크립트를 통해 동적으로 추가됩니다 -->
+</table>
+
+<!-- 모달 창 -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+var airconSpecs = [
+{ title : "MULTI V 한랭지 H모델" , power : "8" , code : "RPUW081X9H" , pie : "9.52RPUW081X9H" , pie : "9.52/19.05" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A" , used : "2.1/9.2" , outsize : "930 x 1690 x 760" , weight : "171" , able : "23300"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "8+" , code : "RPUW08EX9H" , pie : "9.52RPUW08EX9H" , pie : "9.52/19.05" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A" , used : "1.4/8.7" , outsize : "930 x 1690 x 760" , weight : "205" , able : "23300"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "10" , code : "RPUW101X9H" , pie : "9.52RPUW101X9H" , pie : "9.52/22.2" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2.6/10.4" , outsize : "930 x 1690 x 760" , weight : "171" , able : "29200"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "10+" , code : "RPUW10EX9H" , pie : "9.52RPUW10EX9H" , pie : "9.52/22.2" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2/11.4" , outsize : "930 x 1690 x 760" , weight : "205" , able : "29200"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "12" , code : "RPUW121X9H" , pie : "12.7RPUW121X9H" , pie : "12.7/28.58" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2.6/11.6" , outsize : "930 x 1690 x 760" , weight : "205" , able : "34800"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "14" , code : "RPUW14EX9H" , pie : "12.7RPUW14EX9H" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "3.1/13.6" , outsize : "1240 x 1690 x 760" , weight : "225" , able : "40600"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "16" , code : "RPUW161X9H" , pie : "12.7RPUW161X9H" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "3.4/18.1" , outsize : "1240 x 1690 x 760" , weight : "270" , able : "46400"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "18" , code : "RPUW181X9H" , pie : "15.88RPUW181X9H" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "4.1/21" , outsize : "1240 x 1690 x 760" , weight : "270" , able : "52200"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "20" , code : "RPUW201X9H" , pie : "15.88RPUW201X9H" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "4.5/22.5" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "57000"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "22" , code : "RPUW221X9H" , pie : "15.88RPUW221X9H" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "5.3/25.2" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "64000"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24" , code : "RPUW241X9H" , pie : "15.88RPUW241X9H" , pie : "15.88/34.9" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "5.9/26" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "67500"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "26" , code : "RPUW261X9H" , pie : "19.05RPUW261X9H" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "7.5/27.9" , outsize : "1240 x 1690 x 760" , weight : "290" , able : "75600"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "14+12" , code : "RP-W261X9H" , pie : "19.05RP-W261X9H" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "5.7/25.2" , outsize : "14HP+12HP" , weight : "225+205" , able : "75400"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "14+14" , code : "RP-W281X9H" , pie : "19.05RP-W281X9H" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "6.2/27.2" , outsize : "1240 x 1690 x 760(x2)" , weight : "225x2" , able : "81200"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "16+14" , code : "RP-W301X9H" , pie : "19.05RP-W301X9H" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "6.5/31.7" , outsize : "1240 x 1690 x 760(x2)" , weight : "270+225" , able : "87000"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "18+14" , code : "RP-W321X9H" , pie : "19.05RP-W321X9H" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "7.2/34.6" , outsize : "1240 x 1690 x 760(x2)" , weight : "270+225" , able : "92800"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "20+14" , code : "RP-W341X9H" , pie : "19.05RP-W341X9H" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "7.6/36.1" , outsize : "1240 x 1690 x 760(x2)" , weight : "290+225" , able : "97600"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "22+14" , code : "RP-W361X9H" , pie : "19.05RP-W361X9H" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "8.4/38.8" , outsize : "1240 x 1690 x 760(x2)" , weight : "290+225" , able : "104600"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24+14" , code : "RP-W381X9H" , pie : "19.05RP-W381X9H" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "9/39.6" , outsize : "1240 x 1690 x 760(x2)" , weight : "290+225" , able : "108100"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24+16" , code : "RP-W401X9H" , pie : "19.05RP-W401X9H" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "9.3/44.1" , outsize : "1240 x 1690 x 760(x2)" , weight : "290+270" , able : "113900"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24+18" , code : "RP-W421X9H" , pie : "19.05RP-W421X9H" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "10/47" , outsize : "1240 x 1690 x 760(x2)" , weight : "290+270" , able : "119700"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24+20" , code : "RP-W441X9H" , pie : "19.05RP-W441X9H" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "10.4/48.5" , outsize : "1240 x 1690 x 760(x2)" , weight : "290x2" , able : "124500"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24+22" , code : "RP-W461X9H" , pie : "19.05RP-W461X9H" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "11.2/51.1" , outsize : "1240 x 1690 x 760(x2)" , weight : "290x2" , able : "131500"}, 
+{ title : "MULTI V 한랭지 H모델" , power : "24+24" , code : "RP-W481X9H" , pie : "19.05RP-W481X9H" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "11.8/52" , outsize : "1240 x 1690 x 760(x2)" , weight : "290x2" , able : "135000"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "8" , code : "RPUW08GX9E" , pie : "9.52RPUW08GX9E" , pie : "9.52/19.05" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A" , used : "1.5/7.8" , outsize : "930 x 1745 x 760" , weight : "204" , able : "23300"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "10" , code : "RPUW10GX9E" , pie : "9.52RPUW10GX9E" , pie : "9.52/22.2" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2/10.6" , outsize : "930 x 1745 x 760" , weight : "204" , able : "29200"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "12" , code : "RPUW12GX9E" , pie : "12.7RPUW12GX9E" , pie : "12.7/28.58" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2.4/13.4" , outsize : "930 x 1745 x 760" , weight : "204" , able : "34800"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "14" , code : "RPUW14GX9E" , pie : "12.7RPUW14GX9E" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "2.7/13.3" , outsize : "1240 x 1745 x 760" , weight : "295" , able : "40600"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "16" , code : "RPUW16GX9E" , pie : "12.7RPUW16GX9E" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "3.3/15.2" , outsize : "1240 x 1745 x 760" , weight : "295" , able : "46400"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "18" , code : "RPUW18GX9E" , pie : "15.88RPUW18GX9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "3.8/17.1" , outsize : "1240 x 1745 x 760" , weight : "297" , able : "52200"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20" , code : "RPUW20GX9E" , pie : "15.88RPUW20GX9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "4.1/18.9" , outsize : "1240 x 1745 x 760" , weight : "297" , able : "52200"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "22" , code : "RPUW22GX9E" , pie : "15.88RPUW22GX9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "4.4/24.1" , outsize : "1640 x 1745 x 760" , weight : "297" , able : "57000"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "12+10" , code : "RP-W22GX9E" , pie : "15.88RP-W22GX9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "4.4/24.1" , outsize : "(930 x 1745 x 760) x2" , weight : "204 x 2" , able : "64000"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "12+12" , code : "RP-W24GX9E" , pie : "15.88RP-W24GX9E" , pie : "15.88/34.9" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "4.8/26.9" , outsize : "(930 x 1745 x 760) x2" , weight : "204 x 2" , able : "69600"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "14+12" , code : "RP-W26GX9E" , pie : "19.05RP-W26GX9E" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "5.1/26.7" , outsize : "14HP+12HP" , weight : "295+204" , able : "75400"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "16+12" , code : "RP-W28GX9E" , pie : "19.05RP-W28GX9E" , pie : "19.05/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "5.7/28.6" , outsize : "16HP+12HP" , weight : "295+204" , able : "81200"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "18+12" , code : "RP-W30GX9E" , pie : "19.05RP-W30GX9E" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "6.2/30.5" , outsize : "18HP+12HP" , weight : "297+204" , able : "87000"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+12" , code : "RP-W32GX9E" , pie : "19.05RP-W32GX9E" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "6.5/32.4" , outsize : "20HP+12HP" , weight : "297+204" , able : "91800"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+14" , code : "RP-W34GX9E" , pie : "19.05RP-W34GX9E" , pie : "19.05/34.9" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "6.8/32.2" , outsize : "(1240 x 1745 x 760) x2" , weight : "297+295" , able : "97600"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+16" , code : "RP-W36GX9E" , pie : "19.05RP-W36GX9E" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "7.4/34.1" , outsize : "(1240 x 1745 x 760) x2" , weight : "297+295" , able : "103400"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+18" , code : "RP-W38GX9E" , pie : "19.05RP-W38GX9E" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "7.8/36" , outsize : "(1240 x 1745 x 760) x2" , weight : "297 x 2" , able : "109200"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+20" , code : "RP-W40GX9E" , pie : "19.05RP-W40GX9E" , pie : "19.05/41.3" , electric : "25" , cable : "1.0~1.5" , cop : "100A" , used : "8.1/37.8" , outsize : "(1240 x 1745 x 760) x2" , weight : "297 x 2" , able : "114000"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "18+12+12" , code : "RP-W42GX9E" , pie : "19.05RP-W42GX9E" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "8.6/43.9" , outsize : "18HP+12HP+12HP" , weight : "705" , able : "121800"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+12+12" , code : "RP-W44GX9E" , pie : "19.05RP-W44GX9E" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "8.9/45.8" , outsize : "20HP+12HP+12HP" , weight : "705" , able : "126600"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+14+12" , code : "RP-W46GX9E" , pie : "19.05RP-W46GX9E" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "9.2/45.6" , outsize : "20HP+14HP+12HP" , weight : "796" , able : "132400"}, 
+{ title : "MULTI V 슈프림 E모델" , power : "20+16+12" , code : "RP-W48GX9E" , pie : "19.05RP-W48GX9E" , pie : "19.05/41.3" , electric : "50" , cable : "1.0~1.5" , cop : "125A" , used : "9.8/47.5" , outsize : "20HP+16HP+12HP" , weight : "796" , able : "138200"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "8" , code : "RPUW082X9E" , pie : "9.52RPUW082X9E" , pie : "9.52/19.05" , electric : "2.5" , cable : "1.0~1.5" , cop : "20A" , used : "1.4/7.4" , outsize : "930 x 1745 x 760" , weight : "220" , able : "23300"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "10" , code : "RPUW102X9E" , pie : "9.52RPUW102X9E" , pie : "9.52/22.2" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2/9.6" , outsize : "930 x 1745 x 760" , weight : "220" , able : "29200"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "12" , code : "RPUW122X9E" , pie : "12.7RPUW122X9E" , pie : "12.7/28.58" , electric : "4" , cable : "1.0~1.5" , cop : "30A" , used : "2.5/12.2" , outsize : "930 x 1745 x 760" , weight : "220" , able : "34800"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "14" , code : "RPUW142X9E" , pie : "12.7RPUW142X9E" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "2.5/12.8" , outsize : "1240 x 1745 x 760" , weight : "320" , able : "40600"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "16" , code : "RPUW162X9E" , pie : "12.7RPUW162X9E" , pie : "12.7/28.58" , electric : "6" , cable : "1.0~1.5" , cop : "40A" , used : "2.9/14.7" , outsize : "1240 x 1745 x 760" , weight : "320" , able : "46400"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "18" , code : "RPUW182X9E" , pie : "15.88RPUW182X9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "3.4/16.6" , outsize : "1240 x 1745 x 760" , weight : "320" , able : "52200"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "20" , code : "RPUW202X9E" , pie : "15.88RPUW202X9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "50A" , used : "3.7/18.7" , outsize : "1240 x 1745 x 760" , weight : "320" , able : "57000"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "22" , code : "RPUW222X9E" , pie : "15.88RPUW222X9E" , pie : "15.88/28.58" , electric : "10" , cable : "1.0~1.5" , cop : "60A" , used : "4.3/19.5" , outsize : "1640 x 1745 x 760" , weight : "430" , able : "64000"}, 
+{ title : "MULTI V 슈프림 I모델" , power : "24" , code : "RPUW242X9E" , pie : "15.88RPUW242X9E" , pie : "15.88/34.9" , electric : "16" , cable : "1.0~1.5" , cop : "75A" , used : "5/21.1" , outsize : "1640 x 1745 x 760" , weight : "430" , able : "69600"}, 
+
+
+  // 다른 스펙 객체들도 이 배열에 추가...
+];
+
+// 테이블에 행 추가
+var table = document.querySelector("table");
+airconSpecs.forEach(function(model, index) {
+  var row = table.insertRow();
+  var cell = row.insertCell();
+  cell.innerHTML = model.title + "<br>" + model.power + "HP<br>" + model.code;
+  cell.setAttribute("onclick", "showModal(" + index + ")");
+});
+
+function showModal(index) {
+  var modal = document.getElementById("myModal");
+  var modalText = document.getElementById("modalText");
+  var spec = airconSpecs[index];
+  
+  modalText.innerHTML = `
+    <div>배관경: ${spec.pie} Φ</div>
+    <div>전원선: ${spec.electric} SQ</div>
+    <div>통신선: ${spec.cable}</div>
+    <div>누전차단기: ${spec.cop}</div>
+    <div>소비전력(냉/난방): ${spec.used}</div>
+    <div>실외기사이즈(WHD): ${spec.outsize}</div>
+    <div>무게: ${spec.weight} kg</div>
+    <div>냉방능력: ${spec.able} w</div>
+  `;
+  modal.style.display = "block";
+}
+
+// 모달 창 닫기
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+// 모달 창 바깥 영역 클릭 시 닫기
+window.onclick = function(event) {
+  var modal = document.getElementById("myModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
