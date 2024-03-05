@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity Cost Table</title>
+<style>
+table {
+  border-collapse: collapse;
+  width: 500px;
+  margin: 1rem auto;
+  background-color: white;
+}
+
+thead{
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 테이블 행 */
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  padding: 8px;
+  text-align: left;
+  text-align: center;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  color: #000;
+}
+
+/* 테이블 비율 */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 15%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 55%;
+}
+</style>
+<script>
+function calculateCost() {
+    var heatingInput = parseFloat(document.getElementById('heatingInput').value);
+    var coolingInput = parseFloat(document.getElementById('coolingInput').value);
+    var timeInput = parseFloat(document.getElementById('timeInput').value);
+
+    var months = ['dec', 'jan', 'feb', 'mar', 'jun', 'jul', 'aug', 'sep'];
+    var factors = [0.53, 0.48, 0.2, 0.57, 0.5, 0.6, 0.75, 0.8];
+    var totalCost = 0;
+
+    for (var i = 0; i < months.length; i++) {
+        var usage = 0;
+        if (i < 4) { // 난방 (12월~3월)
+            usage = heatingInput * 2516.8 * timeInput * factors[i];
+        } else { // 냉방 (6월~9월)
+            usage = coolingInput * 2516.8 * timeInput * factors[i];
+        }
+        usage = Math.round(usage / 10) * 10; // 10의 자리에서 반올림
+        document.getElementById(months[i] + 'Usage').innerText = numberWithCommas(usage.toFixed(0));
+        totalCost += usage;
+    }
+
+    totalCost = Math.round(totalCost / 10) * 10; // 총 금액을 10의 자리에서 반올림
+    document.getElementById('totalCost').innerText = numberWithCommas(totalCost.toFixed(0));
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+</head>
+<body>
+<div>
+<table border="1">
+<tr>
+<td>냉방</td>
+<td><input type="text" id="coolingInput" value="0" onchange="calculateCost()"></td>
+</tr>
+<tr>
+<td>난방</td>
+<td><input type="text" id="heatingInput" value="0" onchange="calculateCost()"></td>
+</tr>
+<tr>
+<td>시간</td>
+<td><input type="text" id="timeInput" value="8" onchange="calculateCost()"></td>
+</tr>
+<tr>
+<td colspan="2">중간부하기준 시간 당 114.4원</td>
+</tr>
+<tr>
+<td>난방</td>
+</tr>
+<tr>
+<td>12월</td>
+<td id="decUsage">12월사용량</td>
+</tr>
+<tr>
+<td>1월</td>
+<td id="janUsage">1월사용량</td>
+</tr>
+<tr>
+<td>2월</td>
+<td id="febUsage">2월사용량</td>
+</tr>
+<tr>
+<td>3월</td>
+<td id="marUsage">3월사용량</td>
+</tr>
+<tr>
+<td>냉방</td>
+</tr>
+<tr>
+<td>6월</td>
+<td id="junUsage">6월사용량</td>
+</tr>
+<tr>
+<td>7월</td>
+<td id="julUsage">7월사용량</td>
+</tr>
+<tr>
+<td>8월</td>
+<td id="augUsage">8월사용량</td>
+</tr>
+<tr>
+<td>9월</td>
+<td id="sepUsage">9월사용량</td>
+</tr>
+<tr>
+<td>연간 전기세</td>
+<td id="totalCost">총 금액</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
