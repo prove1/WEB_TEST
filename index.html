@@ -45,10 +45,34 @@
         <a href="https://prove1.github.io/WEB_TEST/TextExport.html" class="redirect-button">텍스트 추출</a><br>
         <a href="https://prove1.github.io/WEB_TEST/allspec.html" class="redirect-button">제품스펙</a><br>
         <a href="https://prove1.github.io/WEB_TEST/electro.html" class="redirect-button">전력계산</a><br>
-        <a href="https://drive.google.com/file/d/1kamUrfDDbM_uowkiaXI2PGk6k457HKyi/view?usp=sharing" target="_blank">상업용 멀티 제안서</a><br>
+        <a href="https://drive.google.com/file/d/1kamUrfDDbM_uowkiaXI2PGk6k457HKyi/view?usp=sharing" target="_blank" onclick="requestNotificationPermission()">상업용 멀티 제안서</a><br>
         <a href="https://drive.google.com/file/d/1iay6wfYZsi0CTi9fcH8Ih4X8cf7ZrsDg/view?usp=sharing" target="_blank">상업용 싱글 제안서</a><br>
         *자동 업데이트<br>
         *문의 최혁준 과장<br>
     </div>
 </body>
+        <script>
+        // 알림 권한 요청
+        function requestNotificationPermission() {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    // 사용자가 알림을 허용했을 때 알림 발송
+                    sendNotification();
+                }
+            });
+        }
+
+        // 알림 발송
+        function sendNotification() {
+            const notification = new Notification("알림 제목", {
+                body: "케이엘공조 상업용 멀티제안서",
+                //icon: "notification_icon.png" // 알림에 표시할 아이콘 이미지 경로
+            });
+
+            // 알림 클릭 이벤트 처리
+            notification.onclick = function() {
+                window.open("https://drive.google.com/file/d/1kamUrfDDbM_uowkiaXI2PGk6k457HKyi/view?usp=sharing"); // 알림 클릭 시 열릴 웹사이트 주소
+            };
+        }
+    </script>
 </html>
