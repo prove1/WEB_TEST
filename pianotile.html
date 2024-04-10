@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piano Tiles</title>
+<style>
+  .piano-tile {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid black;
+    margin: 2px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .piano-tile.active {
+    background-color: black;
+  }
+</style>
+</head>
+<body>
+
+<script>
+  let activeButtons = {}; // 활성 버튼을 추적하기 위한 객체
+  let audioContext = null;
+  let oscillators = {}; // 오실레이터 저장을 위한 객체
+
+  // 오디오 컨텍스트 초기화
+  function initAudioContext() {
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+  }
+
+  // 피아노 소리를 생성하는 함수
+  function playSound(note, key) {
+    initAudioContext();
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'sine'; // 'sine' 파형은 부드러운 소리를 낸다.
+    oscillator.frequency.setValueAtTime(Math.pow(2, (note - 69) / 12) * 440, audioContext.currentTime); // A4=440Hz
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+    oscillators[key] = oscillator;
+  }
+
+  // 피아노 소리를 중지하는 함수
+  function stopSound(key) {
+    if (oscillators[key]) {
+      oscillators[key].stop();
+      delete oscillators[key]; // 사용이 끝난 오실레이터 제거
+    }
+  }
+
+  // 버튼 생성
+  const notes = [40, 42, 44, 45, 47, 49, 51]; // MIDI 음계에 해당하는 숫자 사용, 옥타브 낮춤
+  for (let i = 0; i < 7; i++) {
+    for (let j = 0; j < 7; j++) {
+      const button = document.createElement('div');
+      button.classList.add('piano-tile');
+      const key = `note-${i}-${j}`; // 각 버튼을 구분할 키
+      button.onmousedown = () => {
+        button.classList.add('active');
+        playSound(notes[j] + i * 12, key); // 버튼 클릭 시 음 재생
+      };
+      button.onmouseup = () => {
+        button.classList.remove('active');
+        stopSound(key); // 마우스 버튼을 뗄 때 소리 중지
+      };
+      button.onmouseleave = button.onmouseup; // 마우스가 타일을 벗어났을 때도 소리 중지
+      document.body.appendChild(button);
+    }
+    document.body.appendChild(document.createElement('br')); // 줄바꿈 추가
+  }
+
+</script>
+
+</body>
+</html>
