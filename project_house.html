@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>올인원 간편견적서(신형)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        td.quantity, input[type="number"], td.price {
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            table, th, td {
+                font-size: 14px;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center; cursor: pointer;" onclick="location.reload()">올인원 간편견적서(신형)</h2>
+
+<table id="additionalInfo">
+    <tbody>
+        <tr>
+            <td>장비 금액</td>
+            <td id="totalAmount"></td>
+        </tr>
+        <tr>
+            <td>조합비</td>
+            <td id="ratio"></td>
+        </tr>
+        <tr>
+            <td>DC율</td>
+            <td><input type="number" id="discountRate" value="40" min="0" max="100"> %</td>
+        </tr>
+        <tr>
+            <td>총 수량</td>
+            <td id="totalQuantity"></td>
+        </tr>
+    </tbody>
+</table>
+
+<table id="productTable">
+    <thead>
+        <tr>
+            <th>상품 이름</th>
+            <th>가격</th>
+            <th>수량</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- JavaScript에서 표를 생성할 것입니다 -->
+    </tbody>
+</table>
+
+<table id="otherCosts">
+    <tbody>
+        <tr>
+            <td>대 당</td>
+            <td><input type="number" id="unitCost" value="44" min="0"></td>
+        </tr>
+        <tr>
+            <td>기타금액</td>
+            <td><input type="number" id="otherCost" value="20" min="0"></td>
+        </tr>
+        <tr>
+            <td>설치비 합계</td>
+            <td id="installCost"></td>
+        </tr>
+        <tr>
+            <td>총 실행가</td>
+            <td id="totalExecutionCost"></td>
+        </tr>
+    </tbody>
+</table>
+
+<table id="marginTable">
+    <tbody>
+        <tr>
+            <td>마진율</td>
+            <td><input type="number" id="marginRate" value="13" min="0" max="100"> %</td>
+        </tr>
+        <tr>
+            <td>판매금액</td>
+            <td id="salesPrice"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>******견적서********</h2>
+        <div>
+            <h3>장비 정보</h3>
+            <p id="equipmentInfo"></p>
+        </div>
+        <div>
+            <h3>설치비</h3>
+            <p id="installCostInfo"></p>
+        </div>
+        <div>
+            <h3>총 금액</h3>
+            <p id="totalCostInfo"></p>
+        </div>
+        <h2>********끝**********</h2>
+    </div>
+</div>
+
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>상품 정보</h2>
+        <p id="productInfo"></p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var products = [
+            { name: "MUQ0722A23V - 2.5HP", price: 1277000, quantity: 0, ab: 7200, info: "2.5마력 실외기정보" },
+            { name: "MUQ0902A24V - 3.0HP", price: 1564000, quantity: 0, ab: 9000, info: "3.0마력 실외기정보" },
+            { name: "MUQ1102S25V - 4.0HP", price: 1824000, quantity: 0, ab: 11000, info: "4.0마력 실외기정보" },
+            { name: "MUQ1452S25V - 5.0HP", price: 2722000, quantity: 0, ab: 14500, info: "5.0마력 실외기정보" },
+            { name: "M-Q0721C2S(18평 - 신형)", price: 857000, quantity: 0, ab: 7200, info: "18평정보" },
+            { name: "M-Q0601C2S(15평 - 신형)", price: 835000, quantity: 0, ab: 6000, info: "15평정보" },
+            { name: "M-Q0521C2S(13평 - 신형)", price: 769000, quantity: 0, ab: 5200, info: "13평정보" },
+            { name: "M-Q0401C2S(10평 - 신형)", price: 618000, quantity: 0, ab: 4000, info: "10평정보" },
+            { name: "M-Q0321C2S(8평 - 신형)", price: 607000, quantity: 0, ab: 3200, info: "8평정보" },
+            { name: "M-Q0231C2S(6평 - 신형)", price: 596000, quantity: 0, ab: 2300, info: "6평정보" },
+            { name: "M-Q0201C2S(5평 - 신형)", price: 585000, quantity: 0, ab: 2000, info: "5평정보" },
+            { name: "리모컨", price: 42000, quantity: 0, ab: 0, info: "이건 리모컨임" }
+        ];
+
+        var tableBody = document.querySelector("#productTable tbody");
+        var discountRateInput = document.getElementById("discountRate");
+        var unitCostInput = document.getElementById("unitCost");
+        var otherCostInput = document.getElementById("otherCost");
+        var marginRateInput = document.getElementById("marginRate");
+
+        // 숫자를 1000자리마다 콤마를 추가하는 함수
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // 추가 정보를 업데이트하는 함수
+        function updateAdditionalInfo() {
+            var totalAmount = 0;
+            var totalQuantity = 0;
+            var ab1To4 = 0;
+            var ab5To11 = 0;
+
+            // 각 상품의 정보를 계산
+            products.forEach(function(product, index) {
+                var discountRate = parseFloat(discountRateInput.value) / 100;
+                if (product.name !== "리모컨") {
+                    totalAmount += product.price * product.quantity * (1 - discountRate);
+                } else {
+                    totalAmount += product.price * product.quantity;
+                }
+                if (!product.name.includes('U') && product.name !== "리모컨") {
+                    totalQuantity += product.quantity;
+                }
+                if (index < 4) {
+                    ab1To4 += product.ab * product.quantity;
+                } else {
+                    ab5To11 += product.ab * product.quantity;
+                }
+            });
+
+            // 리모컨 수량은 총 수량과 동일하게 설정
+            products[11].quantity = totalQuantity;
+
+            var ratio = 0;
+            if (ab1To4 !== 0) {
+                ratio = (ab5To11 / ab1To4) * 100;
+            }
+
+            var unitCost = parseFloat(unitCostInput.value);
+            var otherCost = parseFloat(otherCostInput.value);
+            var installCost = 0;
+
+            products.forEach(function(product) {
+                if (!product.name.includes('U') && product.name !== "리모컨" && product.quantity > 0) {
+                    installCost += product.quantity * unitCost * 10000;
+                }
+            });
+
+            installCost += otherCost * 10000;
+
+            var totalExecutionCost = totalAmount + installCost;
+
+            var marginRate = parseFloat(marginRateInput.value) / 100;
+            var salesPrice = Math.round(totalExecutionCost * (1 + marginRate) / 10000) * 10000;
+
+            // 업데이트된 정보를 HTML에 반영
+            document.getElementById("totalAmount").textContent = formatNumber(Math.floor(totalAmount));
+            document.getElementById("ratio").textContent = ratio.toFixed(1) + "%";
+            document.getElementById("totalQuantity").textContent = totalQuantity;
+            document.getElementById("installCost").textContent = formatNumber(Math.floor(installCost));
+            document.getElementById("totalExecutionCost").textContent = formatNumber(Math.floor(totalExecutionCost));
+            document.getElementById("salesPrice").textContent = formatNumber(Math.floor(salesPrice));
+        }
+
+        // 입력 필드 값이 변경될 때마다 추가 정보를 업데이트
+        discountRateInput.addEventListener("input", updateAdditionalInfo);
+        unitCostInput.addEventListener("input", updateAdditionalInfo);
+        otherCostInput.addEventListener("input", updateAdditionalInfo);
+        marginRateInput.addEventListener("input", updateAdditionalInfo);
+
+        var modal = document.getElementById("myModal");
+        var infoModal = document.getElementById("infoModal");
+        var span = document.getElementsByClassName("close");
+
+        // 모달 창 닫기 버튼 기능
+        Array.from(span).forEach(function(element) {
+            element.onclick = function() {
+                modal.style.display = "none";
+                infoModal.style.display = "none";
+            }
+        });
+
+        // 모달 창 외부 클릭 시 닫기 기능
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (event.target == infoModal) {
+                infoModal.style.display = "none";
+            }
+        }
+
+        // 각 상품 행을 생성
+        products.forEach(function(product) {
+            var row = document.createElement("tr");
+
+            // 상품 이름 셀 생성
+            var nameCell = document.createElement("td");
+            nameCell.textContent = product.name;
+            nameCell.className = "name";
+            nameCell.addEventListener("click", function() {
+                document.getElementById("productInfo").innerHTML = product.info;
+                infoModal.style.display = "block";
+            });
+            row.appendChild(nameCell);
+
+            // 상품 가격 셀 생성
+            var priceCell = document.createElement("td");
+            priceCell.textContent = formatNumber(product.price);
+            priceCell.className = "price";
+            priceCell.addEventListener("click", function() {
+                var equipmentInfo = '';
+                products.forEach(function(prod) {
+                    if (prod.quantity > 0) {
+                        equipmentInfo += `${prod.name}: ${prod.quantity}<br>`;
+                    }
+                });
+                document.getElementById("equipmentInfo").innerHTML = equipmentInfo;
+                document.getElementById("installCostInfo").textContent = document.getElementById("installCost").textContent;
+                document.getElementById("totalCostInfo").textContent = document.getElementById("salesPrice").textContent;
+                modal.style.display = "block";
+            });
+            row.appendChild(priceCell);
+
+            // 상품 수량 셀 생성
+            var quantityCell = document.createElement("td");
+            quantityCell.textContent = product.quantity;
+            quantityCell.className = "quantity";
+            quantityCell.addEventListener("click", function() {
+                var currentQuantity = parseInt(this.textContent);
+                this.textContent = currentQuantity + 1;
+                product.quantity = currentQuantity + 1;
+                updateAdditionalInfo();
+            });
+            row.appendChild(quantityCell);
+
+            tableBody.appendChild(row);
+        });
+
+        // 초기 정보 업데이트
+        updateAdditionalInfo();
+    });
+</script>
+
+</body>
+</html>
