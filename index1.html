@@ -43,6 +43,10 @@
         button {
             margin-left: 5px;
         }
+        /* 수량 셀에 커서 포인터 추가 */
+        .quantity-cell {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -129,10 +133,9 @@
                     // 수량을 텍스트로 표시
                     quantityCellContent = `<span>${qtyValue}</span>`;
                 } else {
-                    // 수량 입력 필드와 "+" 버튼 표시
+                    // 수량을 표시하고 클릭 시 증가
                     quantityCellContent = `
-                        <input type="number" id="${qtyIdPrefix}${index}" value="${qtyValue}" min="0" readonly>
-                        <button id="${qtyIdPrefix}Btn${index}" onclick="incrementQuantity('${qtyIdPrefix}${index}', ${index}, '${qtyIdPrefix}', '${priceIdPrefix}', '${totalIdPrefix}', '${sumId}', ${tableId === 'productTable' ? 'productData' : 'installData'})">+</button>
+                        <span id="${qtyIdPrefix}${index}" class="quantity-cell" onclick="incrementQuantity('${qtyIdPrefix}${index}', ${index}, '${qtyIdPrefix}', '${priceIdPrefix}', '${totalIdPrefix}', '${sumId}', ${tableId === 'productTable' ? 'productData' : 'installData'})">${qtyValue}</span>
                     `;
                 }
 
@@ -149,15 +152,6 @@
                     row.classList.add('hidden');
                 }
                 tableBody.appendChild(row);
-
-                // 수량 변경 이벤트 리스너 추가
-                if (!isDisplayMode) {
-                    const qtyInput = document.getElementById(`${qtyIdPrefix}${index}`);
-                    qtyInput.addEventListener('change', function() {
-                        data.qty = parseInt(qtyInput.value) || 0;
-                        updateTotalPrice(dataArray, totalIdPrefix, sumId);
-                    });
-                }
             });
             document.getElementById(sumId).textContent = formatNumber(totalSum);
             updateGrandTotal();
@@ -182,9 +176,9 @@
 
         // 수량 증가 함수
         function incrementQuantity(qtyId, index, qtyIdPrefix, priceIdPrefix, totalIdPrefix, sumId, dataArray) {
-            const qtyInput = document.getElementById(qtyId);
-            const newQty = parseInt(qtyInput.value) + 1;
-            qtyInput.value = newQty;
+            const qtyElement = document.getElementById(qtyId);
+            const newQty = parseInt(qtyElement.textContent) + 1;
+            qtyElement.textContent = newQty;
             dataArray[index].qty = newQty;
             updateTotalPrice(dataArray, totalIdPrefix, sumId);
         }
@@ -214,7 +208,6 @@
             location.reload();
         }
 
-
         // 초기화 및 이벤트 리스너 추가
         window.onload = function() {
             // 테이블에 데이터 채우기
@@ -225,7 +218,6 @@
             document.getElementById('grandTotalContainer').addEventListener('click', function() {
                 toggleDisplayMode();
             });
-
 
             // "견적서" 버튼 클릭 시 페이지 새로고침
             document.getElementById('refreshButton').addEventListener('click', function() {
