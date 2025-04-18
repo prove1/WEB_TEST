@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>업체 목록</title>
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+h2 {
+    color: #4da6ff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f1f3f5;
+}
+.detail {
+    display: none;
+    padding-left: 15px;
+}
+a {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 600px) {
+    table, tr, td, th {
+        font-size: 14px;
+    }
+}
+
+</style>
+<script>
+
+function toggleDetail(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+</script>
+</head>
+<body>
+<h2>전국 자재상</h2>
+<table>
+<tr><th>지역1</th><th>지역2</th><th>업체명</th></tr>
+<tr><td>강원도</td><td>강릉시</td><td><a onclick="toggleDetail('detail1')">화인냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail1'>
+주소: 포남동 1167-5<br>
+전화: <a href='tel:033-653-0825'>033-653-0825</a>
+</div></td></tr>
+<tr><td>강원도</td><td>원주시</td><td><a onclick="toggleDetail('detail2')">㈜아이씨티</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail2'>
+주소: 봉산동 화실 유암길37<br>
+전화: <a href='tel:033-731-5377 '>033-731-5377 </a>
+</div></td></tr>
+<tr><td>강원도</td><td>원주시</td><td><a onclick="toggleDetail('detail3')">동양공조</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail3'>
+주소: 강변로 87<br>
+전화: <a href='tel:010-7151-0454'>010-7151-0454</a>
+</div></td></tr>
+<tr><td>강원도</td><td>원주시</td><td><a onclick="toggleDetail('detail4')">보부상원주점</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail4'>
+주소: 단계동 896번지<br>
+전화: <a href='tel:033-742-5588'>033-742-5588</a>
+</div></td></tr>
+<tr><td>경기도</td><td>고양시</td><td><a onclick="toggleDetail('detail5')">㈜경훈</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail5'>
+주소: 일산서구 덕이동855-7 <br>
+전화: <a href='tel:031-911-8647'>031-911-8647</a>
+</div></td></tr>
+<tr><td>경기도</td><td>고양시</td><td><a onclick="toggleDetail('detail6')">금강종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail6'>
+주소: 일산서구 덕이동931-3<br>
+전화: <a href='tel:031-925-2581'>031-925-2581</a>
+</div></td></tr>
+<tr><td>경기도</td><td>고양시</td><td><a onclick="toggleDetail('detail7')">능곡상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail7'>
+주소: 덕양구 토당동439-4<br>
+전화: <a href='tel:031-970-8949'>031-970-8949</a>
+</div></td></tr>
+<tr><td>경기도</td><td>고양시</td><td><a onclick="toggleDetail('detail8')">덕양상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail8'>
+주소: 덕양구 토당동869-5<br>
+전화: <a href='tel:031-974-8383'>031-974-8383</a>
+</div></td></tr>
+<tr><td>경기도</td><td>고양시</td><td><a onclick="toggleDetail('detail9')">일신냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail9'>
+주소: 일산동구 백석동1091-7<br>
+전화: <a href='tel:031-908-0959 '>031-908-0959 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>광명시</td><td><a onclick="toggleDetail('detail10')">명진냉동부품</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail10'>
+주소: 하안동 242-4<br>
+전화: <a href='tel:02-2681-4172'>02-2681-4172</a>
+</div></td></tr>
+<tr><td>경기도</td><td>광주시</td><td><a onclick="toggleDetail('detail11')">명진냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail11'>
+주소: 하안동 242-2<br>
+전화: <a href='tel:nan'>nan</a>
+</div></td></tr>
+<tr><td>경기도</td><td>광주시</td><td><a onclick="toggleDetail('detail12')">아리랑상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail12'>
+주소: 장지동312-2 <br>
+전화: <a href='tel:031-789-2016'>031-789-2016</a>
+</div></td></tr>
+<tr><td>경기도</td><td>구리시</td><td><a onclick="toggleDetail('detail13')">신동아상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail13'>
+주소: 도농동 153-6<br>
+전화: <a href='tel:031-569-2555'>031-569-2555</a>
+</div></td></tr>
+<tr><td>경기도</td><td>구리시</td><td><a onclick="toggleDetail('detail14')">한진배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail14'>
+주소: 인창동 49-3<br>
+전화: <a href='tel:031-569-8331'>031-569-8331</a>
+</div></td></tr>
+<tr><td>경기도</td><td>군포시</td><td><a onclick="toggleDetail('detail15')">삼성냉열부품</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail15'>
+주소: 당동 835-62<br>
+전화: <a href='tel:031-429-4536'>031-429-4536</a>
+</div></td></tr>
+<tr><td>경기도</td><td>남양주시</td><td><a onclick="toggleDetail('detail16')">신우기업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail16'>
+주소: 일패동 534-1<br>
+전화: <a href='tel:031-558-2080'>031-558-2080</a>
+</div></td></tr>
+<tr><td>경기도</td><td>남양주시</td><td><a onclick="toggleDetail('detail17')">에이치케이랜드</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail17'>
+주소: 경춘로 806<br>
+전화: <a href='tel:031-591-4766'>031-591-4766</a>
+</div></td></tr>
+<tr><td>경기도</td><td>남양주시</td><td><a onclick="toggleDetail('detail18')">일등시스템</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail18'>
+주소: 경춘로 701<br>
+전화: <a href='tel:031-528-7694'>031-528-7694</a>
+</div></td></tr>
+<tr><td>경기도</td><td>부천시</td><td><a onclick="toggleDetail('detail19')">CH공조시스템</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail19'>
+주소: 소사구 괴안동 4-21층<br>
+전화: <a href='tel:032-343-1136'>032-343-1136</a>
+</div></td></tr>
+<tr><td>경기도</td><td>부천시</td><td><a onclick="toggleDetail('detail20')">대영상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail20'>
+주소: 원미구 도당동88-13<br>
+전화: <a href='tel:032-675-8531'>032-675-8531</a>
+</div></td></tr>
+<tr><td>경기도</td><td>부천시</td><td><a onclick="toggleDetail('detail21')">덕인상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail21'>
+주소: 소사구 괴안동170-4<br>
+전화: <a href='tel:032-349-9349'>032-349-9349</a>
+</div></td></tr>
+<tr><td>경기도</td><td>부천시</td><td><a onclick="toggleDetail('detail22')">혜명종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail22'>
+주소: 원미구 도당동30-8(애니카랜드 맞은편)<br>
+전화: <a href='tel:032-675-8211'>032-675-8211</a>
+</div></td></tr>
+<tr><td>경기도</td><td>부천시</td><td><a onclick="toggleDetail('detail23')">화성종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail23'>
+주소: 원미구 도당동 32-7<br>
+전화: <a href='tel:032-682-0797'>032-682-0797</a>
+</div></td></tr>
+<tr><td>경기도</td><td>성남시</td><td><a onclick="toggleDetail('detail24')">Rinnai미진종합유통</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail24'>
+주소: 중원구 성남동 2257<br>
+전화: <a href='tel:031-754-3651'>031-754-3651</a>
+</div></td></tr>
+<tr><td>경기도</td><td>성남시</td><td><a onclick="toggleDetail('detail25')">분당배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail25'>
+주소: 분당구 정자동68-16<br>
+전화: <a href='tel:031-719-8810'>031-719-8810</a>
+</div></td></tr>
+<tr><td>경기도</td><td>성남시</td><td><a onclick="toggleDetail('detail26')">삼온상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail26'>
+주소: 중원구 하대원동105-2 주원파크빌상가 105호<br>
+전화: <a href='tel:031-721-4949'>031-721-4949</a>
+</div></td></tr>
+<tr><td>경기도</td><td>성남시</td><td><a onclick="toggleDetail('detail27')">선우종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail27'>
+주소: 분당구 정자동 57-7<br>
+전화: <a href='tel:031-718-8488'>031-718-8488</a>
+</div></td></tr>
+<tr><td>경기도</td><td>성남시</td><td><a onclick="toggleDetail('detail28')">코리아테크</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail28'>
+주소: 중원구 하대원동117-1호 <br>
+전화: <a href='tel:031-755-3407~8 '>031-755-3407~8 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail29')">가자냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail29'>
+주소: 권선구 권선로 645<br>
+전화: <a href='tel:031-235-8689'>031-235-8689</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail30')">대연에어테크</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail30'>
+주소: 권선구경수대로259번길6-9<br>
+전화: <a href='tel:031-912-0002'>031-912-0002</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail31')">부흥공구</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail31'>
+주소: 팔달구 인계동1011-1번지<br>
+전화: <a href='tel:031-239-4146'>031-239-4146</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail32')">신세계냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail32'>
+주소: 권선구 세류동1083-3<br>
+전화: <a href='tel:031-223-3972'>031-223-3972</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail33')">신우냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail33'>
+주소: 권선구 권선동1287-10<br>
+전화: <a href='tel:031-234-1052'>031-234-1052</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail34')">주흥금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail34'>
+주소: 권선구 권선동958-2<br>
+전화: <a href='tel:031-224-1482 '>031-224-1482 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail35')">중앙냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail35'>
+주소: 영통구 매탄4동207-6<br>
+전화: <a href='tel:031-214-6188'>031-214-6188</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail36')">토금시스템</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail36'>
+주소: 권선구 고색동 986공구유통단지 101동111호<br>
+전화: <a href='tel:031-278-7779'>031-278-7779</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail37')">판문점자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail37'>
+주소: 팔달구 인계동1006-6번지<br>
+전화: <a href='tel:031-222-6009'>031-222-6009</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail38')">한성냉동상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail38'>
+주소: 팔달구 북수동21-18<br>
+전화: <a href='tel:031-253-2002'>031-253-2002</a>
+</div></td></tr>
+<tr><td>경기도</td><td>수원시</td><td><a onclick="toggleDetail('detail39')">한양에어테크</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail39'>
+주소: 장안구 율전동181-3번지<br>
+전화: <a href='tel:031-271-5530 '>031-271-5530 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>시흥시</td><td><a onclick="toggleDetail('detail40')">신천냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail40'>
+주소: 대야동 455-2번지<br>
+전화: <a href='tel:031-315-1188'>031-315-1188</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안산시</td><td><a onclick="toggleDetail('detail41')">경기동파이프</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail41'>
+주소: 단원구 원곡동994-5 안산유통상가 9동114호<br>
+전화: <a href='tel:031-491-9555'>031-491-9555</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안산시</td><td><a onclick="toggleDetail('detail42')">대성냉동부속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail42'>
+주소: 단원구 와동 96-2<br>
+전화: <a href='tel:031-405-4536'>031-405-4536</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안산시</td><td><a onclick="toggleDetail('detail43')">서울종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail43'>
+주소: 단원구 신길동1228-1 정우벤쳐2차 126호<br>
+전화: <a href='tel:031-495-8566/7'>031-495-8566/7</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안산시</td><td><a onclick="toggleDetail('detail44')">안산냉동상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail44'>
+주소: 상록구 본오동753-7<br>
+전화: <a href='tel:031-417-9109'>031-417-9109</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안양시</td><td><a onclick="toggleDetail('detail45')">대경상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail45'>
+주소: 동안구 호계동918-18<br>
+전화: <a href='tel:031-458-0982 '>031-458-0982 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>안양시</td><td><a onclick="toggleDetail('detail46')">신성상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail46'>
+주소: 동안구 호계동1078-6<br>
+전화: <a href='tel:031-452-0125'>031-452-0125</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안양시</td><td><a onclick="toggleDetail('detail47')">종인냉동기</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail47'>
+주소: 만안구 석수2동279-27<br>
+전화: <a href='tel:031-474-4989'>031-474-4989</a>
+</div></td></tr>
+<tr><td>경기도</td><td>안양시</td><td><a onclick="toggleDetail('detail48')">주영상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail48'>
+주소: 동안구 호계1동 964<br>
+전화: <a href='tel:031-456-0606'>031-456-0606</a>
+</div></td></tr>
+<tr><td>경기도</td><td>양평군</td><td><a onclick="toggleDetail('detail49')">청우종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail49'>
+주소: 양평읍 오빈리210-21(경강로1724-1)<br>
+전화: <a href='tel:031-774-7788 '>031-774-7788 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>오산시</td><td><a onclick="toggleDetail('detail50')">오산배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail50'>
+주소: 서동 332-3<br>
+전화: <a href='tel:031-372-7535'>031-372-7535</a>
+</div></td></tr>
+<tr><td>경기도</td><td>오산시</td><td><a onclick="toggleDetail('detail51')">한신공조</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail51'>
+주소: 청학동 38-2<br>
+전화: <a href='tel:031-375-2728'>031-375-2728</a>
+</div></td></tr>
+<tr><td>경기도</td><td>용인시</td><td><a onclick="toggleDetail('detail52')">대일상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail52'>
+주소: 처인구 김량장동344-5<br>
+전화: <a href='tel:031-337-0545'>031-337-0545</a>
+</div></td></tr>
+<tr><td>경기도</td><td>용인시</td><td><a onclick="toggleDetail('detail53')">수지에어컨배관(스마트공조)</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail53'>
+주소: 수지구 풍덕천동669-6(문인로31번길 3-11)<br>
+전화: <a href='tel:031-263-3360 '>031-263-3360 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>용인시</td><td><a onclick="toggleDetail('detail54')">패밀리상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail54'>
+주소: 처인구 포곡읍 백옥대로1422<br>
+전화: <a href='tel:013-335-2263'>013-335-2263</a>
+</div></td></tr>
+<tr><td>경기도</td><td>의왕시</td><td><a onclick="toggleDetail('detail55')">중앙상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail55'>
+주소: 포일동 506-2호<br>
+전화: <a href='tel:031-423-0773'>031-423-0773</a>
+</div></td></tr>
+<tr><td>경기도</td><td>의정부시</td><td><a onclick="toggleDetail('detail56')">미래에어컨자재촐판</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail56'>
+주소: 금오동 374-1아남아파트상가1층<br>
+전화: <a href='tel:031-841-9175'>031-841-9175</a>
+</div></td></tr>
+<tr><td>경기도</td><td>의정부시</td><td><a onclick="toggleDetail('detail57')">아피스코리아</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail57'>
+주소: 신곡동 352-21<br>
+전화: <a href='tel:031-847-9440'>031-847-9440</a>
+</div></td></tr>
+<tr><td>경기도</td><td>의정부시</td><td><a onclick="toggleDetail('detail58')">우성냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail58'>
+주소: 신곡동 447-2856-9900<br>
+전화: <a href='tel:031-856-9900 '>031-856-9900 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>이천시</td><td><a onclick="toggleDetail('detail59')">서울배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail59'>
+주소: 갈산동 167-1<br>
+전화: <a href='tel:031-637-8713'>031-637-8713</a>
+</div></td></tr>
+<tr><td>경기도</td><td>파주시</td><td><a onclick="toggleDetail('detail60')">신영산업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail60'>
+주소: 파주시 아동동 53-6<br>
+전화: <a href='tel:031-943-8687 '>031-943-8687 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>평택시</td><td><a onclick="toggleDetail('detail61')">중앙냉동기상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail61'>
+주소: 통복동 30-1<br>
+전화: <a href='tel:031-657-6127'>031-657-6127</a>
+</div></td></tr>
+<tr><td>경기도</td><td>평택시</td><td><a onclick="toggleDetail('detail62')">포승냉동부품</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail62'>
+주소: 포승읍 석정리262-10<br>
+전화: <a href='tel:031-681-9280 '>031-681-9280 </a>
+</div></td></tr>
+<tr><td>경기도</td><td>포천시</td><td><a onclick="toggleDetail('detail63')">대상전기</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail63'>
+주소: 신읍동<br>
+전화: <a href='tel:031-535-1172'>031-535-1172</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail64')">㈜티앤티파이핑</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail64'>
+주소: 초이로77-40<br>
+전화: <a href='tel:02-4266244'>02-4266244</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail65')">대성종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail65'>
+주소: 감북동 355-2서하남ic근처<br>
+전화: <a href='tel:02-470-8711'>02-470-8711</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail66')">보영배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail66'>
+주소: 신장로 44-1<br>
+전화: <a href='tel:031-792-6768'>031-792-6768</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail67')">씨엔에이치엔지</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail67'>
+주소: 감초로37<br>
+전화: <a href='tel:02-502-6633'>02-502-6633</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail68')">유니클</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail68'>
+주소: 초이동 275번지<br>
+전화: <a href='tel:02-408-0989'>02-408-0989</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail69')">일신냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail69'>
+주소: 감북동 413-88<br>
+전화: <a href='tel:02-477-7557'>02-477-7557</a>
+</div></td></tr>
+<tr><td>경기도</td><td>하남시</td><td><a onclick="toggleDetail('detail70')">제주배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail70'>
+주소: 신장로 224<br>
+전화: <a href='tel:031-792-0072'>031-792-0072</a>
+</div></td></tr>
+<tr><td>경기도</td><td>화성시</td><td><a onclick="toggleDetail('detail71')">대한냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail71'>
+주소: 팔탄면 구장리 3-20<br>
+전화: <a href='tel:031-353-7784'>031-353-7784</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>김해시</td><td><a onclick="toggleDetail('detail72')">하이시스템에어컨</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail72'>
+주소: 분성로 419(삼정동)<br>
+전화: <a href='tel:055-321-1033'>055-321-1033</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail73')">냉동부속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail73'>
+주소: 진구 전포동 684-5<br>
+전화: <a href='tel:051-804-5077'>051-804-5077</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail74')">대도공구</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail74'>
+주소: 거제리 거제1동18-17<br>
+전화: <a href='tel:051-862-2848'>051-862-2848</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail75')">문화전자</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail75'>
+주소: 부산진구 부전1동50번지<br>
+전화: <a href='tel:051-809-0742'>051-809-0742</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail76')">부산냉동부속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail76'>
+주소: 동래구 안락동789-4<br>
+전화: <a href='tel:051-557-9937 '>051-557-9937 </a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail77')">부산시스템자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail77'>
+주소: 진구 양정1동509-29<br>
+전화: <a href='tel:051-865-8873'>051-865-8873</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail78')">우영엠텍</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail78'>
+주소: 사상구 괘법동터미널근처<br>
+전화: <a href='tel:051-325-8877'>051-325-8877</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>부산시</td><td><a onclick="toggleDetail('detail79')">화성보온</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail79'>
+주소: 진구 범전동290-22(보온재만판매)<br>
+전화: <a href='tel:051-802-4480'>051-802-4480</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>울산시</td><td><a onclick="toggleDetail('detail80')">동해냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail80'>
+주소: 남구 삼산동 214-3<br>
+전화: <a href='tel:052-258-6363'>052-258-6363</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>울산시</td><td><a onclick="toggleDetail('detail81')">서호금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail81'>
+주소: 남구 삼산동1596-2<br>
+전화: <a href='tel:052-227-6633'>052-227-6633</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>울산시</td><td><a onclick="toggleDetail('detail82')">성주산업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail82'>
+주소: 남구 삼산동1506-6<br>
+전화: <a href='tel:052-256-6215'>052-256-6215</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>울산시</td><td><a onclick="toggleDetail('detail83')">오성종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail83'>
+주소: 중구 태화동 916-5<br>
+전화: <a href='tel:052-224-2218'>052-224-2218</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>울산시</td><td><a onclick="toggleDetail('detail84')">진보금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail84'>
+주소: 남구 삼산동1600-1<br>
+전화: <a href='tel:052-258-3735'>052-258-3735</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>진주시</td><td><a onclick="toggleDetail('detail85')">청계냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail85'>
+주소: 진주시 상봉동590-1<br>
+전화: <a href='tel:055-741-8082'>055-741-8082</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>창원시</td><td><a onclick="toggleDetail('detail86')">서일냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail86'>
+주소: 봉곡동 42-16<br>
+전화: <a href='tel:055-276-4001'>055-276-4001</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>창원시</td><td><a onclick="toggleDetail('detail87')">조아냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail87'>
+주소: 성산구 사파동129-3<br>
+전화: <a href='tel:055-263-6188'>055-263-6188</a>
+</div></td></tr>
+<tr><td>경상남도</td><td>통영시</td><td><a onclick="toggleDetail('detail88')">세명상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail88'>
+주소: 용남면 장문로 482<br>
+전화: <a href='tel:055-641-7601'>055-641-7601</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>구미시</td><td><a onclick="toggleDetail('detail89')">명광종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail89'>
+주소: 임수동92-54산업유통단지내<br>
+전화: <a href='tel:054-476-7708'>054-476-7708</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail90')">대경냉동자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail90'>
+주소: 서구 이현동 119-2<br>
+전화: <a href='tel:053-557-5570'>053-557-5570</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail91')">동성산업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail91'>
+주소: 북구 고성동2가67-1<br>
+전화: <a href='tel:053-355-1337'>053-355-1337</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail92')">명성테크</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail92'>
+주소: 북구 산격동1626번지 전자 도매상가 5-105<br>
+전화: <a href='tel:053-604-3111'>053-604-3111</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail93')">부광동파이프</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail93'>
+주소: 동중구 동인1가347-1<br>
+전화: <a href='tel:053-423-6064'>053-423-6064</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail94')">재은상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail94'>
+주소: 달서구 감삼동65-5(푸른방송 옆)<br>
+전화: <a href='tel:053-523-3839'>053-523-3839</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail95')">종합냉동부속상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail95'>
+주소: 안동시 충효로 4414<br>
+전화: <a href='tel:54-859-3604'>54-859-3604</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail96')">태광금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail96'>
+주소: 서구 내당1동 62-7<br>
+전화: <a href='tel:053-553-9259'>053-553-9259</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>대구시</td><td><a onclick="toggleDetail('detail97')">토탈자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail97'>
+주소: 칠성2가 409-54<br>
+전화: <a href='tel:053-257-9672'>053-257-9672</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>포항시</td><td><a onclick="toggleDetail('detail98')">다원종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail98'>
+주소: 북구 죽도동 62-29<br>
+전화: <a href='tel:054-614-1882'>054-614-1882</a>
+</div></td></tr>
+<tr><td>경상북도</td><td>포항시</td><td><a onclick="toggleDetail('detail99')">대신종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail99'>
+주소: 대흥동 619-47역앞 별천지 옆 복개도로<br>
+전화: <a href='tel:054-277-3523 '>054-277-3523 </a>
+</div></td></tr>
+<tr><td>경상북도</td><td>포항시</td><td><a onclick="toggleDetail('detail100')">포항태경냉열자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail100'>
+주소: 북구 죽도동212-2<br>
+전화: <a href='tel:054-282-3364 '>054-282-3364 </a>
+</div></td></tr>
+<tr><td>서울</td><td>강남구</td><td><a onclick="toggleDetail('detail101')">효성종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail101'>
+주소: 도곡동 869번지삼익아파트상가1층103<br>
+전화: <a href='tel:02-3463-0156'>02-3463-0156</a>
+</div></td></tr>
+<tr><td>서울</td><td>강동구</td><td><a onclick="toggleDetail('detail102')">대성종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail102'>
+주소: 풍납동 481<br>
+전화: <a href='tel:02-471-8711'>02-471-8711</a>
+</div></td></tr>
+<tr><td>서울</td><td>강동구</td><td><a onclick="toggleDetail('detail103')">청우금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail103'>
+주소: 성내동 107-5<br>
+전화: <a href='tel:02-471-4367'>02-471-4367</a>
+</div></td></tr>
+<tr><td>서울</td><td>강북구</td><td><a onclick="toggleDetail('detail104')">강북냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail104'>
+주소: 번동 455-13 1층<br>
+전화: <a href='tel:02-902-4453'>02-902-4453</a>
+</div></td></tr>
+<tr><td>서울</td><td>강북구</td><td><a onclick="toggleDetail('detail105')">대동전기</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail105'>
+주소: 미아동 90-35<br>
+전화: <a href='tel:02-988-5200'>02-988-5200</a>
+</div></td></tr>
+<tr><td>서울</td><td>강북구</td><td><a onclick="toggleDetail('detail106')">번동에어컨자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail106'>
+주소: 번1동 411-3<br>
+전화: <a href='tel:02-990-1544'>02-990-1544</a>
+</div></td></tr>
+<tr><td>서울</td><td>강북구</td><td><a onclick="toggleDetail('detail107')">홍일냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail107'>
+주소: 번동 436-32<br>
+전화: <a href='tel:02-946-0905'>02-946-0905</a>
+</div></td></tr>
+<tr><td>서울</td><td>강서구</td><td><a onclick="toggleDetail('detail108')">CHM총판</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail108'>
+주소: 염창동 2743-4<br>
+전화: <a href='tel:02-2068-8743'>02-2068-8743</a>
+</div></td></tr>
+<tr><td>서울</td><td>강서구</td><td><a onclick="toggleDetail('detail109')">성신종합공구</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail109'>
+주소: 방화1동 608-52<br>
+전화: <a href='tel:02-2662-8245 '>02-2662-8245 </a>
+</div></td></tr>
+<tr><td>서울</td><td>관악구</td><td><a onclick="toggleDetail('detail110')">대일종합공구</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail110'>
+주소: 봉천동 958-2 1층전체<br>
+전화: <a href='tel:02-872-0905'>02-872-0905</a>
+</div></td></tr>
+<tr><td>서울</td><td>관악구</td><td><a onclick="toggleDetail('detail111')">부일종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail111'>
+주소: 신림동 526-6<br>
+전화: <a href='tel:02-837-0756'>02-837-0756</a>
+</div></td></tr>
+<tr><td>서울</td><td>광진구</td><td><a onclick="toggleDetail('detail112')">두손전기</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail112'>
+주소: 중곡3동 187-21<br>
+전화: <a href='tel:02-467-7922'>02-467-7922</a>
+</div></td></tr>
+<tr><td>서울</td><td>광진구</td><td><a onclick="toggleDetail('detail113')">우일금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail113'>
+주소: 구의동 659<br>
+전화: <a href='tel:02-455-3828'>02-455-3828</a>
+</div></td></tr>
+<tr><td>서울</td><td>광진구</td><td><a onclick="toggleDetail('detail114')">월드에어컨자재총판</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail114'>
+주소: 중곡3동 592-3<br>
+전화: <a href='tel:02-444-6622'>02-444-6622</a>
+</div></td></tr>
+<tr><td>서울</td><td>구로구</td><td><a onclick="toggleDetail('detail115')">LG냉방디지털센터</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail115'>
+주소: 구로동 707-18<br>
+전화: <a href='tel:02-868-6363'>02-868-6363</a>
+</div></td></tr>
+<tr><td>서울</td><td>구로구</td><td><a onclick="toggleDetail('detail116')">재한상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail116'>
+주소: 구로동 공구상가29-117<br>
+전화: <a href='tel:02-2676-2793'>02-2676-2793</a>
+</div></td></tr>
+<tr><td>서울</td><td>금천구</td><td><a onclick="toggleDetail('detail117')">대일산업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail117'>
+주소: 독산4동 1027-27<br>
+전화: <a href='tel:02-851-1275'>02-851-1275</a>
+</div></td></tr>
+<tr><td>서울</td><td>금천구</td><td><a onclick="toggleDetail('detail118')">신성냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail118'>
+주소: 독산본동 952-24<br>
+전화: <a href='tel:02-837-2922'>02-837-2922</a>
+</div></td></tr>
+<tr><td>서울</td><td>금천구</td><td><a onclick="toggleDetail('detail119')">현대에어컨자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail119'>
+주소: 독산동 967-14<br>
+전화: <a href='tel:02-859-8988'>02-859-8988</a>
+</div></td></tr>
+<tr><td>서울</td><td>도봉구</td><td><a onclick="toggleDetail('detail120')">대성종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail120'>
+주소: 방학동724-7호 <br>
+전화: <a href='tel:02-3494-0005'>02-3494-0005</a>
+</div></td></tr>
+<tr><td>서울</td><td>도봉구</td><td><a onclick="toggleDetail('detail121')">영우종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail121'>
+주소: 방학동 654-21호<br>
+전화: <a href='tel:02-3491-6330 '>02-3491-6330 </a>
+</div></td></tr>
+<tr><td>서울</td><td>동대문구</td><td><a onclick="toggleDetail('detail122')">부영종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail122'>
+주소: 신설동 94-37<br>
+전화: <a href='tel:02-2232-8353'>02-2232-8353</a>
+</div></td></tr>
+<tr><td>서울</td><td>동작구</td><td><a onclick="toggleDetail('detail123')">성수냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail123'>
+주소: 대방동 395-187호선 4번출구 바로 옆<br>
+전화: <a href='tel:02-816-8888'>02-816-8888</a>
+</div></td></tr>
+<tr><td>서울</td><td>서대문구</td><td><a onclick="toggleDetail('detail124')">파워냉방</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail124'>
+주소: 창천동 448연희동대우아파트입구<br>
+전화: <a href='tel:02-335-6577'>02-335-6577</a>
+</div></td></tr>
+<tr><td>서울</td><td>서초구</td><td><a onclick="toggleDetail('detail125')">동진</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail125'>
+주소: 양재동 362-3<br>
+전화: <a href='tel:02-3462-4570'>02-3462-4570</a>
+</div></td></tr>
+<tr><td>서울</td><td>서초구</td><td><a onclick="toggleDetail('detail126')">서초종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail126'>
+주소: 서초동 11614-27101호<br>
+전화: <a href='tel:02-587-8977 '>02-587-8977 </a>
+</div></td></tr>
+<tr><td>서울</td><td>서초구</td><td><a onclick="toggleDetail('detail127')">성원기업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail127'>
+주소: 방배동 827-3<br>
+전화: <a href='tel:02-593-2246'>02-593-2246</a>
+</div></td></tr>
+<tr><td>서울</td><td>서초구</td><td><a onclick="toggleDetail('detail128')">충무종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail128'>
+주소: 방배동 823-1<br>
+전화: <a href='tel:02-596-8904'>02-596-8904</a>
+</div></td></tr>
+<tr><td>서울</td><td>성동구</td><td><a onclick="toggleDetail('detail129')">㈜금호에어텍</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail129'>
+주소: 송정동 87-21<br>
+전화: <a href='tel:02-404-5060 '>02-404-5060 </a>
+</div></td></tr>
+<tr><td>서울</td><td>성동구</td><td><a onclick="toggleDetail('detail130')">일우배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail130'>
+주소: 마장동 443-24<br>
+전화: <a href='tel:02-2291-9077'>02-2291-9077</a>
+</div></td></tr>
+<tr><td>서울</td><td>성북구</td><td><a onclick="toggleDetail('detail131')">경동배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail131'>
+주소: 석관동 236-13<br>
+전화: <a href='tel:02-959-6645'>02-959-6645</a>
+</div></td></tr>
+<tr><td>서울</td><td>성북구</td><td><a onclick="toggleDetail('detail132')">금우배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail132'>
+주소: 석관동 236-1<br>
+전화: <a href='tel:02-960-0321'>02-960-0321</a>
+</div></td></tr>
+<tr><td>서울</td><td>성북구</td><td><a onclick="toggleDetail('detail133')">성우종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail133'>
+주소: 하월곡동10-23 <br>
+전화: <a href='tel:02-6326-3030'>02-6326-3030</a>
+</div></td></tr>
+<tr><td>서울</td><td>송파구</td><td><a onclick="toggleDetail('detail134')">동일</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail134'>
+주소: 송파동 47-3<br>
+전화: <a href='tel:02-417-0801'>02-417-0801</a>
+</div></td></tr>
+<tr><td>서울</td><td>송파구</td><td><a onclick="toggleDetail('detail135')">서울종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail135'>
+주소: 오금동 120-16<br>
+전화: <a href='tel:02-401-2603'>02-401-2603</a>
+</div></td></tr>
+<tr><td>서울</td><td>송파구</td><td><a onclick="toggleDetail('detail136')">유영써브텍</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail136'>
+주소: 거여동552-4 <br>
+전화: <a href='tel:02-412-2033'>02-412-2033</a>
+</div></td></tr>
+<tr><td>서울</td><td>송파구</td><td><a onclick="toggleDetail('detail137')">으뜸상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail137'>
+주소: 풍납동 490-6<br>
+전화: <a href='tel:02-474-5909'>02-474-5909</a>
+</div></td></tr>
+<tr><td>서울</td><td>송파구</td><td><a onclick="toggleDetail('detail138')">충우종합배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail138'>
+주소: 가락본동 10-12<br>
+전화: <a href='tel:02-3012-0322'>02-3012-0322</a>
+</div></td></tr>
+<tr><td>서울</td><td>송파구</td><td><a onclick="toggleDetail('detail139')">태양냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail139'>
+주소: 송파동 30-7<br>
+전화: <a href='tel:02-418-2690'>02-418-2690</a>
+</div></td></tr>
+<tr><td>서울</td><td>양천구</td><td><a onclick="toggleDetail('detail140')">㈜센추리프라자자재상</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail140'>
+주소: 신월3동 205-46<br>
+전화: <a href='tel:02-2697-0444'>02-2697-0444</a>
+</div></td></tr>
+<tr><td>서울</td><td>양천구</td><td><a onclick="toggleDetail('detail141')">수진상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail141'>
+주소: 신월2동 474-19호<br>
+전화: <a href='tel:02-2616-8524'>02-2616-8524</a>
+</div></td></tr>
+<tr><td>서울</td><td>양천구</td><td><a onclick="toggleDetail('detail142')">알만에이엠</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail142'>
+주소: 신월1동 130-2번지<br>
+전화: <a href='tel:02-2606-2887'>02-2606-2887</a>
+</div></td></tr>
+<tr><td>서울</td><td>영등포구</td><td><a onclick="toggleDetail('detail143')">㈜이젠종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail143'>
+주소: 영등포동1가 77번지<br>
+전화: <a href='tel:02-3667-3611'>02-3667-3611</a>
+</div></td></tr>
+<tr><td>서울</td><td>영등포구</td><td><a onclick="toggleDetail('detail144')">영화금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail144'>
+주소: 영등포동1가 81번지<br>
+전화: <a href='tel:02-2676-9976'>02-2676-9976</a>
+</div></td></tr>
+<tr><td>서울</td><td>용산구</td><td><a onclick="toggleDetail('detail145')">(주)알만AM </a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail145'>
+주소: 신계동6-31(용산전자상가내)<br>
+전화: <a href='tel:02-703-2887'>02-703-2887</a>
+</div></td></tr>
+<tr><td>서울</td><td>용산구</td><td><a onclick="toggleDetail('detail146')">만도냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail146'>
+주소: 한강로3가 40-199<br>
+전화: <a href='tel:02-706-1114'>02-706-1114</a>
+</div></td></tr>
+<tr><td>서울</td><td>용산구</td><td><a onclick="toggleDetail('detail147')">허니21</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail147'>
+주소: 한강로2가(용산전자상가 17동 가열 163호)<br>
+전화: <a href='tel:02-715-4789'>02-715-4789</a>
+</div></td></tr>
+<tr><td>서울</td><td>은평구</td><td><a onclick="toggleDetail('detail148')">세운전기</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail148'>
+주소: 역촌동 9-12<br>
+전화: <a href='tel:02-354-8901'>02-354-8901</a>
+</div></td></tr>
+<tr><td>서울</td><td>은평구</td><td><a onclick="toggleDetail('detail149')">영우상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail149'>
+주소: 역촌동 44-3<br>
+전화: <a href='tel:02-356-8938'>02-356-8938</a>
+</div></td></tr>
+<tr><td>서울</td><td>은평구</td><td><a onclick="toggleDetail('detail150')">은평전기</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail150'>
+주소: 역촌동 8-14<br>
+전화: <a href='tel:02-389-2831'>02-389-2831</a>
+</div></td></tr>
+<tr><td>서울</td><td>중구</td><td><a onclick="toggleDetail('detail151')">21세기유통</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail151'>
+주소: 신당4동 370-106<br>
+전화: <a href='tel:02-2234-8282'>02-2234-8282</a>
+</div></td></tr>
+<tr><td>서울</td><td>중랑구</td><td><a onclick="toggleDetail('detail152')">다산금속자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail152'>
+주소: 면목동 179-20<br>
+전화: <a href='tel:02-494-9693'>02-494-9693</a>
+</div></td></tr>
+<tr><td>서울</td><td>중랑구</td><td><a onclick="toggleDetail('detail153')">동남에너지상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail153'>
+주소: 망우동 149-1<br>
+전화: <a href='tel:010-9990-1950'>010-9990-1950</a>
+</div></td></tr>
+<tr><td>서울</td><td>중랑구</td><td><a onclick="toggleDetail('detail154')">성창종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail154'>
+주소: 상봉동 120-14<br>
+전화: <a href='tel:010-3707-1857'>010-3707-1857</a>
+</div></td></tr>
+<tr><td>서울</td><td>중랑구</td><td><a onclick="toggleDetail('detail155')">우정금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail155'>
+주소: 묵2동 233-103<br>
+전화: <a href='tel:02-975-0644'>02-975-0644</a>
+</div></td></tr>
+<tr><td>서울</td><td>중랑구</td><td><a onclick="toggleDetail('detail156')">이우금속상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail156'>
+주소: 망우3동 460-25<br>
+전화: <a href='tel:02-2207-0599'>02-2207-0599</a>
+</div></td></tr>
+<tr><td>인천</td><td>계양구</td><td><a onclick="toggleDetail('detail157')">경남기업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail157'>
+주소: 서운동 142-29<br>
+전화: <a href='tel:032-554-0323 '>032-554-0323 </a>
+</div></td></tr>
+<tr><td>인천</td><td>계양구</td><td><a onclick="toggleDetail('detail158')">에이박스</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail158'>
+주소: 계양대로 13번길 20<br>
+전화: <a href='tel:032-710-0984'>032-710-0984</a>
+</div></td></tr>
+<tr><td>인천</td><td>계양구</td><td><a onclick="toggleDetail('detail159')">작전에어컨자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail159'>
+주소: 작전동 859-7<br>
+전화: <a href='tel:032-552-0989'>032-552-0989</a>
+</div></td></tr>
+<tr><td>인천</td><td>계양구</td><td><a onclick="toggleDetail('detail160')">태양종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail160'>
+주소: 서운동142-62 <br>
+전화: <a href='tel:032-541-1601'>032-541-1601</a>
+</div></td></tr>
+<tr><td>인천</td><td>남구</td><td><a onclick="toggleDetail('detail161')">삼아상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail161'>
+주소: 숭의1동 431-8<br>
+전화: <a href='tel:032-882-5948'>032-882-5948</a>
+</div></td></tr>
+<tr><td>인천</td><td>남동구</td><td><a onclick="toggleDetail('detail162')">국주상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail162'>
+주소: 구월동 1167-5<br>
+전화: <a href='tel:032-463-7727'>032-463-7727</a>
+</div></td></tr>
+<tr><td>인천</td><td>남동구</td><td><a onclick="toggleDetail('detail163')">선두냉동공조</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail163'>
+주소: 구월동1121(대로변)<br>
+전화: <a href='tel:032-472-0180'>032-472-0180</a>
+</div></td></tr>
+<tr><td>인천</td><td>남동구</td><td><a onclick="toggleDetail('detail164')">에스키모냉동부품</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail164'>
+주소: 구월2동 1253-17간석4거리 부근<br>
+전화: <a href='tel:032-466-5773'>032-466-5773</a>
+</div></td></tr>
+<tr><td>인천</td><td>남동구</td><td><a onclick="toggleDetail('detail165')">인천냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail165'>
+주소: 은청로4-19남동공구상가D동114호<br>
+전화: <a href='tel:032-815-5798'>032-815-5798</a>
+</div></td></tr>
+<tr><td>인천</td><td>동구</td><td><a onclick="toggleDetail('detail166')">인천에어콘자재총판</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail166'>
+주소: 송림동297-38<br>
+전화: <a href='tel:032-582-0799'>032-582-0799</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail167')">거상</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail167'>
+주소: 청천동 3-18<br>
+전화: <a href='tel:032-507-4204'>032-507-4204</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail168')">동아냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail168'>
+주소: 부평5동 127-42<br>
+전화: <a href='tel:032-528-7272'>032-528-7272</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail169')">부평대일상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail169'>
+주소: 갈산동 185 풍진빌딩103호<br>
+전화: <a href='tel:032-511-0727'>032-511-0727</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail170')">부흥공구자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail170'>
+주소: 삼산동 222-32번지<br>
+전화: <a href='tel:032-524-0949'>032-524-0949</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail171')">상도시스템</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail171'>
+주소: 부평동 885-9102, 103호(부평구청부근)<br>
+전화: <a href='tel:032-330-0865'>032-330-0865</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail172')">승진종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail172'>
+주소: 부평6동 606-22<br>
+전화: <a href='tel:032-513-7455'>032-513-7455</a>
+</div></td></tr>
+<tr><td>인천</td><td>부평구</td><td><a onclick="toggleDetail('detail173')">장터에어컨자재촐판</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail173'>
+주소: 경인로 1144<br>
+전화: <a href='tel:1666-8945'>1666-8945</a>
+</div></td></tr>
+<tr><td>인천</td><td>서구</td><td><a onclick="toggleDetail('detail174')">보부상</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail174'>
+주소: 가좌3동 184-73대원상가 A동 102호<br>
+전화: <a href='tel:032-571-1818'>032-571-1818</a>
+</div></td></tr>
+<tr><td>인천</td><td>서구</td><td><a onclick="toggleDetail('detail175')">서해냉난방배관자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail175'>
+주소: 경명대로 675<br>
+전화: <a href='tel:032-548-6912'>032-548-6912</a>
+</div></td></tr>
+<tr><td>인천</td><td>서구</td><td><a onclick="toggleDetail('detail176')">에코상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail176'>
+주소: 연희동 746-14번지<br>
+전화: <a href='tel:032-566-8266'>032-566-8266</a>
+</div></td></tr>
+<tr><td>전라남도</td><td>광주시</td><td><a onclick="toggleDetail('detail177')">가나에어컨자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail177'>
+주소: 남구대남대로417-1(월산동 919-26)<br>
+전화: <a href='tel:062-652-0371'>062-652-0371</a>
+</div></td></tr>
+<tr><td>전라남도</td><td>광주시</td><td><a onclick="toggleDetail('detail178')">새한냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail178'>
+주소: 북구 운암동 1620<br>
+전화: <a href='tel:062-511-9300'>062-511-9300</a>
+</div></td></tr>
+<tr><td>전라남도</td><td>목포시</td><td><a onclick="toggleDetail('detail179')">대호냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail179'>
+주소: 용해동 152-78<br>
+전화: <a href='tel:061-273-8132'>061-273-8132</a>
+</div></td></tr>
+<tr><td>전라남도</td><td>목포시</td><td><a onclick="toggleDetail('detail180')">유한회사 비손이엔지</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail180'>
+주소: 옥암동 1381-1<br>
+전화: <a href='tel:061-279-9510'>061-279-9510</a>
+</div></td></tr>
+<tr><td>전라남도</td><td>순천시</td><td><a onclick="toggleDetail('detail181')">신한냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail181'>
+주소: 연향동 1518-3우편집중국 앞<br>
+전화: <a href='tel:061-727-2340 '>061-727-2340 </a>
+</div></td></tr>
+<tr><td>전라남도</td><td>순천시</td><td><a onclick="toggleDetail('detail182')">청인시스템에어컨</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail182'>
+주소: 연향동 1397-10<br>
+전화: <a href='tel:061-752-1881'>061-752-1881</a>
+</div></td></tr>
+<tr><td>전라북도</td><td>군산시</td><td><a onclick="toggleDetail('detail183')">넘버원냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail183'>
+주소: 문화동 918-11<br>
+전화: <a href='tel:063-463-1789'>063-463-1789</a>
+</div></td></tr>
+<tr><td>전라북도</td><td>군산시</td><td><a onclick="toggleDetail('detail184')">제일냉동기상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail184'>
+주소: 경장동 485-1<br>
+전화: <a href='tel:063-442-4617'>063-442-4617</a>
+</div></td></tr>
+<tr><td>전라북도</td><td>익산시</td><td><a onclick="toggleDetail('detail185')">지명</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail185'>
+주소: 황등면 도선길 71<br>
+전화: <a href='tel:031-857-5189 '>031-857-5189 </a>
+</div></td></tr>
+<tr><td>전라북도</td><td>전주시</td><td><a onclick="toggleDetail('detail186')">금강냉동부속상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail186'>
+주소: 덕진구 진북동1063-7<br>
+전화: <a href='tel:063-251-9977 '>063-251-9977 </a>
+</div></td></tr>
+<tr><td>전라북도</td><td>전주시</td><td><a onclick="toggleDetail('detail187')">지명</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail187'>
+주소: 덕진구 온고을로506(여의동)<br>
+전화: <a href='tel:031-857-5189 '>031-857-5189 </a>
+</div></td></tr>
+<tr><td>제주도</td><td>제주시</td><td><a onclick="toggleDetail('detail188')">재도냉열</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail188'>
+주소: 승천로 17<br>
+전화: <a href='tel:064-752-2589'>064-752-2589</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>공주시</td><td><a onclick="toggleDetail('detail189')">현대철물</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail189'>
+주소: 신관동 585-12하이마트 LG마트 가운데 <br>
+전화: <a href='tel:041-856-1503'>041-856-1503</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>당진시</td><td><a onclick="toggleDetail('detail190')">당진냉동부품</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail190'>
+주소: 당진중앙1로255(읍내동)<br>
+전화: <a href='tel:041-357-9281 '>041-357-9281 </a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail191')">가장에어컨자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail191'>
+주소: 서구 가장동 26-9<br>
+전화: <a href='tel:042-537-0525'>042-537-0525</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail192')">대영상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail192'>
+주소: 문창동냉동골목(한방병원옆뚝방)<br>
+전화: <a href='tel:042-255-4989'>042-255-4989</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail193')">에이스상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail193'>
+주소: 서구 가장동 32-11<br>
+전화: <a href='tel:042-536-8356'>042-536-8356</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail194')">은진금속</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail194'>
+주소: 대덕구 오정동 오정철교밑<br>
+전화: <a href='tel:042-624-2974'>042-624-2974</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail195')">추풍령공조</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail195'>
+주소: 서수 내동 173-3<br>
+전화: <a href='tel:042-532-8285'>042-532-8285</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail196')">코리아시스템</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail196'>
+주소: 대덕구 오정동99-27<br>
+전화: <a href='tel:042-626-6767'>042-626-6767</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>대전시</td><td><a onclick="toggleDetail('detail197')">한밭에어컨자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail197'>
+주소: 유성 궁동 충대농대입구<br>
+전화: <a href='tel:042-867-6374'>042-867-6374</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>서산시</td><td><a onclick="toggleDetail('detail198')">주영ENG </a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail198'>
+주소: 동문동48-1<br>
+전화: <a href='tel:041-669-1557'>041-669-1557</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>세종시</td><td><a onclick="toggleDetail('detail199')">도연산업</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail199'>
+주소: 조치원읍 허만석로 61<br>
+전화: <a href='tel:044-867-9000'>044-867-9000</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>천안시</td><td><a onclick="toggleDetail('detail200')">명성배관</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail200'>
+주소: 성정동 672-22<br>
+전화: <a href='tel:041-575-9336'>041-575-9336</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>천안시</td><td><a onclick="toggleDetail('detail201')">중앙냉동부품</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail201'>
+주소: 봉명동<br>
+전화: <a href='tel:041-578-4353 '>041-578-4353 </a>
+</div></td></tr>
+<tr><td>충청남도</td><td>천안시</td><td><a onclick="toggleDetail('detail202')">화성자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail202'>
+주소: 동남구 다가동374-6 동명전철역 맞은편 <br>
+전화: <a href='tel:041-577-1963'>041-577-1963</a>
+</div></td></tr>
+<tr><td>충청남도</td><td>천안시</td><td><a onclick="toggleDetail('detail203')">효성배관자재</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail203'>
+주소: 동남구 신방동<br>
+전화: <a href='tel:041-570-6346'>041-570-6346</a>
+</div></td></tr>
+<tr><td>충청북도</td><td>청주시</td><td><a onclick="toggleDetail('detail204')">중앙냉동</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail204'>
+주소: 상당구 무등심로 376<br>
+전화: <a href='tel:043-256-7656'>043-256-7656</a>
+</div></td></tr>
+<tr><td>충청북도</td><td>청주시</td><td><a onclick="toggleDetail('detail205')">태성종합상사</a></td></tr>
+<tr><td colspan='3'><div class='detail' id='detail205'>
+주소: 서원구 호국로 162<br>
+전화: <a href='tel:043-262-3636'>043-262-3636</a>
+</div></td></tr>
+</table>
+</body>
+</html>
