@@ -1,176 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>견적서</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
-
-		h1 {
-			margin: 16px;
-			text-align: center;
-		}
-
-		form {
-			margin: 16px;
-		}
-
-		form label {
-			display: block;
-			margin-bottom: 8px;
-		}
-
-		form select, form input[type="number"], #unit-price {
-			display: block;
-			margin-bottom: 16px;
-			width: 100%;
-			font-size: 16px;
-			padding: 8px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			box-sizing: border-box;
-		}
-
-		form button {
-			display: block;
-			margin: 16px auto;
-			padding: 8px 16px;
-			font-size: 16px;
-			border: none;
-			border-radius: 4px;
-			background-color: #007bff;
-			color: #fff;
-			cursor: pointer;
-		}
-
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			margin: 16px;
-		}
-
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
-
-		th {
-			background-color: #f2f2f2;
-		}
-
-		td:last-child, th:last-child {
-			text-align: right;
-		}
-
-		#total-price {
-			display: block;
-			margin: 16px;
-			font-size: 24px;
-			font-weight: bold;
-			text-align: right;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page with Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .redirect-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .redirect-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-	<h1>견적서</h1>
-	<form>
-		<label for="product">품목:</label>
-		<select id="product" name="product">
-			<option value="product1">제품 1</option>
-			<option value="product2">제품 2</option>
-			<option value="product3">제품 3</option>
-		</select>
+    <div class="button-container">
+        <a href="https://prove1.github.io/WEB_TEST/store_main.html" class="redirect-button">전국 자재상</a><br>
 
-		<label for="quantity">갯수:</label>
-		<input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updatePrice()">
-
-		<label for="unit-price">단가:</label>
-		<span id="unit-price">10,000원</span>
-
-		<button type="button" onclick="addProduct()">제품 추가</button>
-	</form>
-
-	<table id="product-table">
-		<thead>
-			<tr>
-				<th>품목</th>
-				<th>갯수</th>
-				<th>합계</th>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
-
-	<p id="total-price">최종금액: 0원</p>
-
-	<script>
-		let products = [];
-		let totalPrice = 0;
-
-		function addProduct() {
-			const product = document.getElementById("product");
-			const quantity= document.getElementById("quantity");
-		const selectedProduct = product.options[product.selectedIndex].text;
-		const selectedQuantity = parseInt(quantity.value);
-		const selectedUnitPrice = 10000;
-
-		const existingProductIndex = products.findIndex(p => p.name === selectedProduct);
-		if (existingProductIndex >= 0) {
-			products[existingProductIndex].quantity += selectedQuantity;
-		} else {
-			products.push({
-				name: selectedProduct,
-				quantity: selectedQuantity,
-				unitPrice: selectedUnitPrice
-			});
-		}
-
-		updateTable();
-		updateTotalPrice();
-	}
-
-	function updateTable() {
-		const tableBody = document.querySelector("#product-table tbody");
-
-		tableBody.innerHTML = "";
-
-		products.forEach(p => {
-			const row = document.createElement("tr");
-
-			const nameCell = document.createElement("td");
-			nameCell.textContent = p.name;
-			row.appendChild(nameCell);
-
-			const quantityCell = document.createElement("td");
-			quantityCell.textContent = p.quantity;
-			row.appendChild(quantityCell);
-
-			const totalPriceCell = document.createElement("td");
-			totalPriceCell.textContent = (p.quantity * p.unitPrice).toLocaleString() + "원";
-			row.appendChild(totalPriceCell);
-
-			tableBody.appendChild(row);
-		});
-	}
-
-	function updateTotalPrice() {
-		totalPrice = products.reduce((total, p) => total + (p.quantity * p.unitPrice), 0);
-		document.getElementById("total-price").textContent = "최종금액: " + totalPrice.toLocaleString() + "원";
-	}
-
-	function updatePrice() {
-		const quantity = document.getElementById("quantity");
-		const unitPrice = document.getElementById("unit-price");
-		unitPrice.textContent = (10000).toLocaleString() + "원";
-	}
-
-	addProduct();
-</script>
+    </div>
 </body>
 </html>
