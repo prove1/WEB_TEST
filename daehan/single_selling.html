@@ -19,9 +19,6 @@
         input[type="number"] {
             width: 50%;
         }
-        .hidden {
-            display: none;
-        }
         .modal {
             display: none;
             position: fixed;
@@ -57,21 +54,20 @@
 <body>
     <label for="discount">할인율: </label>
     <input type="number" id="discount" value="25" min="0" max="100" onchange="calculateDiscount()"/>%
-    <br/> 기본 25% 중고 55% 스탠드 20% 벽걸이15% <BR><B>*부가세 별도</B>
+    <br/> 기본 25% 중고 55% 스탠드 20% 벽걸이15% <br><b>*부가세 별도</b>
     <br/>
     <label for="installFee">설치비: </label>
-    <input type="number" id="installFee" value="75" onchange="calculateDiscount()"/> <!-- New input field for installation fee -->
+    <input type="number" id="installFee" value="75" onchange="calculateDiscount()"/>
     <br/>
     <table>
         <thead>
             <tr>
                 <th>싱글 장비 일람표</th>
                 <th>DC가격</th>
-                <th>설치비포함 (+<span id="installFeeDisplay">75</span>)</th> <!-- Updated to include dynamic install fee -->
+                <th>설치비포함 (+<span id="installFeeDisplay">75</span>)</th>
             </tr>
         </thead>
-        <tbody id="equipmentList">
-        </tbody>
+        <tbody id="equipmentList"></tbody>
     </table>
 
     <div id="myModal" class="modal">
@@ -81,60 +77,44 @@
             <p>등급: <span id="rank"></span>등급</p>
             <p>배관경: <span id="pie"></span>파이</p>
             <p>전원선굵기: <span id="sq"></span>스퀘어</p>
-            <p>차단기: <span id="amp"></span></p> <!-- Added 'A' after Amp value -->
+            <p>차단기: <span id="amp"></span></p>
         </div>
     </div>
-<div id="myModal2" class="modal" style="border: 1px solid black;">
-    <div class="modal-content" style="border: 1px text-align: center;">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>견적서</h2>
-        <p>LG시스템에어컨 전문점</p>
-        <p>케이엘공조</p>
-        <p>문의 1644 - 8482</p>
-        <p>###장비명###<br>
-            <span id="equipmentName"></span>
-        </p>
-        <p>###가격###<br>
-            <span id="equipmentPrice"></span>
-        </p>
-        <p>###설치비###<br>
-            <span id="installFeeFormatted"></span>
-        </p>
-        <p>###총금액###<br>
-            <span id="totalAmount"></span>
-        </p>
-        <p>*부가세 별도<br>
-            배관 10m 기본<br>
-        *추가 배관 m 당 30,000 , 전기 m 당 10,000 <br> 차단기 100,000 , 앵글 150,000 별도<br>
-         <button onclick="prepareSMS()">📩 고객에게 문자 보내기</button>
 
-        </p>
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>견적서</h2>
+            <p>LG시스템에어컨 전문점</p>
+            <p>케이엘공조</p>
+            <p>문의 1644 - 8482</p>
+            <p>###장비명###<br><span id="equipmentName"></span></p>
+            <p>###가격###<br><span id="equipmentPrice"></span></p>
+            <p>###설치비###<br><span id="installFeeFormatted"></span></p>
+            <p>###총금액###<br><span id="totalAmount"></span></p>
+            <p>*부가세 별도<br>배관 10m 기본<br>추가 배관 m 당 30,000 , 전기 m 당 10,000 <br> 차단기 100,000 , 앵글 150,000 별도</p>
+            <button onclick="prepareSMS()">📩 고객에게 문자 보내기</button>
+        </div>
     </div>
-</div>
-
-
 
     <script>
-function prepareSMS() {
-    var equipmentName = document.getElementById("equipmentName").textContent;
-    var equipmentPrice = document.getElementById("equipmentPrice").textContent;
-    var installFee = document.getElementById("installFeeFormatted").textContent;
-    var totalAmount = document.getElementById("totalAmount").textContent;
+        function prepareSMS() {
+            var equipmentName = document.getElementById("equipmentName").textContent;
+            var equipmentPrice = document.getElementById("equipmentPrice").textContent;
+            var installFee = document.getElementById("installFeeFormatted").textContent;
+            var totalAmount = document.getElementById("totalAmount").textContent;
 
-    var message = `${equipmentName} 의 가격은 ${equipmentPrice}이며, 설치비는 ${installFee} 이고 총 금액은 ${totalAmount} 입니다\n` +
-                  `추가 배관 m 당 30,000 , 전기 m 당 10,000\n차단기 100,000 , 앵글 150,000 별도`;
+            var message = `${equipmentName} 의 가격은 ${equipmentPrice}이며, 설치비는 ${installFee} 이고 총 금액은 ${totalAmount} 입니다\n` +
+                          `추가 배관 m 당 30,000 , 전기 m 당 10,000\n차단기 100,000 , 앵글 150,000 별도`;
 
-    if (confirm("다음 내용을 고객에게 문자로 보내시겠습니까?\n\n" + message)) {
-        // Android 인터페이스 호출 (WebView -> Java)
-        Android.sendSMS(message); 
-    }
-}
-
+            if (confirm("다음 내용을 고객에게 문자로 보내시겠습니까?\n\n" + message)) {
+                Android.sendSMS(message);
+            }
+        }
 
         var equipmentList = [
-{name: "TW0230U2S냉난방기 1-WAY 0.8HP(6평)", price: 136, rank: 3, pie: "6.35/9.52", sq: 2.5, amp: 20}, 
-{name: "TW0320U2S냉난방기 1-WAY 1.0HP(8평)", price: 148, rank: 4, pie: "6.35/9.52", sq: 2.5, amp: 20}, 
-
+            {name: "TW0230U2S냉난방기 1-WAY 0.8HP(6평)", price: 136, rank: 3, pie: "6.35/9.52", sq: 2.5, amp: 20},
+            {name: "TW0320U2S냉난방기 1-WAY 1.0HP(8평)", price: 148, rank: 4, pie: "6.35/9.52", sq: 2.5, amp: 20}
         ];
 
         window.onload = function() {
@@ -149,46 +129,47 @@ function prepareSMS() {
             calculateDiscount();
         }
 
-
         function calculateDiscount() {
             var discountRate = document.getElementById("discount").value / 100;
-            var installFee = parseFloat(document.getElementById("installFee").value); // Get installation fee from input
-            document.getElementById("installFeeDisplay").innerText = installFee; // Update install fee display in the table header
+            var installFee = parseFloat(document.getElementById("installFee").value);
+            document.getElementById("installFeeDisplay").innerText = installFee;
 
             var tableRows = document.getElementById("equipmentList").children;
             for (var i = 0; i < tableRows.length; i++) {
                 var price = equipmentList[i].price;
                 var discountedPrice = price * (1 - discountRate);
                 tableRows[i].getElementsByClassName("price")[0].innerText = Math.round(discountedPrice);
-                tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + installFee); // Add installation fee to discounted price
+                tableRows[i].getElementsByClassName("discountedPlus75")[0].innerText = Math.round(discountedPrice + installFee);
             }
         }
 
         function showEquipmentInfo(index) {
             var equipment = equipmentList[index];
             document.getElementById("rank").textContent = equipment.rank;
-            document.getElementById("pie").textContent = equipment.pie; // Directly use the 'pie' string from the equipment list
+            document.getElementById("pie").textContent = equipment.pie;
             document.getElementById("sq").textContent = equipment.sq;
-            document.getElementById("amp").textContent = equipment.amp + "A"; // Append 'A' to amp value
+            document.getElementById("amp").textContent = equipment.amp + "A";
             document.getElementById("myModal").style.display = "block";
         }
+
         function fillinfo(index) {
-    var equipment = equipmentList[index];
-    var discountRate = document.getElementById("discount").value / 100; // Get the current discount rate
-    var discountedPrice = equipment.price * (1 - discountRate) * 10000; // Apply the discount to the price and convert to full value
+            var equipment = equipmentList[index];
+            var discountRate = document.getElementById("discount").value / 100;
+            var discountedPrice = equipment.price * (1 - discountRate) * 10000;
 
-    document.getElementById("equipmentName").textContent = equipment.name;
-    document.getElementById("equipmentPrice").textContent = formatPrice(discountedPrice); // Display the discounted price
-    var installFee = parseFloat(document.getElementById("installFee").value);
-    document.getElementById("installFeeFormatted").textContent = formatPrice(installFee * 10000);
-    var totalPrice = discountedPrice + installFee * 10000; // Calculate total price including the installation fee
-    document.getElementById("totalAmount").textContent = formatPrice(totalPrice);
-    document.getElementById("myModal2").style.display = "block";
-}
+            document.getElementById("equipmentName").textContent = equipment.name;
+            document.getElementById("equipmentPrice").textContent = formatPrice(discountedPrice);
+            var installFee = parseFloat(document.getElementById("installFee").value);
+            document.getElementById("installFeeFormatted").textContent = formatPrice(installFee * 10000);
+            var totalPrice = discountedPrice + installFee * 10000;
+            document.getElementById("totalAmount").textContent = formatPrice(totalPrice);
+            document.getElementById("myModal2").style.display = "block";
+        }
 
-    function formatPrice(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
             document.getElementById("myModal2").style.display = "none";
